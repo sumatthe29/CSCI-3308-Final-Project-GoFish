@@ -1,0 +1,182 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable prefer-template */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable object-shorthand */
+/* eslint-disable func-names */
+/* eslint consistent-this: ["error", "self"] */
+
+var geoip = {
+  __checkExpired: function (geoCache) {
+    if (geoCache.expires) {
+      geoCache.expires = new Date(geoCache.expires);
+      if (new Date() > geoCache.expires) {
+        return true;
+      }
+    } else {
+      return true;
+    }
+
+    return false;
+  },
+  __postalCheck: function (geoCache, postalRequired) {
+    return postalRequired ? Boolean(geoCache.postal) : true;
+  },
+  __getGeoCache: function (checkPostal) {
+    var geoCache = sessionStorage.getItem('geo-cache');
+
+    try {
+      if (geoCache) {
+        geoCache = JSON.parse(decodeURIComponent(escape(atob(geoCache))));
+
+        if (this.__checkExpired(geoCache)) {
+          return null;
+        }
+
+        return this.__postalCheck(geoCache, checkPostal) ? geoCache : null;
+      }
+
+      return null;
+    } catch (error) {
+      return null;
+    }
+  },
+  __responseToObject: function (responseText) {
+    var expires = new Date(),
+    gcText = responseText,
+    gcObj = JSON.parse(gcText);
+
+    expires.setDate(expires.getDate() + 1);
+    gcObj.expires = expires;
+
+    return gcObj;
+  },
+  insights: function (successCallback, failureCallback) {
+    var insight = this.__getGeoCache(true);
+    var self = this;
+
+    if (insight) {
+      successCallback(insight);
+    } else {
+      var xhrInsight = new XMLHttpRequest();
+
+      xhrInsight.onreadystatechange = function () {
+        if (xhrInsight.readyState !== 4) {
+          return;
+        }
+
+        if (xhrInsight.status >= 200 && xhrInsight.status < 300) {
+          var geoCache = self.__responseToObject(xhrInsight.responseText);
+
+          sessionStorage.setItem('geo-cache', btoa(
+              unescape(
+                encodeURIComponent(
+                  JSON.stringify(geoCache)
+                )
+              )
+            )
+          );
+
+          successCallback(geoCache);
+        } else if (failureCallback) {
+          failureCallback(JSON.parse(xhrInsight.responseText));
+        }
+      };
+
+      xhrInsight.open('GET', 'https://geoip.esri.com/get-insight');
+      xhrInsight.setRequestHeader('pathname', window.location.pathname);
+      xhrInsight.send();
+    }
+  },
+  city: function (successCallback, failureCallback) {
+    var insight = this.__getGeoCache(true);
+    var self = this;
+
+    if (insight) {
+      successCallback(insight);
+    } else {
+      var xhrInsight = new XMLHttpRequest();
+
+      xhrInsight.onreadystatechange = function () {
+        if (xhrInsight.readyState !== 4) {
+          return;
+        }
+
+        if (xhrInsight.status >= 200 && xhrInsight.status < 300) {
+          var geoCache = self.__responseToObject(xhrInsight.responseText);
+
+          sessionStorage.setItem('geo-cache', btoa(
+              unescape(
+                encodeURIComponent(
+                  JSON.stringify(geoCache)
+                )
+              )
+            )
+          );
+          successCallback(geoCache);
+        } else if (failureCallback) {
+          failureCallback(JSON.parse(xhrInsight.responseText));
+        }
+
+      };
+
+      xhrInsight.open('GET', 'https://geoip.esri.com/get-city');
+      xhrInsight.setRequestHeader('pathname', window.location.pathname);
+      xhrInsight.send();
+    }
+  },
+  // eslint-disable-next-line max-statements
+  country: function (successCallback, failureCallback) {
+    var insight = this.__getGeoCache(false);
+    var self = this,
+        complete = false;
+
+    setTimeout(function () {
+      if (!complete) {
+        const errMsg = 'Timeout Error - geoip did not return data for more than 2 seconds';
+
+        if (failureCallback) {
+          failureCallback(errMsg);
+        } else {
+          console.error(errMsg);
+          console.error('Failure callback not assigned.');
+        }
+      }
+    }, 2000);
+
+    if (insight) {
+      complete = true;
+      successCallback(insight);
+    } else {
+      var xhrInsight = new XMLHttpRequest();
+
+      xhrInsight.onreadystatechange = function () {
+        if (xhrInsight.readyState !== 4) {
+          return;
+        }
+
+        if (xhrInsight.status >= 200 && xhrInsight.status < 300) {
+          var geoCache = self.__responseToObject(xhrInsight.responseText);
+
+          sessionStorage.setItem('geo-cache', btoa(
+              unescape(
+                encodeURIComponent(
+                  JSON.stringify(geoCache)
+                )
+              )
+            )
+          );
+          complete = true;
+          successCallback(geoCache);
+        } else if (failureCallback) {
+          failureCallback(JSON.parse(xhrInsight.responseText));
+        }
+      };
+
+      xhrInsight.open('GET', 'https://geoip.esri.com/get-country');
+      xhrInsight.setRequestHeader('pathname', window.location.pathname);
+      xhrInsight.send();
+    }
+  }
+};
+
+window.geoip2 = geoip;

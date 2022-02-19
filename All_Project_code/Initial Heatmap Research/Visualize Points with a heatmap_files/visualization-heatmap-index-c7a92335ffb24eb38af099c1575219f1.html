@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!-- saved from url=(0123)https://developers.arcgis.com/javascript/latest/demo-apps/visualization-heatmap-index-c7a92335ffb24eb38af099c1575219f1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>Visualize points with a heatmap | Sample | ArcGIS API for JavaScript 4.22</title>
+
+    <link rel="stylesheet" href="./main.css">
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script type="text/javascript" charset="utf-8" src="./CSVLayer.js.download"></script><script type="text/javascript" charset="utf-8" src="./MapView.js.download"></script><script type="text/javascript" charset="utf-8" src="./Legend.js.download"></script><script type="text/javascript" charset="utf-8" src="./CSVSource.js.download"></script><script type="text/javascript" charset="utf-8" src="./webgl.js.download"></script><script type="text/javascript" charset="utf-8" src="./mapViewDeps.js.download"></script><script type="text/javascript" charset="utf-8" src="./VectorTileLayer.js.download"></script><script type="text/javascript" charset="utf-8" src="./FeatureLayerView2D.js.download"></script><script type="text/javascript" charset="utf-8" src="./VectorTileLayerView2D.js.download"></script><script type="text/javascript" charset="utf-8" src="./libtess.js.download"></script><script type="text/javascript" charset="utf-8" src="./HeatmapTileRenderer.js.download"></script><script src="./saved_resource"></script>
+
+    <script>
+      require(["esri/Map", "esri/layers/CSVLayer", "esri/views/MapView", "esri/widgets/Legend"], (
+        Map,
+        CSVLayer,
+        MapView,
+        Legend
+      ) => {
+        const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.csv";
+
+        // Paste the url into a browser's address bar to download and view the attributes
+        // in the CSV file. These attributes include:
+        // * mag - magnitude
+        // * type - earthquake or other event such as nuclear test
+        // * place - location of the event
+        // * time - the time of the event
+
+        const template = {
+          title: "{place}",
+          content: "Magnitude {mag} {type} hit {place} on {time}."
+        };
+
+        // The heatmap renderer assigns each pixel in the view with
+        // an intensity value. The ratio of that intensity value
+        // to the maxPixel intensity is used to assign a color
+        // from the continuous color ramp in the colorStops property
+
+        const renderer = {
+          type: "heatmap",
+          colorStops: [
+            { color: "rgba(63, 40, 102, 0)", ratio: 0 },
+            { color: "#472b77", ratio: 0.083 },
+            { color: "#4e2d87", ratio: 0.166 },
+            { color: "#563098", ratio: 0.249 },
+            { color: "#5d32a8", ratio: 0.332 },
+            { color: "#6735be", ratio: 0.415 },
+            { color: "#7139d4", ratio: 0.498 },
+            { color: "#7b3ce9", ratio: 0.581 },
+            { color: "#853fff", ratio: 0.664 },
+            { color: "#a46fbf", ratio: 0.747 },
+            { color: "#c29f80", ratio: 0.83 },
+            { color: "#e0cf40", ratio: 0.913 },
+            { color: "#ffff00", ratio: 1 }
+          ],
+          maxPixelIntensity: 25,
+          minPixelIntensity: 0
+        };
+
+        const layer = new CSVLayer({
+          url: url,
+          title: "Magnitude 2.5+ earthquakes from the last week",
+          copyright: "USGS Earthquakes",
+          popupTemplate: template,
+          renderer: renderer
+        });
+
+        const map = new Map({
+          basemap: "gray-vector",
+          layers: [layer]
+        });
+
+        const view = new MapView({
+          container: "viewDiv",
+          center: [-138, 30],
+          zoom: 2,
+          map: map
+        });
+
+        view.ui.add(
+          new Legend({
+            view: view
+          }),
+          "bottom-left"
+        );
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv" class="esri-view esri-view-width-large esri-view-width-greater-than-xsmall esri-view-width-greater-than-small esri-view-width-greater-than-medium esri-view-width-less-than-xlarge esri-view-height-xsmall esri-view-height-less-than-small esri-view-height-less-than-medium esri-view-height-less-than-large esri-view-height-less-than-xlarge esri-view-orientation-landscape"><div class="esri-view-root"><div class="esri-view-surface esri-view-surface--inset-outline esri-view-surface--touch-none" role="application" tabindex="0"><canvas style="width: 1017px; height: 460px; display: block;" width="1780" height="805"></canvas></div><div class="esri-overlay-surface"><div style="visibility: hidden;"></div></div><div class="esri-ui calcite-theme-light" style="inset: 0px;"><div class="esri-ui-inner-container esri-ui-corner-container" style="inset: 15px 15px 30px;"><div class="esri-ui-top-left esri-ui-corner"><div class="esri-component esri-zoom esri-widget"><div class="esri-widget--button esri-widget esri-interactive" role="button" tabindex="0" title="Zoom in"><span aria-hidden="true" role="presentation" class="esri-icon esri-icon-plus"></span><span class="esri-icon-font-fallback-text">Zoom in</span></div><div class="esri-widget--button esri-widget esri-interactive" role="button" tabindex="0" title="Zoom out"><span aria-hidden="true" role="presentation" class="esri-icon esri-icon-minus"></span><span class="esri-icon-font-fallback-text">Zoom out</span></div></div></div><div class="esri-ui-top-right esri-ui-corner"></div><div class="esri-ui-bottom-left esri-ui-corner"><div class="esri-component esri-legend esri-widget esri-widget--panel"><div><div class="esri-legend__service" tabindex="0"><h3 class="esri-widget__heading esri-legend__service-label">Magnitude 2.5+ earthquakes from the last week</h3><div class="esri-legend__layer"><div class="esri-legend__layer-table esri-legend__layer-table--size-ramp"><div class="esri-legend__layer-row"><div class="esri-legend__layer-cell esri-legend__layer-cell--symbols" style="width: 24px;"><div class="esri-legend__ramps"><div class="esri-legend__color-ramp " style="width: 24px; height: 75px; opacity: 1;"><canvas width="42" height="131" style="width: 24px; height: 75px;"></canvas></div></div></div><div class="esri-legend__layer-cell esri-legend__layer-cell--info"><div class="esri-legend__ramp-labels" style="height: 75px;"><div class="esri-legend__ramp-label">High</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div class="esri-legend__ramp-label">Low</div></div></div></div></div></div></div></div></div></div><div class="esri-ui-bottom-right esri-ui-corner"></div></div><div class="esri-ui-inner-container esri-ui-manual-container"><div class="esri-component esri-attribution esri-widget"><div class="esri-attribution__sources esri-interactive" tabindex="0" role="button">Esri, FAO, NOAA | USGS Earthquakes</div><div class="esri-attribution__powered-by">Powered by <a class="esri-attribution__link" href="http://www.esri.com/" target="_blank" rel="noreferrer">Esri</a></div></div><div class="esri-component" style="display: none;"></div><div class="esri-component" style="display: none;"></div></div></div></div><div class="esri-view-user-storage"></div></div>
+  
+
+</body></html>

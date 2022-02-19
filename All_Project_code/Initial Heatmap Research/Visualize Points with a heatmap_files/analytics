@@ -1,0 +1,30 @@
+
+function piResponse() {
+		piSetCookie('visitor_id82202', '303463498', 3650);
+			piSetCookie('visitor_id82202-hash', '2d1783dd7ee141f3ad6bde89833fb390d17e1bb4b5f352cdc0ad3885edafe0cf60ce174bde287aad6a20c0bf14ca3908e8edf24c', 3650);
+		
+		if (document.location.protocol != "https:" || (document.location.protocol == "https:" && true)) {
+		var analytics_link = document.location.protocol + "//" + "go.esri.com/analytics?";
+		pi.tracker.visitor_id='303463498';
+
+				pi.tracker.visitor_id_sign='2d1783dd7ee141f3ad6bde89833fb390d17e1bb4b5f352cdc0ad3885edafe0cf60ce174bde287aad6a20c0bf14ca3908e8edf24c';
+		
+				pi.tracker.campaign_id='1602';
+		
+		var variables = 'conly=true';
+		for (property in pi.tracker) {
+					variables += "&" + property + "=" + encodeURIComponent(pi.tracker[property]);
+				}
+		var headID = document.getElementsByTagName("head")[0];
+		piScriptObj[piScriptNum] = document.createElement('script');
+		piScriptObj[piScriptNum].type = 'text/javascript';
+		piScriptObj[piScriptNum].src = analytics_link + variables;
+		headID.appendChild(piScriptObj[piScriptNum]);
+		piScriptObj[piScriptNum].onload = function() { return; }
+	}
+	}
+piResponse();
+
+
+
+

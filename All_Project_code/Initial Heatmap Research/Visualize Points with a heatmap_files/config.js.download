@@ -1,0 +1,21 @@
+var SiteConfig = {"environment":"production","suffix":"","route_url":"http://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World","portal":"https://www.arcgis.com/sharing/rest","billing":"https://billing.arcgis.com/developers/rest","billingapi":"https://billingapi.arcgis.com/developersubscription","ecas":"https://www.webaccounts.com","ago":"www.arcgis.com","ago_maps":".maps.arcgis.com","destination":"https://developers.arcgis.com","feedback_url":"https://resources.arcgis.com/apps/feedback/dev_feedback.php","diecomm_url":"https://xiecomm.paymetric.com/diecomm/Ajax","marketplace":"http://marketplace.arcgis.com","download_server":"https://downloads.arcgis.com","developers_api":"https://api.developers.arcgis.com","my_esri":"https://my.esri.com","api_key":"AAPK2b935e8bbf564ef581ca3c6fcaa5f2a71ZH84cPqqFvyz3KplFRHP8HyAwJJkh6cnpcQ-qkWh5aiyDQsGJbsXglGx0QM2cPm","api_key_dev":"AAPK69c151a127fe4e1bbfbb20961381f7f5SCf-KoVpDDZ8XVidWraG37mL2ROKX9N0q5tN6ehsrPM0jUVyegGu1JW8LnX7Sfbr","api_key_qa":"AAPK8ff40924da464c3b97f6a506820450c1XxY-L33udaca6lwIk7yvpdnVRVopi6DTIoQmTwUrRi05UlzkTL-vSzo1XsrSLv0C","api_key_prod":"AAPK2b935e8bbf564ef581ca3c6fcaa5f2a71ZH84cPqqFvyz3KplFRHP8HyAwJJkh6cnpcQ-qkWh5aiyDQsGJbsXglGx0QM2cPm"};
+
+var dojoConfig = {
+  async: true,
+  locale: 'en-us',
+  useDeferredInstrumentation: true,
+  packages: [{
+    name: "SessionManager",
+    location: "/assets/js/legacy/SessionManager"
+  },{
+    name: "Notifications",
+    location: "/assets/js/legacy/Notifications"
+  },{
+    name: "Config",
+    location: "/assets/js/legacy/Config"
+  },{
+    name: "calcite-web",
+    location: "/assets/js",
+    main: "calcite-web"
+  }]
+};;

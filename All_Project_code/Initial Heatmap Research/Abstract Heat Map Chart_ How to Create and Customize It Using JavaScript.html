@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/ -->
+<html lang="en" xmlns:og="http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/1.txt"></script><script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/1(1).txt"></script><style>.anychart-embed-{width:100%;height:500px;}</style><style>.anychart-embed-{width:100%;height:500px;}</style><style>.anychart-embed-{width:100%;height:500px;}</style><style>.anychart-embed-{width:100%;height:500px;}</style><style>.anychart-embed-{width:100%;height:500px;}</style><script type="text/javascript" async="" id="inspsync" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/inspectlet.js.download"></script><script async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/tag.js.download"></script><script type="text/javascript" async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/tracking.js.download"></script><script type="text/javascript" async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/holdonstranger.js.download"></script><script async="" id="cio-tracker" data-site-id="aedd148b4f0bd710f6c8" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/track.js.download"></script><script type="text/javascript" async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/tracking.js.download"></script><script async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/fbevents.js.download"></script><script async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/analytics.js.download"></script><script gtm="GTM-5B8NXZ" type="text/javascript" async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/optimize.js.download"></script><script async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/icons.30.svg.js.download"></script><script async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/gtm.js.download"></script><script type="text/javascript" async="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/tracking.js.download"></script><script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/moatframe.js.download"></script>
+    <link rel="icon" href="https://www.anychart.com/_design/img/static/anychart.ico">
+    <title>Heat Map Chart: How to Create and Customize It Using JavaScript</title>
+    
+<!-- This site is optimized with the Yoast SEO plugin v5.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Want to learn how to quickly create an interactive heat map chart using JavaScript? My data visualization tutorial will guide you through the coding process">
+<link rel="canonical" href="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heat Map Chart: How to Create and Customize It Using JavaScript">
+<meta property="og:description" content="Want to learn how to quickly create an interactive heat map chart using JavaScript? My data visualization tutorial will guide you through the coding process">
+<meta property="og:url" content="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/">
+<meta property="og:site_name" content="AnyChart News">
+<meta property="article:publisher" content="https://www.facebook.com/AnyCharts">
+<meta property="article:tag" content="AnyChart">
+<meta property="article:tag" content="best data visualization examples">
+<meta property="article:tag" content="Business Intelligence">
+<meta property="article:tag" content="chart design">
+<meta property="article:tag" content="chart examples">
+<meta property="article:tag" content="chart types">
+<meta property="article:tag" content="charts">
+<meta property="article:tag" content="Charts and Art">
+<meta property="article:tag" content="data analysis">
+<meta property="article:tag" content="data analytics">
+<meta property="article:tag" content="data design">
+<meta property="article:tag" content="Data Visualization">
+<meta property="article:tag" content="data visualization design">
+<meta property="article:tag" content="data visualization tutorial">
+<meta property="article:tag" content="design">
+<meta property="article:tag" content="HDI">
+<meta property="article:tag" content="heat map">
+<meta property="article:tag" content="heat map chart">
+<meta property="article:tag" content="heatmap">
+<meta property="article:tag" content="heatmap chart">
+<meta property="article:tag" content="HTML5">
+<meta property="article:tag" content="html5 charts">
+<meta property="article:tag" content="Human Development Index">
+<meta property="article:tag" content="infographics">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="javascript chart tutorial">
+<meta property="article:tag" content="javascript charting">
+<meta property="article:tag" content="JavaScript charting library">
+<meta property="article:tag" content="javascript charts">
+<meta property="article:tag" content="javascript heat map">
+<meta property="article:tag" content="js chart">
+<meta property="article:tag" content="js charting">
+<meta property="article:tag" content="js charts">
+<meta property="article:tag" content="statistics">
+<meta property="article:tag" content="Tips and tricks">
+<meta property="article:tag" content="tutorial">
+<meta property="article:tag" content="UNDP">
+<meta property="article:tag" content="United Nations">
+<meta property="article:tag" content="United Nations Development Programme">
+<meta property="article:section" content="AnyChart charting component">
+<meta property="article:published_time" content="2020-02-26T16:54:50+00:00">
+<meta property="article:modified_time" content="2020-03-02T05:48:28+00:00">
+<meta property="og:updated_time" content="2020-03-02T05:48:28+00:00">
+<meta property="og:image" content="https://www.anychart.com/blog/wp-content/uploads/2020/02/heat-map-chart.png">
+<meta property="og:image:secure_url" content="https://www.anychart.com/blog/wp-content/uploads/2020/02/heat-map-chart.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Want to learn how to quickly create an interactive heat map chart using JavaScript? My data visualization tutorial will guide you through the coding process">
+<meta name="twitter:title" content="Heat Map Chart: How to Create and Customize It Using JavaScript">
+<meta name="twitter:site" content="@AnyChart">
+<meta name="twitter:image" content="https://www.anychart.com/blog/wp-content/uploads/2020/02/heat-map-chart.png">
+<meta name="twitter:creator" content="@AnyChart">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://s7.addthis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="AnyChart News » Feed" href="https://www.anychart.com/blog/feed/">
+<link rel="alternate" type="application/rss+xml" title="AnyChart News » Comments Feed" href="https://www.anychart.com/blog/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="AnyChart News » Creating Heat Map Chart Using JavaScript Comments Feed" href="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.anychart.com\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="addthis_all_pages-css" href="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/addthis_wordpress_public.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/admin-ajax.php"></script>
+<script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/addthis_widget.js.download"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; top: -9999px; z-index: 100000;"><iframe id="_atssh81" title="AddThis utility frame" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/sh.f48a1a04fe8dbf021b4cda1d.html" style="height: 1px; width: 1px; position: absolute; top: 0px; z-index: 100000; border: 0px; left: 0px;"></iframe></div><style type="text/css">.at-icon{fill:#fff;border:0}.at-icon-wrapper{display:inline-block;overflow:hidden}a .at-icon-wrapper{cursor:pointer}.at-rounded,.at-rounded-element .at-icon-wrapper{border-radius:12%}.at-circular,.at-circular-element .at-icon-wrapper{border-radius:50%}.addthis_32x32_style .at-icon{width:2pc;height:2pc}.addthis_24x24_style .at-icon{width:24px;height:24px}.addthis_20x20_style .at-icon{width:20px;height:20px}.addthis_16x16_style .at-icon{width:1pc;height:1pc}#at16lb{display:none;position:absolute;top:0;left:0;width:100%;height:100%;z-index:1001;background-color:#000;opacity:.001}#at_complete,#at_error,#at_share,#at_success{position:static!important}.at15dn{display:none}#at15s,#at16p,#at16p form input,#at16p label,#at16p textarea,#at_share .at_item{font-family:arial,helvetica,tahoma,verdana,sans-serif!important;font-size:9pt!important;outline-style:none;outline-width:0;line-height:1em}* html #at15s.mmborder{position:absolute!important}#at15s.mmborder{position:fixed!important;width:250px!important}#at15s{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);float:none;line-height:1em;margin:0;overflow:visible;padding:5px;text-align:left;position:absolute}#at15s a,#at15s span{outline:0;direction:ltr;text-transform:none}#at15s .at-label{margin-left:5px}#at15s .at-icon-wrapper{width:1pc;height:1pc;vertical-align:middle}#at15s .at-icon{width:1pc;height:1pc}.at4-icon{display:inline-block;background-repeat:no-repeat;background-position:top left;margin:0;overflow:hidden;cursor:pointer}.addthis_16x16_style .at4-icon,.addthis_default_style .at4-icon,.at4-icon,.at-16x16{width:1pc;height:1pc;line-height:1pc;background-size:1pc!important}.addthis_32x32_style .at4-icon,.at-32x32{width:2pc;height:2pc;line-height:2pc;background-size:2pc!important}.addthis_24x24_style .at4-icon,.at-24x24{width:24px;height:24px;line-height:24px;background-size:24px!important}.addthis_20x20_style .at4-icon,.at-20x20{width:20px;height:20px;line-height:20px;background-size:20px!important}.at4-icon.circular,.circular .at4-icon,.circular.aticon{border-radius:50%}.at4-icon.rounded,.rounded .at4-icon{border-radius:4px}.at4-icon-left{float:left}#at15s .at4-icon{text-indent:20px;padding:0;overflow:visible;white-space:nowrap;background-size:1pc;width:1pc;height:1pc;background-position:top left;display:inline-block;line-height:1pc}.addthis_vertical_style .at4-icon,.at4-follow-container .at4-icon{margin-right:5px}html>body #at15s{width:250px!important}#at15s.atm{background:none!important;padding:0!important;width:10pc!important}#at15s_inner{background:#fff;border:1px solid #fff;margin:0}#at15s_head{position:relative;background:#f2f2f2;padding:4px;cursor:default;border-bottom:1px solid #e5e5e5}.at15s_head_success{background:#cafd99!important;border-bottom:1px solid #a9d582!important}.at15s_head_success a,.at15s_head_success span{color:#000!important;text-decoration:none}#at15s_brand,#at15sptx,#at16_brand{position:absolute}#at15s_brand{top:4px;right:4px}.at15s_brandx{right:20px!important}a#at15sptx{top:4px;right:4px;text-decoration:none;color:#4c4c4c;font-weight:700}#at15sptx:hover{text-decoration:underline}#at16_brand{top:5px;right:30px;cursor:default}#at_hover{padding:4px}#at_hover .at_item,#at_share .at_item{background:#fff!important;float:left!important;color:#4c4c4c!important}#at_share .at_item .at-icon-wrapper{margin-right:5px}#at_hover .at_bold{font-weight:700;color:#000!important}#at_hover .at_item{width:7pc!important;padding:2px 3px!important;margin:1px;text-decoration:none!important}#at_hover .at_item.athov,#at_hover .at_item:focus,#at_hover .at_item:hover{margin:0!important}#at_hover .at_item.athov,#at_hover .at_item:focus,#at_hover .at_item:hover,#at_share .at_item.athov,#at_share .at_item:hover{background:#f2f2f2!important;border:1px solid #e5e5e5;color:#000!important;text-decoration:none}.ipad #at_hover .at_item:focus{background:#fff!important;border:1px solid #fff}.at15t{display:block!important;height:1pc!important;line-height:1pc!important;padding-left:20px!important;background-position:0 0;text-align:left}.addthis_button,.at15t{cursor:pointer}.addthis_toolbox a.at300b,.addthis_toolbox a.at300m{width:auto}.addthis_toolbox a{margin-bottom:5px;line-height:initial}.addthis_toolbox.addthis_vertical_style{width:200px}.addthis_button_facebook_like .fb_iframe_widget{line-height:100%}.addthis_button_facebook_like iframe.fb_iframe_widget_lift{max-width:none}.addthis_toolbox a.addthis_button_counter,.addthis_toolbox a.addthis_button_facebook_like,.addthis_toolbox a.addthis_button_facebook_send,.addthis_toolbox a.addthis_button_facebook_share,.addthis_toolbox a.addthis_button_foursquare,.addthis_toolbox a.addthis_button_linkedin_counter,.addthis_toolbox a.addthis_button_pinterest_pinit,.addthis_toolbox a.addthis_button_tweet{display:inline-block}.addthis_toolbox span.addthis_follow_label{display:none}.addthis_toolbox.addthis_vertical_style span.addthis_follow_label{display:block;white-space:nowrap}.addthis_toolbox.addthis_vertical_style a{display:block}.addthis_toolbox.addthis_vertical_style.addthis_32x32_style a{line-height:2pc;height:2pc}.addthis_toolbox.addthis_vertical_style .at300bs{margin-right:4px;float:left}.addthis_toolbox.addthis_20x20_style span{line-height:20px}.addthis_toolbox.addthis_32x32_style span{line-height:2pc}.addthis_toolbox.addthis_pill_combo_style .addthis_button_compact .at15t_compact,.addthis_toolbox.addthis_pill_combo_style a{float:left}.addthis_toolbox.addthis_pill_combo_style a.addthis_button_tweet{margin-top:-2px}.addthis_toolbox.addthis_pill_combo_style .addthis_button_compact .at15t_compact{margin-right:4px}.addthis_default_style .addthis_separator{margin:0 5px;display:inline}div.atclear{clear:both}.addthis_default_style .addthis_separator,.addthis_default_style .at4-icon,.addthis_default_style .at300b,.addthis_default_style .at300bo,.addthis_default_style .at300bs,.addthis_default_style .at300m{float:left}.at300b img,.at300bo img{border:0}a.at300b .at4-icon,a.at300m .at4-icon{display:block}.addthis_default_style .at300b,.addthis_default_style .at300bo,.addthis_default_style .at300m{padding:0 2px}.at300b,.at300bo,.at300bs,.at300m{cursor:pointer}.addthis_button_facebook_like.at300b:hover,.addthis_button_facebook_like.at300bs:hover,.addthis_button_facebook_send.at300b:hover,.addthis_button_facebook_send.at300bs:hover{opacity:1}.addthis_20x20_style .at15t,.addthis_20x20_style .at300bs{overflow:hidden;display:block;height:20px!important;width:20px!important;line-height:20px!important}.addthis_32x32_style .at15t,.addthis_32x32_style .at300bs{overflow:hidden;display:block;height:2pc!important;width:2pc!important;line-height:2pc!important}.at300bs{overflow:hidden;display:block;background-position:0 0;height:1pc;width:1pc;line-height:1pc!important}.addthis_default_style .at15t_compact,.addthis_default_style .at15t_expanded{margin-right:4px}#at_share .at_item{width:123px!important;padding:4px;margin-right:2px;border:1px solid #fff}#at16p{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);z-index:10000001;position:absolute;top:50%;left:50%;width:300px;padding:10px;margin:0 auto;margin-top:-185px;margin-left:-155px;font-family:arial,helvetica,tahoma,verdana,sans-serif;font-size:9pt;color:#5e5e5e}#at_share{margin:0;padding:0}#at16pt{position:relative;background:#f2f2f2;height:13px;padding:5px 10px}#at16pt a,#at16pt h4{font-weight:700}#at16pt h4{display:inline;margin:0;padding:0;font-size:9pt;color:#4c4c4c;cursor:default}#at16pt a{position:absolute;top:5px;right:10px;color:#4c4c4c;text-decoration:none;padding:2px}#at15sptx:focus,#at16pt a:focus{outline:thin dotted}#at15s #at16pf a{top:1px}#_atssh{width:1px!important;height:1px!important;border:0!important}.atm{width:10pc!important;padding:0;margin:0;line-height:9pt;letter-spacing:normal;font-family:arial,helvetica,tahoma,verdana,sans-serif;font-size:9pt;color:#444;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);padding:4px}.atm-f{text-align:right;border-top:1px solid #ddd;padding:5px 8px}.atm-i{background:#fff;border:1px solid #d5d6d6;padding:0;margin:0;box-shadow:1px 1px 5px rgba(0,0,0,.15)}.atm-s{margin:0!important;padding:0!important}.atm-s a:focus{border:transparent;outline:0;transition:none}#at_hover.atm-s a,.atm-s a{display:block;text-decoration:none;padding:4px 10px;color:#235dab!important;font-weight:400;font-style:normal;transition:none}#at_hover.atm-s .at_bold{color:#235dab!important}#at_hover.atm-s a:hover,.atm-s a:hover{background:#2095f0;text-decoration:none;color:#fff!important}#at_hover.atm-s .at_bold{font-weight:700}#at_hover.atm-s a:hover .at_bold{color:#fff!important}.atm-s a .at-label{vertical-align:middle;margin-left:5px;direction:ltr}.at_PinItButton{display:block;width:40px;height:20px;padding:0;margin:0;background-image:url(//s7.addthis.com/static/t00/pinit00.png);background-repeat:no-repeat}.at_PinItButton:hover{background-position:0 -20px}.addthis_toolbox .addthis_button_pinterest_pinit{position:relative}.at-share-tbx-element .fb_iframe_widget span{vertical-align:baseline!important}#at16pf{height:auto;text-align:right;padding:4px 8px}.at-privacy-info{position:absolute;left:7px;bottom:7px;cursor:pointer;text-decoration:none;font-family:helvetica,arial,sans-serif;font-size:10px;line-height:9pt;letter-spacing:.2px;color:#666}.at-privacy-info:hover{color:#000}.body .wsb-social-share .wsb-social-share-button-vert{padding-top:0;padding-bottom:0}.body .wsb-social-share.addthis_counter_style .addthis_button_tweet.wsb-social-share-button{padding-top:40px}.body .wsb-social-share.addthis_counter_style .addthis_button_facebook_like.wsb-social-share-button{padding-top:21px}@media print{#at4-follow,#at4-share,#at4-thankyou,#at4-whatsnext,#at4m-mobile,#at15s,.at4,.at4-recommended{display:none!important}}@media screen and (max-width:400px){.at4win{width:100%}}@media screen and (max-height:700px) and (max-width:400px){.at4-thankyou-inner .at4-recommended-container{height:122px;overflow:hidden}.at4-thankyou-inner .at4-recommended .at4-recommended-item:first-child{border-bottom:1px solid #c5c5c5}}</style><style type="text/css">.at-branding-logo{font-family:helvetica,arial,sans-serif;text-decoration:none;font-size:10px;display:inline-block;margin:2px 0;letter-spacing:.2px}.at-branding-logo .at-branding-icon{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////+GlNUkcc1QAAAB1JREFUeNpiYIQDBjQmAwMmkwEM0JnY1WIxFyDAABGeAFEudiZsAAAAAElFTkSuQmCC")}.at-branding-logo .at-branding-icon,.at-branding-logo .at-privacy-icon{display:inline-block;height:10px;width:10px;margin-left:4px;margin-right:3px;margin-bottom:-1px;background-repeat:no-repeat}.at-branding-logo .at-privacy-icon{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAKCAMAAABR24SMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhQTFRF8fr9ot/xXcfn2/P5AKva////////AKTWodjhjAAAAAd0Uk5T////////ABpLA0YAAAA6SURBVHjaJMzBDQAwCAJAQaj7b9xifV0kUKJ9ciWxlzWEWI5gMF65KUTv0VKkjVeTerqE/x7+9BVgAEXbAWI8QDcfAAAAAElFTkSuQmCC")}.at-branding-logo span{text-decoration:none}.at-branding-logo .at-branding-addthis,.at-branding-logo .at-branding-powered-by{color:#666}.at-branding-logo .at-branding-addthis:hover{color:#333}.at-cv-with-image .at-branding-addthis,.at-cv-with-image .at-branding-addthis:hover{color:#fff}a.at-branding-logo:visited{color:initial}.at-branding-info{display:inline-block;padding:0 5px;color:#666;border:1px solid #666;border-radius:50%;font-size:10px;line-height:9pt;opacity:.7;transition:all .3s ease;text-decoration:none}.at-branding-info span{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.at-branding-info:before{content:'i';font-family:Times New Roman}.at-branding-info:hover{color:#0780df;border-color:#0780df}</style><style id="service-icons-0"></style>
+<link rel="https://api.w.org/" href="https://www.anychart.com/blog/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.anychart.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.anychart.com/blog/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.7.3">
+<link rel="shortlink" href="https://www.anychart.com/blog/?p=9644">
+<link rel="alternate" type="application/json+oembed" href="https://www.anychart.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.anychart.com%2Fblog%2F2020%2F02%2F26%2Fheat-map-chart-create-javascript%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.anychart.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.anychart.com%2Fblog%2F2020%2F02%2F26%2Fheat-map-chart-create-javascript%2F&amp;format=xml">
+<script type="text/javascript">
+	window.__lc = window.__lc || {};
+	window.__lc.license = 1006188;
+	window.__lc.visitor = {
+		name: '',
+		email: ''
+	};
+	(function() {
+		var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+		lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+	})();
+</script>
+<noscript>
+<a href="https://www.livechat.com/chat-with/1006188/">Chat with us</a>,
+powered by <a href="https://www.livechat.com/?welcome" rel="noopener" target="_blank">LiveChat</a>
+</noscript><script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/si_captcha.js.download"></script>
+<!-- begin SI CAPTCHA Anti-Spam - login/register form style -->
+<style type="text/css">
+.si_captcha_small { width:175px; height:45px; padding-top:10px; padding-bottom:10px; }
+.si_captcha_large { width:250px; height:60px; padding-top:10px; padding-bottom:10px; }
+img#si_image_com { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_reg { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_log { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_side_login { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_checkout { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_jetpack { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_bbpress_topic { border-style:none; margin:0; padding-right:5px; float:left; }
+.si_captcha_refresh { border-style:none; margin:0; vertical-align:bottom; }
+div#si_captcha_input { display:block; padding-top:15px; padding-bottom:5px; }
+label#si_captcha_code_label { margin:0; }
+input#si_captcha_code_input { width:65px; }
+p#si_captcha_code_p { clear: left; padding-top:10px; }
+.si-captcha-jetpack-error { color:#DC3232; }
+</style>
+<!-- end SI CAPTCHA Anti-Spam - login/register form style -->
+		<style type="text/css" id="wp-custom-css">
+			/*
+You can add your own CSS here.
+
+Click the help icon above to learn more.
+*/
+.breadcrumb_last {
+  display: none;
+}		</style>
+	    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-5B8NXZ');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/jquery-1.12.4.min.js.download"></script>
+    <script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/js.cookie.min.js.download"></script>
+
+    <link rel="stylesheet" href="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/bootstrap-select.min.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/blog.css">
+    <link rel="stylesheet" type="text/css" href="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/slick.css">
+
+    <!--AnyChart fonts 2.x-->
+    <link rel="stylesheet" type="text/css" href="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/anychart-font.min.css">
+
+    <!--
+       <link rel="alternate"  href="https://www.anychart.com/index_ru.php"  hreflang="ru">
+       <link rel="alternate"  href="https://www.anychart.com/index_cn.php"  hreflang="cn">
+       <link rel="alternate"  href="https://www.anychart.com/index_es.php"  hreflang="es">
+   -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/_core/js/src/vendor/html5shiv/html5shiv.min.js"></script>
+    <script src="/_core/js/src/vendor/respond/respond.min.js"></script>
+    <![endif]-->
+    <script src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/polyfiller.js.download"></script>
+    <script src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/matchMedia.js.download"></script>
+  <style type="text/css">.a2a_hide{display:none}.a2a_logo_color{background-color:#0166ff}.a2a_menu,.a2a_menu *{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;float:none;margin:0;padding:0;position:static;height:auto;width:auto}.a2a_menu{border-radius:6px;display:none;direction:ltr;background:#FFF;font:16px sans-serif-light,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Arial,Helvetica,"Liberation Sans",sans-serif;color:#000;line-height:12px;border:1px solid #CCC;vertical-align:baseline;overflow:hidden}.a2a_mini{min-width:200px;position:absolute;width:300px;z-index:9999997}.a2a_overlay{display:none;background:#616c7d;opacity:.92;backdrop-filter:blur(8px);position:fixed;top:0;right:0;left:0;bottom:0;z-index:9999998;-webkit-tap-highlight-color:transparent;transition:opacity .14s,backdrop-filter .14s}.a2a_full{background:#FFF;border:1px solid #FFF;height:auto;height:calc(320px);top:15%;left:50%;margin-left:-320px;position:fixed;text-align:center;width:640px;z-index:9999999;transition:transform .14s,opacity .14s}.a2a_full_footer,.a2a_full_header,.a2a_full_services{border:0;margin:0;padding:12px;box-sizing:border-box}.a2a_full_header{padding-bottom:8px}.a2a_full_services{height:280px;overflow-y:scroll;padding:0 12px;-webkit-overflow-scrolling:touch}.a2a_full_services .a2a_i{display:inline-block;float:none;width:181px;width:calc(33.334% - 18px)}div.a2a_full_footer{font-size:12px;text-align:center;padding:8px 14px}div.a2a_full_footer a,div.a2a_full_footer a:visited{display:inline;font-size:12px;line-height:14px;padding:8px 14px}div.a2a_full_footer a:focus,div.a2a_full_footer a:hover{background:0 0;border:0;color:#0166FF}div.a2a_full_footer a span.a2a_s_a2a,div.a2a_full_footer a span.a2a_w_a2a{background-size:14px;border-radius:3px;display:inline-block;height:14px;line-height:14px;margin:0 3px 0 0;vertical-align:top;width:14px}.a2a_modal{height:0;left:50%;margin-left:-320px;position:fixed;text-align:center;top:15%;width:640px;z-index:9999999;transition:transform .14s,opacity .14s;-webkit-tap-highlight-color:transparent}.a2a_modal_body{background:0 0;border:0;font:24px sans-serif-light,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Arial,Helvetica,"Liberation Sans",sans-serif;position:relative;height:auto;width:auto}.a2a_thanks{color:#fff;height:auto;margin-top:20px;width:auto}.a2a_thanks>div:first-child{margin:0 0 40px 0}.a2a_thanks div *{height:inherit}#a2a_copy_link{background:#FFF;border:1px solid #FFF;margin-top:15%}span.a2a_s_link#a2a_copy_link_icon,span.a2a_w_link#a2a_copy_link_icon{background-size:48px;border-radius:0;display:inline-block;height:48px;left:0;line-height:48px;margin:0 3px 0 0;position:absolute;vertical-align:top;width:48px}#a2a_modal input#a2a_copy_link_text{background-color:transparent;border:0;color:#2A2A2A;font:inherit;height:48px;left:62px;max-width:initial;padding:0;position:relative;width:564px;width:calc(100% - 76px)}#a2a_copy_link_copied{background-color:#0166ff;color:#fff;display:none;font:inherit;font-size:16px;margin-top:1px;padding:3px 8px}@media (prefers-color-scheme:dark){.a2a_menu a,.a2a_menu a.a2a_i,.a2a_menu a.a2a_i:visited,.a2a_menu a.a2a_more,i.a2a_i{border-color:#2a2a2a!important;color:#fff!important}.a2a_menu a.a2a_i:active,.a2a_menu a.a2a_i:focus,.a2a_menu a.a2a_i:hover,.a2a_menu a.a2a_more:active,.a2a_menu a.a2a_more:focus,.a2a_menu a.a2a_more:hover,.a2a_menu_find_container{border-color:#444!important;background-color:#444!important}.a2a_menu{background-color:#2a2a2a;border-color:#2a2a2a}.a2a_menu_find{color:#fff!important}.a2a_menu span.a2a_s_find svg{background-color:transparent!important}.a2a_menu span.a2a_s_find svg path{fill:#fff!important}}@media print{.a2a_floating_style,.a2a_menu,.a2a_overlay{visibility:hidden}}@keyframes a2aFadeIn{from{opacity:0}to{opacity:1}}.a2a_starting{opacity:0}.a2a_starting.a2a_full,.a2a_starting.a2a_modal{transform:scale(.8)}@media (max-width:639px){.a2a_full{border-radius:0;top:15%;left:0;margin-left:auto;width:100%}.a2a_modal{left:0;margin-left:10px;width:calc(100% - 20px)}}@media (min-width:318px) and (max-width:437px){.a2a_full .a2a_full_services .a2a_i{width:calc(50% - 18px)}}@media (max-width:317px){.a2a_full .a2a_full_services .a2a_i{width:calc(100% - 18px)}}@media (max-height:436px){.a2a_full{bottom:40px;height:auto;top:40px}}@media (max-height:550px){.a2a_modal{top:30px}}@media (max-height:360px){.a2a_modal{top:20px}.a2a_thanks>div:first-child{margin-bottom:20px}}.a2a_menu a{color:#0166FF;text-decoration:none;font:16px sans-serif-light,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Arial,Helvetica,"Liberation Sans",sans-serif;line-height:14px;height:auto;width:auto;outline:0}.a2a_menu a.a2a_i:visited,.a2a_menu a.a2a_more{color:#0166FF}.a2a_menu a.a2a_i:active,.a2a_menu a.a2a_i:focus,.a2a_menu a.a2a_i:hover,.a2a_menu a.a2a_more:active,.a2a_menu a.a2a_more:focus,.a2a_menu a.a2a_more:hover{color:#2A2A2A;border-color:#EEE;border-style:solid;background-color:#EEE;text-decoration:none}.a2a_menu span.a2a_s_find{background-size:24px;height:24px;left:8px;position:absolute;top:7px;width:24px}.a2a_menu span.a2a_s_find svg{background-color:#FFF}.a2a_menu span.a2a_s_find svg path{fill:#CCC}#a2a_menu_container{display:inline-block}.a2a_menu_find_container{border:1px solid #CCC;border-radius:6px;padding:2px 24px 2px 0;position:relative;text-align:left}.a2a_cols_container .a2a_col1{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}#a2a_modal input,#a2a_modal input[type=text],.a2a_menu input,.a2a_menu input[type=text]{display:block;background-image:none;box-shadow:none;line-height:100%;margin:0;outline:0;overflow:hidden;padding:0;-moz-box-shadow:none;-webkit-box-shadow:none;-webkit-appearance:none}#a2afeed_find_container input,#a2afeed_find_container input[type=text],#a2apage_find_container input,#a2apage_find_container input[type=text]{background-color:transparent;border:0;box-sizing:content-box;color:#2A2A2A;font:inherit;font-size:16px;height:28px;line-height:20px;left:38px;outline:0;margin:0;max-width:initial;padding:2px 0;position:relative;width:99%}.a2a_clear{clear:both}.a2a_svg{background-repeat:no-repeat;display:block;overflow:hidden;height:32px;line-height:32px;padding:0;width:32px}.a2a_svg svg{background-repeat:no-repeat;background-position:50% 50%;border:none;display:block;left:0;margin:0 auto;overflow:hidden;padding:0;position:relative;top:0;width:auto;height:auto}a.a2a_i,i.a2a_i{display:block;float:left;border:1px solid #FFF;line-height:24px;padding:6px 8px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:132px}a.a2a_i span,a.a2a_more span{display:inline-block;overflow:hidden;vertical-align:top}a.a2a_i .a2a_svg{margin:0 6px 0 0}a.a2a_i .a2a_svg,a.a2a_more .a2a_svg{background-size:24px;height:24px;line-height:24px;width:24px}a.a2a_sss:hover{border-left:1px solid #CCC}a.a2a_more{border-bottom:1px solid #FFF;border-left:0;border-right:0;line-height:24px;margin:6px 0 0;padding:6px;-webkit-touch-callout:none}a.a2a_more span{height:24px;margin:0 6px 0 0}.a2a_kit .a2a_svg{background-repeat:repeat}.a2a_default_style a{float:left;line-height:16px;padding:0 2px}.a2a_default_style a:hover .a2a_svg,.a2a_floating_style a:hover .a2a_svg,.a2a_overlay_style a:hover .a2a_svg svg{opacity:.7}.a2a_overlay_style.a2a_default_style a:hover .a2a_svg{opacity:1}.a2a_default_style .a2a_count,.a2a_default_style .a2a_svg,.a2a_floating_style .a2a_svg,.a2a_menu .a2a_svg,.a2a_vertical_style .a2a_count,.a2a_vertical_style .a2a_svg{border-radius:4px}.a2a_default_style .a2a_counter img,.a2a_default_style .a2a_dd,.a2a_default_style .a2a_svg{float:left}.a2a_default_style .a2a_img_text{margin-right:4px}.a2a_default_style .a2a_divider{border-left:1px solid #000;display:inline;float:left;height:16px;line-height:16px;margin:0 5px}.a2a_kit a{cursor:pointer}.a2a_floating_style{background-color:#fff;border-radius:6px;position:fixed;z-index:9999995}.a2a_overlay_style{z-index:2147483647}.a2a_floating_style,.a2a_overlay_style{animation:a2aFadeIn .2s ease-in;padding:4px}.a2a_vertical_style a{clear:left;display:block;overflow:hidden;padding:4px;text-decoration:none}.a2a_floating_style.a2a_default_style{bottom:0}.a2a_floating_style.a2a_default_style a,.a2a_overlay_style.a2a_default_style a{padding:4px}.a2a_count{background-color:#fff;border:1px solid #ccc;box-sizing:border-box;color:#2a2a2a;display:block;float:left;font:12px Arial,Helvetica,sans-serif;height:16px;margin-left:4px;position:relative;text-align:center;width:50px}.a2a_count:after,.a2a_count:before{border:solid transparent;border-width:4px 4px 4px 0;content:"";height:0;left:0;line-height:0;margin:-4px 0 0 -4px;position:absolute;top:50%;width:0}.a2a_count:before{border-right-color:#ccc}.a2a_count:after{border-right-color:#fff;margin-left:-3px}.a2a_count span{animation:a2aFadeIn .14s ease-in}.a2a_vertical_style .a2a_counter img{display:block}.a2a_vertical_style .a2a_count{float:none;margin-left:0;margin-top:6px}.a2a_vertical_style .a2a_count:after,.a2a_vertical_style .a2a_count:before{border:solid transparent;border-width:0 4px 4px 4px;content:"";height:0;left:50%;line-height:0;margin:-4px 0 0 -4px;position:absolute;top:0;width:0}.a2a_vertical_style .a2a_count:before{border-bottom-color:#ccc}.a2a_vertical_style .a2a_count:after{border-bottom-color:#fff;margin-top:-3px}.a2a_nowrap{white-space:nowrap}.a2a_note{margin:0 auto;padding:9px;font-size:12px;text-align:center}.a2a_note .a2a_note_note{margin:0;color:#2A2A2A}.a2a_wide a{display:block;margin-top:3px;border-top:1px solid #EEE;text-align:center}.a2a_label{position:absolute!important;clip-path:polygon(0px 0px,0px 0px,0px 0px);-webkit-clip-path:polygon(0px 0px,0px 0px,0px 0px);overflow:hidden;height:1px;width:1px}.a2a_kit,.a2a_menu,.a2a_modal,.a2a_overlay{-ms-touch-action:manipulation;touch-action:manipulation;outline:0}.a2a_dd img{border:0}.a2a_button_facebook_like iframe{max-width:none}</style></head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5B8NXZ" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+<header class="header">
+    <div class="pre-header">
+        <div class="container">
+            <div class="row text-right">
+                <div class="col-xs-6 col-sm-8">
+                    <ul class="list-inline list-on-top text-uppercase">
+                        <li>Sales: <a href="tel:+18888451211" class="display-inline" data-wpel-link="internal" rel="follow noopener noreferrer">+1 (888) 845-1211 (USA)</a></li>
+                        <li>&nbsp;or <a href="tel:+442071939444" class="display-inline" data-wpel-link="internal" rel="follow noopener noreferrer">+44 20 7193 9444 (Europe)</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-sm-4">
+                    <ul class="nav nav-inline">
+                        <li><a href="http://6.anychart.com/customer_area/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">customer login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar-wrapper">
+        <div id="navbar-wrapper">
+            <nav class="navbar navbar-default" role="navbar">
+                <div class="container">
+                    <div class="navbar-container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="https://www.anychart.com/" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                <img src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/AnyChart-light-empty.png" width="300" height="72" alt="AnyChart">
+                                <div class="chart-row">
+                                    <span class="chart-col green"></span>
+                                    <span class="chart-col orange"></span>
+                                    <span class="chart-col red"></span>
+                                </div><!--/.chart-row -->
+                            </a><!--/.navbar-brand -->
+                        </div><!--/.navbar-header -->
+                    </div><!--/.navbar-container -->
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown dropdown-content dropdown-content-default">
+                                <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="navbar-container">Products</span></a>
+                                <div class="dropdown-menu" role="content">
+                                    <div class="container">
+                                        <div class="item-group item-group-sm product-group">
+                                            <a href="https://www.anychart.com/products/anychart/" class="item product AnyChart active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                                <span class="product-icon"><i class="ac ac-anychart"></i></span>
+                                                <span class="product-title">AnyChart</span>
+                                            </a>
+                                            <a href="https://www.anychart.com/products/anystock/" class="item product AnyStock active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                                <span class="product-icon"><i class="ac ac-anystock"></i></span>
+                                                <span class="product-title">AnyStock</span>
+                                            </a>
+                                            <a href="https://www.anychart.com/products/anymap/" class="item product AnyMap active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                                <span class="product-icon"><i class="ac ac-anymap"></i></span>
+                                                <span class="product-title">AnyMap</span>
+                                            </a>
+                                            <a href="https://www.anychart.com/products/anygantt/" class="item product AnyGantt active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                                <span class="product-icon"><i class="ac ac-anygantt"></i></span>
+                                                <span class="product-title">AnyGantt</span>
+                                            </a>
+                                            <a href="https://www.anychart.com/products/mobile/" class="item product Mobile active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                                <span class="product-icon"><i class="ac ac-mobile"></i></span>
+                                                <span class="product-title">Mobile</span>
+                                            </a>
+                                            <a href="http://qlik.anychart.com/" class="item product Qlik active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                        						  <span class="product-icon"><span class="ac ac-desktop"></span></span>
+                        						  <span class="product-title">Qlik Extension</span>
+                      					  </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="https://www.anychart.com/features/" data-wpel-link="internal" rel="follow noopener noreferrer"><span class="navbar-container">Features</span></a></li>
+
+
+                            <li class="dropdown dropdown-content dropdown-content-default">
+
+                                <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <span class="navbar-container">Resources
+                                    </span>
+                                </a>
+
+                                <div class="dropdown-menu" role="content">
+                                    <div class="container">
+                                        <div class="item-group item-group-sm product-group">
+                                            <a class="item product active" style="background: none">
+                                            </a>
+                                            <a href="https://www.anychart.com/solutions/" class="item product AnyChart active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                                <span class="product-icon"><i class="ac ac-desktop"></i></span>
+                                                <span class="product-title">Business Solutions</span>
+                                            </a>
+                                            <a href="https://www.anychart.com/technical-integrations/" class="item product AnyStock active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                                <span class="product-icon"><i class="ac ac-cog-o"></i></span>
+                                                <span class="product-title">Technical Integrations</span>
+                                            </a>
+                                            <a href="https://www.anychart.com/chartopedia/" class="item product AnyMap active" data-wpel-link="internal" rel="follow noopener noreferrer">
+                                                <span class="product-icon"><i class="ac ac-book"></i></span>
+                                                <span class="product-title">Chartopedia</span>
+                                            </a>
+                                            <a class="item product active" style="background: none"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!--<li><a href="/download/" data-wpel-link="internal" rel="follow noopener noreferrer"><span class="navbar-container">Downloads</span></a></li>-->
+                            <!--<li><a href="/partners/" data-wpel-link="internal" rel="follow noopener noreferrer"><span class="navbar-container">Partners</span></a></li>-->
+                            <!--<li><a href="/company/customers/" data-wpel-link="internal" rel="follow noopener noreferrer"><span class="navbar-container">Customers</span></a></li>-->
+                            <li><a href="https://www.anychart.com/support/" data-wpel-link="internal" rel="follow noopener noreferrer"><span class="navbar-container">Support</span></a></li>
+                            <li class="dropdown dropdown-content dropdown-content-default">
+                                <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <span class="navbar-container">Company
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu company" role="menubar">
+                                    <div class="container">
+                                      <div class="row is-flex v-center">
+                                        <div class="col-sm-4">
+                                          <ul class="list data-group list-unstyled">
+                                            <li><a href="https://www.anychart.com/company/" data-wpel-link="internal" rel="follow noopener noreferrer">About Us</a></li>
+                                            <li><a href="https://www.anychart.com/company/customers/" data-wpel-link="internal" rel="follow noopener noreferrer">Customers</a></li>
+                                            <li><a href="https://www.anychart.com/company/success_stories/" data-wpel-link="internal" rel="follow noopener noreferrer">Success Stories</a></li>
+                                          </ul>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-7">
+                                            <div id="testimonials-slider" style="opacity:0"></div>
+                                            <div class="text-right more-testimonials">
+                                                <a href="https://www.anychart.com/company/testimonials/" data-wpel-link="internal" rel="follow noopener noreferrer">More Testimonials</a>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </li>
+
+                            <li><a href="https://www.anychart.com/blog/" data-wpel-link="internal" rel="follow noopener noreferrer"><span class="navbar-container">News</span></a></li>
+                            <li class="nav-item"><a href="https://www.anychart.com/download/" class="nav-link-primary" data-wpel-link="internal" rel="follow noopener noreferrer"><span class="navbar-container"><strong>Download</strong></span></a></li>
+                            <li class="nav-item"><a href="https://www.anychart.com/buy/" class="nav-link-secondary" data-wpel-link="internal" rel="follow noopener noreferrer"><span class="navbar-container"><strong>Buy Now</strong></span></a></li>
+                            <li class="nav-item dropdown dropdown-content dropdown-content-top" id="dd_search">
+                                <div class="modal-backdrop fade in" id="searchFadeDiv" style="height: 707px;"></div>
+                                <a href="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/#" class="nav-link-tertiary dropdown-toggle" data-toggle="dropdown"><span class="navbar-container"><i class="ac ac-search"></i></span></a>
+                                <div class="dropdown-menu" role="content">
+                                    <div class="container">
+                                        <div class="input-group input-group-xl input-group-search">
+                                            <span class="input-group-addon"><i class="ac ac-search"></i></span>
+                                            <input type="text" class="form-control" id="searchQuery" placeholder="Search">
+                                              <span class="input-group-addon no-padding">
+                                                <button class="btn btn-primary btn-sm" type="button" onclick="showSearchResults_();">Search</button>
+                                              </span>
+                                            <span id="searchPanelClose" class="input-group-addon no-padding navbar-search-close dropdown-close"><i class="ac ac-remove2-thin"></i></span>
+                                        </div><!-- /input-group -->
+                                    </div><!--/.container -->
+                                    <div id="displaySearchResult" class="container"></div>
+                                </div><!--/.dropdown-menu -->
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container -->
+            </nav><!--/.navbar -->
+        </div><!--/.#navbar-wrapper -->
+    </div><!--/.navbar-wrapper -->
+    <div class="container">    <div class="container">
+        <div class="row caption">
+            <div class="col-md-10 is-flex nowrap">
+              <div class="post row">
+              <p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb"><a href="https://www.anychart.com/blog/" rel="v:url nofollow external noopener noreferrer" property="v:title" data-wpel-link="external" target="_blank">News</a> » <span rel="v:child" typeof="v:Breadcrumb"><a href="https://www.anychart.com/blog/category/javascript-chart-tutorials/" rel="v:url nofollow external noopener noreferrer" property="v:title" data-wpel-link="external" target="_blank">JavaScript chart tutorials</a> » <span class="breadcrumb_last">Creating Heat Map Chart Using JavaScript</span></span></span></span></p>                <h1>Creating Heat Map Chart Using JavaScript</h1>
+                <small class="date">February 26th, 2020  by Anastasia Zoumpliou</small>
+              </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</header><!--/.header -->
+<main class="main">
+<section class="section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <!-- Content---------------------------->
+                <div class="at-above-post addthis_tool" data-url="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/"></div><p><img class="alignnone size-full wp-image-9675" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/heat-map-chart.png" alt="Creating Heat Map Chart Using JavaScript, a tutorial for web developers and data enthusiasts" width="100%" srcset="https://www.anychart.com/blog/wp-content/uploads/2020/02/heat-map-chart.png 1147w, https://www.anychart.com/blog/wp-content/uploads/2020/02/heat-map-chart-300x168.png 300w, https://www.anychart.com/blog/wp-content/uploads/2020/02/heat-map-chart-768x431.png 768w, https://www.anychart.com/blog/wp-content/uploads/2020/02/heat-map-chart-1024x574.png 1024w" sizes="(max-width: 1147px) 100vw, 1147px">Want to learn how to quickly create an interactive heat map chart using JavaScript? This data visualization tutorial will guide you through the coding process step by step. Basic knowledge of HTML (HTML5) and some understanding of programming are more than enough to master this charting technique.</p>
+<p>A heat map (or <a href="https://www.anychart.com/chartopedia/chart-type/heatmap/" data-wpel-link="internal" rel="follow noopener noreferrer">heatmap chart</a>) is a two-dimensional, matrix-based data visualization in which colors represent values. It is often used to facilitate the analysis of complex data sets, revealing patterns in how variables change, correlate, and more.</p>
+<p>Read this JS charting tutorial to the end and you will have no more problems with getting compelling heat maps up and running on your web sites and in your apps.</p>
+<p><span id="more-9644"></span></p>
+<h2>How to&nbsp;Make JavaScript Heat Map Chart</h2>
+<p>Building any type of JS chart only takes the following four general steps:</p>
+<ol>
+<li>Create&nbsp;an HTML page where&nbsp;a chart will be displayed.</li>
+<li>Include all necessary JavaScript files.</li>
+<li>Load the data.</li>
+<li>Write the JavaScript code for the chart.</li>
+</ol>
+<p>Let’s see each of them in detail.</p>
+<h3>Step 1: Create an HTML page</h3>
+<p>The first thing you need to do is to create a basic HTML page where you will put a relevant title and an HTML block element (e.g. <code>&lt;div&gt;</code>) to place the chart. Here, the id has the value <code>container</code>, but feel free to use whatever makes sense to you. The page should look like this:</p>
+<pre><code class="html hljs xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Basic JavaScript Heat Map Chart<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+      <span class="hljs-selector-tag">html</span>, <span class="hljs-selector-tag">body</span>, <span class="hljs-selector-id">#container</span> {
+        <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+      }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"container"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<p>The <code>width</code> and <code>height</code> parameters inside the <code>&lt;style&gt;</code> block&nbsp;define the space the chart will occupy and you can change these according to your needs. The way they are set here makes the heat map occupy the entire space.</p>
+<h3>Step 2: Include all necessary files</h3>
+<p>Next, inside the <code>&lt;head&gt;</code> section of the HTML page, you should reference all the necessary script files.</p>
+<p>There are multiple JavaScript libraries out there, providing pre-written JS code that enables developers to visualize data in a more&nbsp;or less straightforward way. To build heat map charts&nbsp;along this tutorial, I will be using the <a href="https://www.anychart.com/" data-wpel-link="internal" rel="follow noopener noreferrer">AnyChart</a> JS charting library. It is flexible, yet easy to get started with and integrate.</p>
+<p>When using AnyChart, you have two options of how you can get the necessary scripts:</p>
+<ul>
+<li><a href="https://www.anychart.com/download/" data-wpel-link="internal" rel="follow noopener noreferrer">download</a>&nbsp;and place&nbsp;them on your server, or</li>
+<li>use&nbsp;them from the <a href="https://cdn.anychart.com/" data-wpel-link="internal" rel="follow noopener noreferrer">CDN</a>.</li>
+</ul>
+<p>Here, I will go with the CDN links. AnyChart features a <a href="https://docs.anychart.com/Quick_Start/Modules" data-wpel-link="internal" rel="follow noopener noreferrer">modular system</a>, and making a JS heat map&nbsp;requires&nbsp;the use of the core and the dedicated heat map scripts. The basic code implementation can look like this:</p>
+<pre><code class="html hljs xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Basic JavaScript Heat Map Chart<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.anychart.com/releases/8.7.1/js/anychart-core.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.anychart.com/releases/8.7.1/js/anychart-heatmap.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+      <span class="hljs-selector-tag">html</span>, <span class="hljs-selector-tag">body</span>, <span class="hljs-selector-id">#container</span> {
+        <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+      }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"container"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="xml">
+      <span class="hljs-comment">&lt;!-- The heat map code goes here --&gt;</span>
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<p>The&nbsp;<code>&lt;script&gt;</code> tag in the&nbsp;<code>&lt;body&gt;</code>&nbsp;section is where the heat map chart’s JavaScript code will go.</p>
+<h3>Step 3: Load the data</h3>
+<p>It’s time for data!</p>
+<p>In this tutorial, I will visualize the <a href="http://hdr.undp.org/en/data" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Human Development Index (HDI) data</a> from the United Nations Development Programme (UNDP) to observe the change&nbsp;in the HDI of six macroregions — Arab States, East Asia and the Pacific, Europe and Central Asia, Latin America and the Caribbean, South Asia, and Sub-Saharan Africa — from 2010 to 2018.</p>
+<p>To create a heat map, three data fields are required:</p>
+<ul>
+<li><code>x</code>, where column names are set,</li>
+<li><code>y</code>, where row names are set, and</li>
+<li><code>heat</code>, where values are set.</li>
+</ul>
+<p>The resulting data will look as follows:</p>
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> data = [
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.676</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.691</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.735</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.731</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.585</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.498</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.681</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.700</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.744</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.737</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.593</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.505</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.687</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.707</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.750</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.740</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.601</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.512</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.688</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.714</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.759</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.748</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.607</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.521</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.691</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.721</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.766</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.752</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.617</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.527</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.695</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.727</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.770</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.754</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.624</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.532</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.699</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.733</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.772</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.756</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.634</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.535</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.699</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.733</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.771</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.758</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.638</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.537</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.703</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.741</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.779</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.759</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.642</span> },
+  { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.541</span> },
+];</code></pre>
+<h3>Step 4: Write the JS Heat Map chart code</h3>
+<p>Ok, are you ready to code?</p>
+<ul>
+<li>Add the <code>anychart.onDocumentReady</code> function inside the <code>&lt;script&gt;</code> tag. It will include the entire core JavaScript code of the heat map chart and will be executed when the page is ready.</li>
+<li>Add&nbsp;the data from step 3.</li>
+<li>Use <code>anychart.heatMap(data)</code> to create a heat map chart visualizing the included data.</li>
+<li>Add a relevant chart title.</li>
+<li>Set the container id to put the chart into it.</li>
+<li>Draw the chart.</li>
+</ul>
+<p>Plus one important thing about the <a href="https://docs.anychart.com/Basic_Charts/Heat_Map_Chart#color_scale" data-wpel-link="internal" rel="follow noopener noreferrer">color scale</a>. In my case, all data values are numbers less than 1. It means that AnyChart’s default ordinal scale would give us the same color in all cells. To improve the visualization and quickly apply a more appropriate cell coloring, I will use a linear scale based on two colors; the first one, #ACE8D4, will be the color for <code>heat</code> value 0, whereas the second color, #00726A, will be set for the maximum value. The in-between colors will be calculated automatically.</p>
+<p>Here is the resulting code:</p>
+<pre><code class="html hljs xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Basic JavaScript Heat Map Chart<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.anychart.com/releases/8.7.1/js/anychart-core.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.anychart.com/releases/8.7.1/js/anychart-heatmap.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+      <span class="hljs-selector-tag">html</span>, <span class="hljs-selector-tag">body</span>, <span class="hljs-selector-id">#container</span> {
+        <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+      }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"container"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+      anychart.onDocumentReady(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+
+        <span class="hljs-comment">// create the data </span>
+        <span class="hljs-keyword">var</span> data = [
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.676</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.691</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.735</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.731</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.585</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2010"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.498</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.681</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.700</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.744</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.737</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.593</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2011"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.505</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.687</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.707</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.750</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.740</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.601</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2012"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.512</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.688</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.714</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.759</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.748</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.607</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2013"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.521</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.691</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.721</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.766</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.752</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.617</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2014"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.527</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.695</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.727</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.770</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.754</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.624</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2015"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.532</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.699</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.733</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.772</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.756</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.634</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2016"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.535</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.699</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.733</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.771</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.758</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.638</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2017"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.537</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Arab States"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.703</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"East Asia and the Pacific"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.741</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Europe and Central Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.779</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Latin America and the Caribbean"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.759</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"South Asia"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.642</span> },
+          { <span class="hljs-attr">x</span>: <span class="hljs-string">"2018"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Sub-Saharan Africa"</span>, <span class="hljs-attr">heat</span>: <span class="hljs-number">0.541</span> },
+        ];        
+        
+        <span class="hljs-comment">// create the chart and set the data</span>
+        chart = anychart.heatMap(data);
+        
+        <span class="hljs-comment">// set the chart title</span>
+        chart.title(<span class="hljs-string">"Human Development Index by region (2010-2018)"</span>);
+        
+        <span class="hljs-comment">// create and configure the color scale.</span>
+        <span class="hljs-keyword">var</span> customColorScale = anychart.scales.linearColor();
+        customColorScale.colors([<span class="hljs-string">"#ACE8D4"</span>, <span class="hljs-string">"#00726A"</span>]);
+        
+        <span class="hljs-comment">// set the color scale as the color scale of the chart</span>
+        chart.colorScale(customColorScale);
+        
+        <span class="hljs-comment">// set the container id</span>
+        chart.container(<span class="hljs-string">"container"</span>);
+        
+        <span class="hljs-comment">// initiate drawing the chart</span>
+        chart.draw();
+        
+      });
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<p>Here’s&nbsp;how the&nbsp;basic JS heat map chart looks&nbsp;— it is available on <a href="https://playground.anychart.com/JGFu1p4e/0" data-wpel-link="internal" rel="follow noopener noreferrer">AnyChart Playground</a>&nbsp;where you can&nbsp;proceed to practice:</p>
+<p><iframe class="anychart-embed anychart-embed-" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/iframe.html" width="300" height="150" frameborder="0" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-modals allow-forms" allowfullscreen="allowfullscreen"><br />
+</iframe><br>
+<script type="text/javascript">(function(){
+function ac_add_to_head(el){
+    var head = document.getElementsByTagName('head')[0];
+    head.insertBefore(el,head.firstChild);
+}
+function ac_add_style(css){
+    var ac_style = document.createElement('style');
+    if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+    else ac_style.appendChild(document.createTextNode(css));
+    ac_add_to_head(ac_style);
+}
+ac_add_style(".anychart-embed-{width:100%;height:500px;}");
+})();</script></p>
+<p>We can see on this chart that Sub-Saharan Africa has the lowest Human&nbsp;Development&nbsp;Index values, whereas the Europe and Central Asia region seems to have the highest. But it is not easy to see at a glance something else interesting and even clearly understand a very important, fundamental thing — is it better for a region to have a lower or higher HDI?</p>
+<p>Well, that’s a good point to look at&nbsp;how it’s possible to customize a JavaScript-based heat map chart, making it provide better insight with quite little JS/HTML5 coding effort.</p>
+<h2>Customizing JS Heat Map Chart</h2>
+<p>As you see, the&nbsp;basic chart built just above may not be enough to effectively communicate all the data has to say. This is where customizations come into picture as&nbsp;changing the appearance (e.g. colors and texts) can make the chart more legible and informative for the end user.</p>
+<p>AnyChart not only gives you the ability to easily create interactive JavaScript charts, including JS heat maps, but it also gives you freedom to change it according to your needs and taste.</p>
+<p>Let’s&nbsp;do the following modifications.</p>
+<ul>
+<li>Create a new custom color scale.</li>
+<li>Add a legend.</li>
+<li>Hide labels and&nbsp;modify the tooltip.</li>
+</ul>
+<p>Alright, let’s go!</p>
+<h3>Changing the&nbsp;color scale</h3>
+<p>HDI has four predefined categories for value ranges — “low”, “medium”, “high”&nbsp;and “very high.” A higher HDI means a higher lifespan, a higher education level, and a higher gross national income per capita. To better&nbsp;communicate this information, let’s create a customized color scale where each color range will be encoded with a different color&nbsp;using&nbsp;an ordinal color scale.</p>
+<p>This scale has a specific domain and color range.&nbsp;So now I&nbsp;will set each category as a domain and specify its color&nbsp;based on a palette similar to traffic lights.</p>
+<p>Here, it is necessary&nbsp;to use the <code>anychart.scales.ordinalColor();</code> constructor and then set the ranges:</p>
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> customColorScale = anychart.scales.ordinalColor();
+customColorScale.ranges([
+  { <span class="hljs-attr">less</span>: <span class="hljs-number">0.549</span> },
+  { <span class="hljs-attr">from</span>: <span class="hljs-number">0.550</span>, <span class="hljs-attr">to</span>: <span class="hljs-number">0.699</span> },
+  { <span class="hljs-attr">from</span>: <span class="hljs-number">0.700</span>, <span class="hljs-attr">to</span>: <span class="hljs-number">0.799</span> },
+  { <span class="hljs-attr">greater</span>: <span class="hljs-number">0.800</span> }
+]);</code></pre>
+<p>Then we need to&nbsp;specify the colors that we want to use for each range, from small to big:</p>
+<pre><code class="js hljs javascript">customColorScale.colors([<span class="hljs-string">"#CF7A78"</span>, <span class="hljs-string">"#E69645"</span>, <span class="hljs-string">"#69A231"</span>, <span class="hljs-string">"#4D7623"</span>]);</code></pre>
+<p>And set the color scale as the color scale of the heat map chart:</p>
+<pre><code class="js hljs javascript">chart.colorScale(customColorScale);</code></pre>
+<p>Check out the result&nbsp;— it is also available on&nbsp;<a href="https://playground.anychart.com/MJw05U3Q/0" data-wpel-link="internal" rel="follow noopener noreferrer">AnyChart Playground</a>&nbsp;with the full source code:</p>
+<p><iframe class="anychart-embed anychart-embed-" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/iframe(1).html" width="300" height="150" frameborder="0" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-modals allow-forms" allowfullscreen="allowfullscreen"><br />
+</iframe><br>
+<script type="text/javascript">(function(){
+function ac_add_to_head(el){
+    var head = document.getElementsByTagName('head')[0];
+    head.insertBefore(el,head.firstChild);
+}
+function ac_add_style(css){
+    var ac_style = document.createElement('style');
+    if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+    else ac_style.appendChild(document.createTextNode(css));
+    ac_add_to_head(ac_style);
+}
+ac_add_style(".anychart-embed-{width:100%;height:500px;}");
+})();</script></p>
+<h3>Adding a heat map chart legend</h3>
+<p>Legends help users identify what&nbsp;a chart is showing. Explaining&nbsp;what each color and range represents, they are like&nbsp;manuals&nbsp;for the corresponding data visualizations.</p>
+<p>To add a legend, just one simple line of code is enough:</p>
+<pre><code class="js hljs javascript">chart.legend(<span class="hljs-literal">true</span>);</code></pre>
+<p>Here’s&nbsp;the result&nbsp;—&nbsp;you can also find it on&nbsp;<a href="https://playground.anychart.com/yzUYad1k/1" data-wpel-link="internal" rel="follow noopener noreferrer">AnyChart Playground</a>:</p>
+<p><iframe class="anychart-embed anychart-embed-" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/iframe(2).html" width="300" height="150" frameborder="0" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-modals allow-forms" allowfullscreen="allowfullscreen"><br />
+</iframe><br>
+<script type="text/javascript">(function(){
+function ac_add_to_head(el){
+    var head = document.getElementsByTagName('head')[0];
+    head.insertBefore(el,head.firstChild);
+}
+function ac_add_style(css){
+    var ac_style = document.createElement('style');
+    if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+    else ac_style.appendChild(document.createTextNode(css));
+    ac_add_to_head(ac_style);
+}
+ac_add_style(".anychart-embed-{width:100%;height:500px;}");
+})();</script></p>
+<p>Now, you may want to change the information displayed in the legend to make it more informative. For example, here&nbsp;I want the&nbsp;range names to be displayed so the viewer can clearly understand&nbsp;which color encodes which range. One way to do this is to specify&nbsp;the&nbsp;names inside the color range constructor as shown below:</p>
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> customColorScale = anychart.scales.ordinalColor();
+customColorScale.ranges([
+  { <span class="hljs-attr">less</span>: <span class="hljs-number">0.549</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'Low: &lt;= 0.549'</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">'#CF7A78'</span> },
+  { <span class="hljs-attr">from</span>: <span class="hljs-number">0.550</span>, <span class="hljs-attr">to</span>: <span class="hljs-number">0.699</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'Medium: 0.55 - 0.699'</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">'#E69645'</span> },
+  { <span class="hljs-attr">from</span>: <span class="hljs-number">0.700</span>, <span class="hljs-attr">to</span>: <span class="hljs-number">0.799</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'High: 0.7 - 0.799'</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">'#69A231'</span> },
+  { <span class="hljs-attr">greater</span>: <span class="hljs-number">0.800</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'Very High: &gt;=0.8'</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">'#4D7623'</span> }
+]);</code></pre>
+<p>Check it out now — this example is available on <a href="https://playground.anychart.com/l7TPKbGO/1" data-wpel-link="internal" rel="follow noopener noreferrer">AnyChart Playground</a> as well:</p>
+<p><iframe class="anychart-embed anychart-embed-" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/iframe(3).html" width="300" height="150" frameborder="0" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-modals allow-forms" allowfullscreen="allowfullscreen"><br />
+</iframe><br>
+<script type="text/javascript">(function(){
+function ac_add_to_head(el){
+    var head = document.getElementsByTagName('head')[0];
+    head.insertBefore(el,head.firstChild);
+}
+function ac_add_style(css){
+    var ac_style = document.createElement('style');
+    if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+    else ac_style.appendChild(document.createTextNode(css));
+    ac_add_to_head(ac_style);
+}
+ac_add_style(".anychart-embed-{width:100%;height:500px;}");
+})();</script></p>
+<h3>Hiding labels and modifying tooltips</h3>
+<h4>Labels</h4>
+<p>Finally,&nbsp;you can see that the heat map chart looks somewhat dense and maybe even a little confusing&nbsp;because of all those numbers in the cells. Colors already successfully encode the ranges, so&nbsp;it is possible to&nbsp;hide the numbers from the cells and instead display them as extra information inside the tooltip along with the range names.</p>
+<p>It is easy to hide the numbers from the cells with just one line. Go ahead and add it:</p>
+<pre><code class="js hljs javascript">chart.labels().enabled(<span class="hljs-literal">false</span>)</code></pre>
+<h4>Tooltips</h4>
+<p>When it comes to customizing heat map chart tooltips, there are many things you can do. Check out some ideas on the <a href="https://docs.anychart.com/Common_Settings/Tooltip" data-wpel-link="internal" rel="follow noopener noreferrer">tooltip documentation</a> page.</p>
+<p>1. Let’s start&nbsp;with changing the tooltip position. By default, the position mode is set to <code>float</code>, which makes tooltips follow the cursor.&nbsp;I want to set the tooltip position mode to <code>point</code>&nbsp;to&nbsp;prevent it from moving when you hover over the cell, hoping that&nbsp;this step&nbsp;will&nbsp;make it&nbsp;easier to read the provided info.</p>
+<p>The code for this modification is as follows:</p>
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> tooltip = chart.tooltip();
+tooltip.positionMode(<span class="hljs-string">"point"</span>);</code></pre>
+<p>2. Also, it is possible to&nbsp;change the tooltip appearance (e.g. background and text color) which is specified using CSS properties. In the <a href="https://docs.anychart.com/Common_Settings/Tooltip#css_classes" data-wpel-link="internal" rel="follow noopener noreferrer">CSS Classes</a> section, you can find some examples of these properties and get ideas to apply your own styles.</p>
+<p>Here,&nbsp;I will modify a CSS property named <code>fontWeight</code> to make the text appear&nbsp;bolder and, therefore, more distinct. You can either add a number value to this property (e.g. <code>600</code>) or use the <code>bold</code> keyword:</p>
+<pre><code class="js hljs javascript">tooltip.fontWeight(<span class="hljs-number">600</span>);</code></pre>
+<p>3. Let’s&nbsp;do one more modification to add&nbsp;some information to&nbsp;what is displayed in the tooltip. First, the numbers hidden from the cells&nbsp;will be displayed inside of the tooltip, allowing&nbsp;people&nbsp;interested&nbsp;in&nbsp;precise&nbsp;values to have quick access to them. Second,&nbsp;I want to&nbsp;include&nbsp;range names&nbsp;to explain the meaning of numbers.</p>
+<p>To add all this info,&nbsp;let’s use an array containing these&nbsp;names&nbsp;since there is no immediate access to&nbsp;them from elsewhere in the code:</p>
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> categoryNames = [<span class="hljs-string">"Low"</span>, <span class="hljs-string">"Medium"</span>, <span class="hljs-string">"High"</span>, <span class="hljs-string">"Very High"</span>]</code></pre>
+<p>Next,&nbsp;I will use conditions for the ranges so that we know which name should go to which cell. To do this,&nbsp;I’ll&nbsp;take the heat value and combine it with the ranges from the color scale. Here’s the code:</p>
+<pre><code class="js hljs javascript">tooltip.format(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.heat &lt;= <span class="hljs-number">0.549</span>) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">"Value: "</span> + <span class="hljs-keyword">this</span>.heat + <span class="hljs-string">"\n Category: "</span> + categoryNames[<span class="hljs-number">0</span>]);
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.heat &gt;= <span class="hljs-number">0.55</span> &amp;&amp; <span class="hljs-keyword">this</span>.heat &lt;= <span class="hljs-number">0.699</span>) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">"Value: "</span> + <span class="hljs-keyword">this</span>.heat + <span class="hljs-string">"\n Category: "</span> + categoryNames[<span class="hljs-number">1</span>]);
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.heat &gt;= <span class="hljs-number">0.7</span> &amp;&amp; <span class="hljs-keyword">this</span>.heat &lt;= <span class="hljs-number">0.799</span>) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">"Value: "</span> + <span class="hljs-keyword">this</span>.heat + <span class="hljs-string">"\n Category: "</span> + categoryNames[<span class="hljs-number">2</span>]);
+  }
+});</code></pre>
+<p>Take note of the <code>\n</code> symbol in the code. It&nbsp;adds a line break.</p>
+<p>For your convenience, here is the whole code for the Tooltips section:</p>
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> categoryNames = [<span class="hljs-string">"Low"</span>, <span class="hljs-string">"Medium"</span>, <span class="hljs-string">"High"</span>, <span class="hljs-string">"Very High"</span>]
+
+<span class="hljs-keyword">var</span> tooltip = chart.tooltip();
+tooltip.fontWeight(<span class="hljs-number">600</span>);
+tooltip.positionMode(<span class="hljs-string">"point"</span>);        
+tooltip.format(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.heat &lt;= <span class="hljs-number">0.549</span>) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">"Value: "</span> + <span class="hljs-keyword">this</span>.heat + <span class="hljs-string">"\n Category: "</span> + categoryNames[<span class="hljs-number">0</span>]);
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.heat &gt;= <span class="hljs-number">0.55</span> &amp;&amp; <span class="hljs-keyword">this</span>.heat &lt;= <span class="hljs-number">0.699</span>) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">"Value: "</span> + <span class="hljs-keyword">this</span>.heat + <span class="hljs-string">"\n Category: "</span> + categoryNames[<span class="hljs-number">1</span>]);
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.heat &gt;= <span class="hljs-number">0.7</span> &amp;&amp; <span class="hljs-keyword">this</span>.heat &lt;= <span class="hljs-number">0.799</span>) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">"Value: "</span> + <span class="hljs-keyword">this</span>.heat + <span class="hljs-string">"\n Category: "</span> + categoryNames[<span class="hljs-number">2</span>]);
+  }
+});</code></pre>
+<p>Here is the final version of the JavaScript heat map chart — check it out on <a href="https://playground.anychart.com/c7LLDvX1/2" data-wpel-link="internal" rel="follow noopener noreferrer">AnyChart Playground</a> where you can play with the code and visualization:</p>
+<p><iframe class="anychart-embed anychart-embed-" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/iframe(4).html" width="300" height="150" frameborder="0" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-modals allow-forms" allowfullscreen="allowfullscreen"><br />
+</iframe><br>
+<script type="text/javascript">(function(){
+function ac_add_to_head(el){
+    var head = document.getElementsByTagName('head')[0];
+    head.insertBefore(el,head.firstChild);
+}
+function ac_add_style(css){
+    var ac_style = document.createElement('style');
+    if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+    else ac_style.appendChild(document.createTextNode(css));
+    ac_add_to_head(ac_style);
+}
+ac_add_style(".anychart-embed-{width:100%;height:500px;}");
+})();</script></p>
+<p>The new&nbsp;JS heat map looks more beautiful and informative than the initial chart, doesn’t it? Now we can clearly see that the world’s human development in terms of HDI got better over the considered period. Arab States region’s HDI and East Asia and Pacific region’s HDI improved from “medium” to “high.” None of the world regions has yet achieved the “very high” HDI value range. Sub-Saharan Africa stays in the lowest HDI range. The two regions with the highest HDIs are Europe and Central Asia, and Latin America and the Caribbean. Much better.</p>
+<h3>Conclusion</h3>
+<p>I hope my tutorial has shown&nbsp;that creating interactive JavaScript charts for websites and apps doesn’t have to be complicated. Using the AnyChart library, you can&nbsp;get a good-looking data visualization in a few minutes and then customize it to your needs also with ease.</p>
+<p>Visit the <a href="https://docs.anychart.com/Basic_Charts/Heat_Map_Chart" data-wpel-link="internal" rel="follow noopener noreferrer">gallery of heat maps</a> to see more examples and get inspiration for your own creations.</p>
+<p><!-- SyntaxHighlighter --><link rel="stylesheet" href="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/default.min.css"><link rel="stylesheet" href="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/atom-one-light.min.css"><script src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/highlight.min.js.download"></script><script>hljs.initHighlightingOnLoad();</script></p>
+<!-- AddThis Advanced Settings above via filter on the_content --><!-- AddThis Advanced Settings below via filter on the_content --><!-- AddThis Advanced Settings generic via filter on the_content --><!-- AddThis Share Buttons above via filter on the_content --><!-- AddThis Share Buttons below via filter on the_content --><div class="at-below-post addthis_tool" data-url="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/"></div><!-- AddThis Share Buttons generic via filter on the_content -->                    <ul class="data">
+                        <li>Categories: <a href="https://www.anychart.com/blog/category/anychart-charting-component/" rel="category tag nofollow external noopener noreferrer" data-wpel-link="external" target="_blank">AnyChart charting component</a>, <a href="https://www.anychart.com/blog/category/big-data/" rel="category tag nofollow external noopener noreferrer" data-wpel-link="external" target="_blank">Big Data</a>, <a href="https://www.anychart.com/blog/category/business-intelligence/" rel="category tag nofollow external noopener noreferrer" data-wpel-link="external" target="_blank">Business Intelligence</a>, <a href="https://www.anychart.com/blog/category/html5/" rel="category tag nofollow external noopener noreferrer" data-wpel-link="external" target="_blank">HTML5</a>, <a href="https://www.anychart.com/blog/category/javascript/" rel="category tag nofollow external noopener noreferrer" data-wpel-link="external" target="_blank">JavaScript</a>, <a href="https://www.anychart.com/blog/category/javascript-chart-tutorials/" rel="category tag nofollow external noopener noreferrer" data-wpel-link="external" target="_blank">JavaScript chart tutorials</a>, <a href="https://www.anychart.com/blog/category/tips-and-tricks/" rel="category tag nofollow external noopener noreferrer" data-wpel-link="external" target="_blank">Tips and tricks</a></li>
+                        <li><i class="icon icon-comment text-muted-light"></i>&nbsp;&nbsp;<a href="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/#"> </a><a href="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/#comments">1 Comment »</a></li>
+                    </ul>
+<!-- AddToAny BEGIN -->
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="line-height: 32px;">
+                        <a class="a2a_button_facebook" target="_blank" href="https://www.anychart.com/#facebook" rel="nofollow noopener"><span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: rgb(24, 119, 242);"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M17.78 27.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99 2.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123 0-5.26 1.905-5.26 5.405v3.016h-3.53v4.09h3.53V27.5h4.223z"></path></svg></span><span class="a2a_label">Facebook</span></a>
+                        <a class="a2a_button_twitter" target="_blank" href="https://www.anychart.com/#twitter" rel="nofollow noopener"><span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: rgb(29, 155, 240);"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M28 8.557a9.913 9.913 0 01-2.828.775 4.93 4.93 0 002.166-2.725 9.738 9.738 0 01-3.13 1.194 4.92 4.92 0 00-3.593-1.55 4.924 4.924 0 00-4.794 6.049c-4.09-.21-7.72-2.17-10.15-5.15a4.942 4.942 0 00-.665 2.477c0 1.71.87 3.214 2.19 4.1a4.968 4.968 0 01-2.23-.616v.06c0 2.39 1.7 4.38 3.952 4.83-.414.115-.85.174-1.297.174-.318 0-.626-.03-.928-.086a4.935 4.935 0 004.6 3.42 9.893 9.893 0 01-6.114 2.107c-.398 0-.79-.023-1.175-.068a13.953 13.953 0 007.55 2.213c9.056 0 14.01-7.507 14.01-14.013 0-.213-.005-.426-.015-.637.96-.695 1.795-1.56 2.455-2.55z"></path></svg></span><span class="a2a_label">Twitter</span></a>
+                        <a class="a2a_button_google_plus"></a>
+                        <a class="a2a_button_linkedin" target="_blank" href="https://www.anychart.com/#linkedin" rel="nofollow noopener"><span class="a2a_svg a2a_s__default a2a_s_linkedin" style="background-color: rgb(0, 123, 181);"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M6.227 12.61h4.19v13.48h-4.19V12.61zm2.095-6.7a2.43 2.43 0 010 4.86c-1.344 0-2.428-1.09-2.428-2.43s1.084-2.43 2.428-2.43m4.72 6.7h4.02v1.84h.058c.56-1.058 1.927-2.176 3.965-2.176 4.238 0 5.02 2.792 5.02 6.42v7.395h-4.183v-6.56c0-1.564-.03-3.574-2.178-3.574-2.18 0-2.514 1.7-2.514 3.46v6.668h-4.187V12.61z" fill="#FFF"></path></svg></span><span class="a2a_label">LinkedIn</span></a>
+                        <a class="a2a_button_pinterest" target="_blank" href="https://www.anychart.com/#pinterest" rel="nofollow noopener"><span class="a2a_svg a2a_s__default a2a_s_pinterest" style="background-color: rgb(189, 8, 28);"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M16.539 4.5c-6.277 0-9.442 4.5-9.442 8.253 0 2.272.86 4.293 2.705 5.046.303.125.574.005.662-.33.061-.231.205-.816.27-1.06.088-.331.053-.447-.191-.736-.532-.627-.873-1.439-.873-2.591 0-3.338 2.498-6.327 6.505-6.327 3.548 0 5.497 2.168 5.497 5.062 0 3.81-1.686 7.025-4.188 7.025-1.382 0-2.416-1.142-2.085-2.545.397-1.674 1.166-3.48 1.166-4.689 0-1.081-.581-1.983-1.782-1.983-1.413 0-2.548 1.462-2.548 3.419 0 1.247.421 2.091.421 2.091l-1.699 7.199c-.505 2.137-.076 4.755-.039 5.019.021.158.223.196.314.077.13-.17 1.813-2.247 2.384-4.324.162-.587.929-3.631.929-3.631.46.876 1.801 1.646 3.227 1.646 4.247 0 7.128-3.871 7.128-9.053.003-3.918-3.317-7.568-8.361-7.568z"></path></svg></span><span class="a2a_label">Pinterest</span></a>
+                        <a class="a2a_button_reddit" target="_blank" href="https://www.anychart.com/#reddit" rel="nofollow noopener"><span class="a2a_svg a2a_s__default a2a_s_reddit" style="background-color: rgb(255, 69, 0);"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M28.543 15.774a2.953 2.953 0 00-2.951-2.949 2.882 2.882 0 00-1.9.713 14.075 14.075 0 00-6.85-2.044l1.38-4.349 3.768.884a2.452 2.452 0 10.24-1.176l-4.274-1a.6.6 0 00-.709.4l-1.659 5.224a14.314 14.314 0 00-7.316 2.029 2.908 2.908 0 00-1.872-.681 2.942 2.942 0 00-1.618 5.4 5.109 5.109 0 00-.062.765c0 4.158 5.037 7.541 11.229 7.541s11.22-3.383 11.22-7.541a5.2 5.2 0 00-.053-.706 2.963 2.963 0 001.427-2.51zm-18.008 1.88a1.753 1.753 0 011.73-1.74 1.73 1.73 0 011.709 1.74 1.709 1.709 0 01-1.709 1.711 1.733 1.733 0 01-1.73-1.711zm9.565 4.968a5.573 5.573 0 01-4.081 1.272h-.032a5.576 5.576 0 01-4.087-1.272.6.6 0 01.844-.854 4.5 4.5 0 003.238.927h.032a4.5 4.5 0 003.237-.927.6.6 0 11.844.854zm-.331-3.256a1.726 1.726 0 111.709-1.712 1.717 1.717 0 01-1.712 1.712z" fill="#fff"></path></svg></span><span class="a2a_label">Reddit</span></a>
+                        <a class="a2a_button_stumbleupon"></a>
+                        <a class="a2a_button_email" target="_blank" href="https://www.anychart.com/#email" rel="nofollow noopener"><span class="a2a_svg a2a_s__default a2a_s_email" style="background-color: rgb(1, 102, 255);"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M26 21.25v-9s-9.1 6.35-9.984 6.68C15.144 18.616 6 12.25 6 12.25v9c0 1.25.266 1.5 1.5 1.5h17c1.266 0 1.5-.22 1.5-1.5zm-.015-10.765c0-.91-.265-1.235-1.485-1.235h-17c-1.255 0-1.5.39-1.5 1.3l.015.14s9.035 6.22 10 6.56c1.02-.395 9.985-6.7 9.985-6.7l-.015-.065z"></path></svg></span><span class="a2a_label">Email</span></a>
+                    <div style="clear: both;"></div></div>
+                    <script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/page.js.download"></script>
+                    <!-- AddToAny END -->
+                
+<!-- Separator -->
+<a name="respond"></a>
+<hr class="mg-b-2x">
+
+<!-- Header -->
+    <h5 id="comments">Comments (1)</h5>
+
+<!-- Comment form -->
+    <form class="mg-b-2x" action="https://www.anychart.com/blog/wp-comments-post.php" method="post" id="commentform">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input id="author" name="author" type="text" class="form-control input-lg" placeholder="Your name" value="" size="22" tabindex="1" aria-required="true">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input id="email" name="email" type="email" class="form-control input-lg" placeholder="Your E-mail" value="" size="22" tabindex="2" aria-required="true">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <textarea id="comment" name="comment" class="form-control" placeholder="Leave Your comment" rows="3" tabindex="3"></textarea>
+        <div id="captchaImgDiv">
+
+<div class="si_captcha_small"><img id="si_image_com" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/securimage_show.php" width="132" height="45" alt="CAPTCHA" title="CAPTCHA">
+    <input id="si_code_com" name="si_code_com" type="hidden" value="ky8MdeeWaTkeBIuO">
+    <div id="si_refresh_com">
+<a href="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/#" rel="nofollow" title="Refresh" onclick="si_captcha_refresh(&#39;si_image_com&#39;,&#39;com&#39;,&#39;/blog/wp-content/plugins/si-captcha-for-wordpress/captcha&#39;,&#39;https://www.anychart.com/blog/wp-content/plugins/si-captcha-for-wordpress/captcha/securimage_show.php?si_sm_captcha=1&amp;si_form_id=com&amp;prefix=&#39;); return false;">
+      <img class="si_captcha_refresh" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/refresh.png" width="22" height="20" alt="Refresh" onclick="this.blur();"></a>
+  </div>
+  </div>
+
+<p id="si_captcha_code_p">
+<input id="si_captcha_code" name="si_captcha_code" type="text">
+<label for="si_captcha_code">CAPTCHA Code</label><span class="required"> *</span>
+</p>
+</div></div>
+        <div class="form-group form-group-lg text-right">
+            <input class="btn btn-primary btn-min" name="submit" type="submit" id="submit" tabindex="5" value="Send">
+            <input type="hidden" name="comment_post_ID" value="9644" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+        </div>
+        <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="e776b63bb4"></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="102"></p>
+
+      <script type="text/javascript">
+          var sUrlInput = document.getElementById("comment");
+                  var oParent = sUrlInput.parentNode;
+          var sSubstitue = document.getElementById("captchaImgDiv");
+                  oParent.appendChild(sSubstitue, sUrlInput);
+      </script>
+            <noscript>
+          <style type='text/css'>#submit {display:none;}</style><br />           <input name="submit" type="submit" id="submit-alt" tabindex="6" value="Submit Comment" />
+          </noscript>
+      </form>
+
+<!-- Comments list-->
+    
+                <!-- End Content---------------------------->
+            </div>
+            <div class="col-sm-3">
+                <!--Search-->
+    <!--div class="sidebar-module subscribe">
+        <h5>Subscribe</h5>
+
+        <form class="mg-b-1i5x">
+            <div class="form-group">
+                <input type="text" class="form-control" id="first-name" placeholder="Enter your e-mail">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default btn-block">Get the subscription</button>
+            </div>
+        </form>
+        <a href="/blog/feed/" data-wpel-link="internal" rel="follow noopener noreferrer"><i class="icon icon-sound"></i>&#160;&#160;&#160;&#160;<span>Our RSS Feed</span></a>
+    </div><!-- /.subscribe -->
+
+<div class="row">
+    <!--Categories-->
+    <div class="col-md-12 col-sm-12 col-xs-6">
+        <div class="sidebar-module">
+            <h5>Categories</h5>
+            <ul class="list-dotted" id="sidebarCategories">
+                <li><a href="https://www.anychart.com/blog/category/anychart-charting-component/" title="View all posts in AnyChart charting component" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">AnyChart charting component (251)</a></li><li><a href="https://www.anychart.com/blog/category/anygantt/" title="View all posts in AnyGantt" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">AnyGantt (63)</a></li><li><a href="https://www.anychart.com/blog/category/anymap/" title="View all posts in AnyMap" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">AnyMap (55)</a></li><li><a href="https://www.anychart.com/blog/category/anystock/" title="View all posts in AnyStock" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">AnyStock (68)</a></li><li><a href="https://www.anychart.com/blog/category/big-data/" title="View all posts in Big Data" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Big Data (55)</a></li><li><a href="https://www.anychart.com/blog/category/books/" title="View all posts in Books" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Books (3)</a></li><li><a href="https://www.anychart.com/blog/category/business-intelligence/" title="View all posts in Business Intelligence" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Business Intelligence (55)</a></li><li><a href="https://www.anychart.com/blog/category/challenge-anychart/" title="View all posts in Challenge AnyChart!" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Challenge AnyChart! (9)</a></li><li><a href="https://www.anychart.com/blog/category/charts-and-art/" title="View all posts in Charts and Art" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Charts and Art (28)</a></li><li><a href="https://www.anychart.com/blog/category/choosing-chart-type/" title="View all posts in Choosing Chart Type" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Choosing Chart Type (7)</a></li><li><a href="https://www.anychart.com/blog/category/dashboards/" title="View all posts in Dashboards" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Dashboards (28)</a></li><li><a href="https://www.anychart.com/blog/category/data-visualization-101/" title="View all posts in Data Visualization 101" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Data Visualization 101 (1)</a></li><li><a href="https://www.anychart.com/blog/category/data-visualization-weekly/" title="View all posts in Data Visualization Weekly" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Data Visualization Weekly (260)</a></li><li><a href="https://www.anychart.com/blog/category/financial-charts/" title="View all posts in Financial charts" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Financial charts (23)</a></li><li><a href="https://www.anychart.com/blog/category/flash-platform/" title="View all posts in Flash platform" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Flash platform (2)</a></li><li><a href="https://www.anychart.com/blog/category/gantt-chart/" title="View all posts in Gantt Chart" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Gantt Chart (35)</a></li><li><a href="https://www.anychart.com/blog/category/graphicsjs/" title="View all posts in GraphicsJS" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">GraphicsJS (6)</a></li><li><a href="https://www.anychart.com/blog/category/graphjam/" title="View all posts in GraphJam" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">GraphJam (1)</a></li><li><a href="https://www.anychart.com/blog/category/html5/" title="View all posts in HTML5" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">HTML5 (151)</a></li><li><a href="https://www.anychart.com/blog/category/humor/" title="View all posts in Humor" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Humor (2)</a></li><li><a href="https://www.anychart.com/blog/category/interesting-facts/" title="View all posts in Interesting Facts" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Interesting Facts (4)</a></li><li><a href="https://www.anychart.com/blog/category/javascript/" title="View all posts in JavaScript" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">JavaScript (148)</a></li><li><a href="https://www.anychart.com/blog/category/javascript-chart-tutorials/" title="View all posts in JavaScript chart tutorials" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">JavaScript chart tutorials (43)</a></li><li><a href="https://www.anychart.com/blog/category/news/" title="View all posts in News" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">News (111)</a></li><li><a href="https://www.anychart.com/blog/category/oracle-apex/" title="View all posts in Oracle Apex" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Oracle Apex (3)</a></li><li><a href="https://www.anychart.com/blog/category/qlik/" title="View all posts in Qlik" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Qlik (25)</a></li><li><a href="https://www.anychart.com/blog/category/stock-charts/" title="View all posts in Stock charts" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Stock charts (28)</a></li><li><a href="https://www.anychart.com/blog/category/success-stories/" title="View all posts in Success stories" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Success stories (40)</a></li><li><a href="https://www.anychart.com/blog/category/third-party-developers/" title="View all posts in Third-party developers" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Third-party developers (4)</a></li><li><a href="https://www.anychart.com/blog/category/tips-and-tricks/" title="View all posts in Tips and tricks" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Tips and tricks (95)</a></li><li><a href="https://www.anychart.com/blog/category/tufte/" title="View all posts in Tufte" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Tufte (2)</a></li><li><a href="https://www.anychart.com/blog/category/uncategorized/" title="View all posts in Uncategorized" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Uncategorized (16)</a></li>            </ul>
+        </div>
+    </div>
+            <div class="col-md-12 col-sm-12 col-xs-6">
+            <div class="sidebar-module">
+                <h5>Most Recent</h5>
+                <ul class="list-default">
+                    <li><a href="https://www.anychart.com/blog/2022/02/16/native-american-cancer-data-visualization/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">SunnyByte Chooses AnyChart for Native American Cancer Data Visualization</a> </li> <li><a href="https://www.anychart.com/blog/2022/02/11/most-awesome-recent-dataviz/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Recalling Most Awesome Recent Data Visualizations — DataViz Weekly</a> </li> <li><a href="https://www.anychart.com/blog/2022/02/11/calendar-chart-js/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">How to Create a Calendar Chart in JavaScript</a> </li> <li><a href="https://www.anychart.com/blog/2022/02/04/best-new-charts/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Best New Charts and Maps Not to Miss — DataViz Weekly</a> </li> <li><a href="https://www.anychart.com/blog/2022/02/03/error-chart-js/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Creating an Error Chart in JavaScript</a> </li> <li><a href="https://www.anychart.com/blog/2022/01/28/visualizing-income-volcano-shopping-climate/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">Visualizing Data on Income, Volcano Eruption, Shopping, Climate — DataViz Weekly</a> </li> <li><a href="https://www.anychart.com/blog/2022/01/26/covid-risk-data-visualization/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">COVID-19 Risk Assessment App Pandemonium Uses AnyChart for Data Visualization</a> </li>                 </ul>
+            </div>
+        </div>
+    
+    </div>
+<script>
+    $(function () {
+        // Archive
+        var counter = 9;
+        $('#sidebarArchiveSeeAll')
+            .html('See all (' + ($('#sidebarArchive > li').length - counter) + ')')
+            .bind('click', function () {
+                $(this).toggleClass('enableArchiveItem');
+                if ($(this).hasClass('enableArchiveItem')) {
+                    $('.hiddenableMonth').show();
+                    $(this)
+                        .attr('data-rel', $(this).html())
+                        .html('Hide Archive');
+                } else {
+                    $('.hiddenableMonth').hide();
+                    $(this).html($(this).attr('data-rel'));
+                }
+                return false;
+            });
+        $('#sidebarArchive > li').each(function () {
+            if (counter-- < 0) $(this).addClass('hiddenableMonth').hide();
+        });
+    });
+</script>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</main><div style="position: static;"><div class="a2a_overlay" id="a2a_overlay"></div><div id="a2a_modal" class="a2a_modal a2a_hide" role="dialog" tabindex="-1" aria-label=""><div class="a2a_modal_body a2a_menu a2a_hide" id="a2a_copy_link"><span id="a2a_copy_link_icon" class="a2a_svg a2a_s_link a2a_logo_color"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M24.4 21.18c0-.36-.1-.67-.36-.92l-2.8-2.8a1.24 1.24 0 0 0-.92-.38c-.38 0-.7.14-.97.43.02.04.1.12.25.26l.3.3.2.24c.08.12.14.24.17.35.03.1.05.23.05.37 0 .36-.13.66-.38.92a1.25 1.25 0 0 1-.92.37 1.4 1.4 0 0 1-.37-.03 1.06 1.06 0 0 1-.35-.18 2.27 2.27 0 0 1-.25-.2 6.82 6.82 0 0 1-.3-.3l-.24-.25c-.3.28-.44.6-.44.98 0 .36.13.66.38.92l2.78 2.8c.24.23.54.35.9.35.37 0 .68-.12.93-.35l1.98-1.97c.26-.25.38-.55.38-.9zm-9.46-9.5c0-.37-.13-.67-.38-.92l-2.78-2.8a1.24 1.24 0 0 0-.9-.37c-.36 0-.67.1-.93.35L7.97 9.92c-.26.25-.38.55-.38.9 0 .36.1.67.37.92l2.8 2.8c.24.25.55.37.92.37.36 0 .7-.13.96-.4-.03-.04-.1-.12-.26-.26s-.24-.23-.3-.3a2.67 2.67 0 0 1-.2-.24 1.05 1.05 0 0 1-.17-.35 1.4 1.4 0 0 1-.04-.37c0-.36.1-.66.36-.9.26-.26.56-.4.92-.4.14 0 .26.03.37.06.12.03.23.1.35.17.1.1.2.16.25.2l.3.3.24.26c.3-.28.44-.6.44-.98zM27 21.17c0 1.07-.38 2-1.15 2.73l-1.98 1.98c-.74.75-1.66 1.12-2.73 1.12-1.1 0-2-.38-2.75-1.14l-2.8-2.8c-.74-.74-1.1-1.65-1.1-2.73 0-1.1.38-2.04 1.17-2.82l-1.18-1.17c-.8.8-1.72 1.18-2.82 1.18-1.08 0-2-.36-2.75-1.12l-2.8-2.8C5.38 12.8 5 11.9 5 10.82c0-1.08.38-2 1.15-2.74L8.13 6.1C8.87 5.37 9.78 5 10.86 5c1.1 0 2 .38 2.75 1.15l2.8 2.8c.74.73 1.1 1.65 1.1 2.72 0 1.1-.38 2.05-1.17 2.82l1.18 1.18c.8-.8 1.72-1.2 2.82-1.2 1.08 0 2 .4 2.75 1.14l2.8 2.8c.76.76 1.13 1.68 1.13 2.76z"></path></svg></span><input id="a2a_copy_link_text" type="text" title="Copy link" readonly=""><div id="a2a_copy_link_copied">✓</div></div><div class="a2a_modal_body a2a_menu a2a_thanks a2a_hide" id="a2a_thanks"><div class="a2a_localize" data-a2a-localize="inner,ThanksForSharing">Thanks for sharing!</div></div></div><div class="a2a_menu a2a_full a2a_localize" id="a2apage_full" role="dialog" tabindex="-1" aria-label="Share" data-a2a-localize="title,Share"><div class="a2a_full_header"><div id="a2apage_find_container" class="a2a_menu_find_container"><input id="a2apage_find" class="a2a_menu_find a2a_localize" type="text" autocomplete="off" title="Find any service" data-a2a-localize="title,FindAnyServiceToAddTo"><span id="a2apage_find_icon" class="a2a_svg a2a_s_find"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#CCC" d="M19.7 18.2l-4.5-4.5c.7-1.1 1.2-2.3 1.2-3.6 0-3.5-2.8-6.3-6.3-6.3s-6.3 2.8-6.3 6.3 2.8 6.3 6.3 6.3c1.4 0 2.6-.4 3.6-1.2l4.5 4.5c.6.6 1.3.7 1.7.2.5-.4.4-1.1-.2-1.7zm-9.6-3.6c-2.5 0-4.5-2.1-4.5-4.5 0-2.5 2.1-4.5 4.5-4.5 2.5 0 4.5 2.1 4.5 4.5s-2 4.5-4.5 4.5z"></path></svg></span></div></div><div class="a2a_full_services" id="a2apage_full_services" role="presentation"></div><div class="a2a_full_footer"><a href="https://www.addtoany.com/" title="Share Buttons" rel="noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_a2a a2a_logo_color"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g fill="#FFF"><path d="M14 7h4v18h-4z"></path><path d="M7 14h18v4H7z"></path></g></svg></span>AddToAny</a></div></div><div id="a2apage_dropdown" class="a2a_menu a2a_mini a2a_localize a2a_hide" tabindex="-1" aria-label="Share" data-a2a-localize="label,Share"><div class="a2a_mini_services" id="a2apage_mini_services"></div><div id="a2apage_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2apage_col1"></div><div id="a2apage_2_col1" class="a2a_hide"></div><div class="a2a_clear"></div></div><div class="a2apage_wide a2a_wide"><a href="https://www.anychart.com/blog/2020/02/26/heat-map-chart-create-javascript/#addtoany" id="a2apage_show_more_less" class="a2a_more a2a_localize" title="Show all" data-a2a-localize="title,ShowAll"><span class="a2a_svg a2a_s__default a2a_s_a2a a2a_logo_color"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g fill="#FFF"><path d="M14 7h4v18h-4z"></path><path d="M7 14h18v4H7z"></path></g></svg></span><span class="a2a_localize" data-a2a-localize="inner,More">More…</span></a></div></div><div style="height: 1px; width: 1px; position: absolute; z-index: 100000; top: 0px; visibility: hidden;"><iframe id="a2a_sm_ifr" title="AddToAny Utility Frame" transparency="true" allowtransparency="true" frameborder="0" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/sm.23.html" style="height: 1px; width: 1px; border: 0px; left: 0px; top: 0px; position: absolute; z-index: 100000; display: none;"></iframe></div></div><!-- /.main -->
+
+<footer class="footer">
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12 col-xs-indent">
+                    <h6>AnyChart</h6>
+                    <p class="text-small text-muted">
+                        AnyChart is a flexible JavaScript (HTML5) based solution that allows developers to embed interactive and great
+                        looking charts and dashboards into any web, standalone or mobile project. Whether you need to enhance your
+                        website with better reporting, embed dashboards into your on-premises and SaaS systems, or build an entire
+                        new product, AnyChart covers all your data visualization needs. Our products include massive out-of-the-box
+                        capabilities, combined with the flexibility and the simplicity.<br>Loved by <a href="https://www.anychart.com/company/customers/" data-wpel-link="internal" rel="follow noopener noreferrer">thousands of happy customers</a>.
+                    </p>
+                </div><!-- /.col -->
+                <div class="col-sm-2 col-xs-6 col-sm-offset-1 col-xs-indent-2">
+                    <h6>Products</h6>
+                    <ul class="list">
+                        <li><a href="https://www.anychart.com/products/anychart/overview/" data-wpel-link="internal" rel="follow noopener noreferrer">AnyChart</a></li>
+                        <li><a href="https://www.anychart.com/products/anystock/overview/" data-wpel-link="internal" rel="follow noopener noreferrer">AnyStock</a></li>
+                        <li><a href="https://www.anychart.com/products/anymap/overview/" data-wpel-link="internal" rel="follow noopener noreferrer">AnyMap</a></li>
+                        <li><a href="https://www.anychart.com/products/anygantt/overview/" data-wpel-link="internal" rel="follow noopener noreferrer">AnyGantt</a></li>
+                    </ul>
+                    <h6><a href="https://www.anychart.com/download/" data-wpel-link="internal" rel="follow noopener noreferrer">Downloads</a></h6>
+                    <h6><a href="https://www.anychart.com/partners/" data-wpel-link="internal" rel="follow noopener noreferrer">Partners</a></h6>
+                    <h6><a href="https://www.anychart.com/support/" data-wpel-link="internal" rel="follow noopener noreferrer">Support</a></h6>
+                </div><!-- /.col -->
+                <div class="col-sm-2 col-xs-6 col-xs-indent-2">
+                    <h6>Company</h6>
+                    <ul class="list">
+                        <li><a href="https://www.anychart.com/company/" data-wpel-link="internal" rel="follow noopener noreferrer">About us</a></li>
+                        <li><a href="https://www.anychart.com/company/customers/" data-wpel-link="internal" rel="follow noopener noreferrer">Customers</a></li>
+                        <li><a href="https://www.anychart.com/company/testimonials/" data-wpel-link="internal" rel="follow noopener noreferrer">Testimonials</a></li>
+                        <li><a href="https://www.anychart.com/company/success_stories/" data-wpel-link="internal" rel="follow noopener noreferrer">Success stories</a></li>
+                        <li><a href="https://www.anychart.com/blog/" data-wpel-link="internal" rel="follow noopener noreferrer">News</a></li>
+                    </ul>
+                    <h6><a href="https://www.anychart.com/buy/" data-wpel-link="internal" rel="follow noopener noreferrer"><strong>Buy now</strong></a></h6>
+                </div><!-- /.col -->
+                <div class="col-sm-2 col-xs-12 col-sm-offset-1 col-xs-indent">
+                    <h6>Get social</h6>
+                    <ul class="soc-network-list">
+                        <li>
+                            <a href="https://www.facebook.com/AnyCharts" class="soc-network" target="_blank" data-wpel-link="external" rel="nofollow external noopener noreferrer">
+                                <span class="soc-network-icon fb"><i class="ac ac-facebook"></i></span>
+                                <span class="soc-network-title">Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/AnyChart" class="soc-network" target="_blank" data-wpel-link="external" rel="nofollow external noopener noreferrer">
+                                <span class="soc-network-icon tw"><i class="ac ac-twitter"></i></span>
+                                <span class="soc-network-title">Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/company/386660" class="soc-network" target="_blank" data-wpel-link="external" rel="nofollow external noopener noreferrer">
+                                <span class="soc-network-icon in"><i class="ac ac-linkedin"></i></span>
+                                <span class="soc-network-title">Linked In</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <hr>
+            <div class="post-footer">
+                <div class="row">
+                    <div class="col col-md-2 col-sm-3">
+                        <a href="https://www.anychart.com/" class="brand" data-wpel-link="internal" rel="follow noopener noreferrer">
+                            <img src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/AnyChart-gray-empty.png" width="300" height="72" alt="AnyChart">
+                            <div class="chart-row">
+                                <span class="chart-col green inverse"></span>
+                                <span class="chart-col orange inverse"></span>
+                                <span class="chart-col red inverse"></span>
+                            </div><!--/.chart-row -->
+                        </a><!--/.brand -->
+                    </div>
+                    <div class="col col-sm-4">
+                        © 2022 AnyChart.Com All rights reserved.
+                    </div>
+                    <div class="col col-md-6 col-sm-5 text-right">
+                        <ul class="nav nav-inline text-uppercase">
+                            <li><a href="http://6.anychart.com/customer_area/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">customer login</a></li>
+                            <li><a href="https://www.anychart.com/privacy/" data-wpel-link="internal" rel="follow noopener noreferrer">privacy policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container -->
+    </section><!-- /.section -->
+
+</footer>
+<script type="text/javascript" id="">(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b;a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};a[b].l=1*new Date;c=e.createElement(f);d=e.getElementsByTagName(f)[0];c.async=1;c.src=g;d.parentNode.insertBefore(c,d)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create","UA-228820-2","www.anychart.com");ga("require","displayfeatures");ga("set","userId",google_tag_manager["GTM-5B8NXZ"].macro(4));ga("send","pageview");var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-228820-2"]);
+_gaq.push(["_setDomainName","anychart.com"]);_gaq.push(["_trackPageview"]);</script>
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","1431162103835947");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1431162103835947&amp;ev=PageView&amp;noscript=1"></noscript>
+
+
+<script type="text/javascript" id="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/oct.js.download"></script><script type="text/javascript" id="">window.__lc=window.__lc||{};window.__lc.license=1006188;window.getLCCustomVars&&"function"==typeof window.getLCCustomVars&&(window.__lc.params=window.getLCCustomVars());(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://":"http://")+"cdn.livechatinc.com/tracking.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
+<script type="text/javascript" id="" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/addthis_widget.js(1).download"></script><script type="text/javascript" id="">var _cio=_cio||[];(function(){var a;var b=function(a){return function(){_cio.push([a].concat(Array.prototype.slice.call(arguments,0)))}};var c=["load","identify","sidentify","track","page"];for(a=0;a<c.length;a++)_cio[c[a]]=b(c[a]);b=document.createElement("script");c=document.getElementsByTagName("script")[0];b.async=!0;b.id="cio-tracker";b.setAttribute("data-site-id","aedd148b4f0bd710f6c8");b.src="https://assets.customer.io/assets/track.js";c.parentNode.insertBefore(b,c)})();
+function getParameterByName(a){a=a.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");a=new RegExp("[\\?\x26]"+a+"\x3d([^\x26#]*)");a=a.exec(location.search);return null===a?"":decodeURIComponent(a[1].replace(/\+/g," "))}function getLang(){var a="N/A";window.navigator&&(a=window.navigator.userLanguage||window.navigator.language);return a}function setUrlParam(a,b){var c=getParameterByName(a);c&&(b[a]=c)}var hash=getParameterByName("acc-hash");
+if(hash){var data={id:hash,language:getLang()};setUrlParam("email",data);setUrlParam("source",data);setUrlParam("first_name",data);setUrlParam("last_name",data);setUrlParam("phone",data);setUrlParam("company",data);setUrlParam("country",data);setUrlParam("interest",data);setUrlParam("language",data);var cio_iid=setInterval(function(){window._cio&&(clearInterval(cio_iid),window._cio.identify(data))},500)};</script><script type="text/javascript" id="">window.hos?window.hos(window.userCountry):function(b,c,d){var e=b.getElementsByTagName(c)[0],a=b.createElement(c);a.type="text/javascript";a.async=!0;a.src="/_core/js/out/holdonstranger.js";a.readyState?a.onreadystatechange=function(){"loaded"!==a.readyState&&"complete"!==a.readyState||(a.onreadystatechange=null,d())}:a.onload=function(){d()};e.parentNode.insertBefore(a,e)}(document,"script",function(){window.hos(window.userCountry)});</script>
+<script type="text/javascript" id="">(function(){window.__insp=window.__insp||[];__insp.push(["wid",600032561]);var c=function(){if("undefined"==typeof window.__inspld){window.__inspld=1;var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.id="inspsync";a.src=("https:"==document.location.protocol?"https":"http")+"://cdn.inspectlet.com/inspectlet.js?wid\x3d600032561\x26r\x3d"+Math.floor((new Date).getTime()/36E5);var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)}};setTimeout(c,0)})();</script>
+
+<script type="text/javascript" id="">window.__lc=window.__lc||{};window.__lc.license=1006188;(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://":"http://")+"cdn.livechatinc.com/tracking.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
+<noscript>
+<a href="https://www.livechatinc.com/chat-with/1006188/" rel="nofollow">Chat with us</a>,
+powered by <a href="https://www.livechatinc.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
+</noscript>
+
+
+<script type="text/javascript" id="">(function(a,e,f,g,b,c,d){a[b]=a[b]||function(){(a[b].a=a[b].a||[]).push(arguments)};a[b].l=1*new Date;c=e.createElement(f);d=e.getElementsByTagName(f)[0];c.async=1;c.src=g;d.parentNode.insertBefore(c,d)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(64987270,"init",{clickmap:!0,trackLinks:!0,accurateTrackBounce:!0,webvisor:!0});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/64987270" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<!-- /.footer --><script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/blog.js.download"></script>
+<script type="text/javascript" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/common.js.download"></script>
+<!--
+<script type="text/javascript">
+    var __lc = {};
+    __lc.license = 1006188;
+
+    (function() {
+        var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+        lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+    })();
+</script>
+-->
+
+
+
+<div id="chat-widget-container" style="opacity: 1; visibility: visible; z-index: 2147483639; position: fixed; bottom: 0px; width: 84px; height: 84px; max-width: 100%; max-height: calc(100% - 0px); min-height: 0px; min-width: 0px; background-color: transparent; border: 0px; overflow: hidden; right: 0px; transition: none 0s ease 0s !important;"><iframe allow="autoplay; microphone *; camera *; display-capture *; picture-in-picture *; fullscreen *;" src="./Abstract Heat Map Chart_ How to Create and Customize It Using JavaScript_files/open_chat.html" allowtransparency="true" id="chat-widget" name="chat-widget" title="LiveChat chat widget" scrolling="no" style="width: 100%; height: 100%; min-height: 0px; min-width: 0px; margin: 0px; padding: 0px; background-image: none; background-position: 0% 0%; background-size: initial; background-attachment: scroll; background-origin: initial; background-clip: initial; background-color: rgba(0, 0, 0, 0); border-width: 0px; float: none; position: absolute; inset: 0px; transition: none 0s ease 0s !important;"></iframe></div></body></html>
