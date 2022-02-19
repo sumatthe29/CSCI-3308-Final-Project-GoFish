@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--TODO-->
+
+<!--HTML/CSS/Format-->
+<!--
+    -Make background of navbar the wood picture we want
+    -Make background of body picture of forest
+    -Currently submission button has zero functionality. Should take user to their created profile page when they make one
+    -Add navbar functionality (link to home page at least)
+-->
+
+<!--Javascript-->
+<!--
+    -Validate that the entered passwords are the same. If not, ask user to resubmit with matching passwords
+    -Validate that the enetered email address is a valid one (has an @xxxxxx.com at the end)
+        -Maybe also check that email site exists? (Not sure how feasible)
+-->
+
+<!--Database-->
+<!--
+    -Once everything is validated, add user with specified parameters to database
+-->
+
+<!--Additional Features-->
+<!--
+    -Let user upload a profile picture (could also only have this done once user is registered)
+-->
+<html>
+<head>
+    <title>Register a New Account</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+</head>
+<body style="background-color:deepskyblue;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: blanchedalmond;">
+
+    </nav>
+    <br>
+    <div class="container">
+        <form>
+            <!--Display name and user handle, similar to how Twitter has an @ and a display name - Spencer-->
+            <div class="form-group">
+                <label class="sr-only" for="displayName">Display Name</label>
+                <input type="text" class="form-control" id="displayName" placeholder="Display name">
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="userhandle">User handle</label>
+                <input type="text" class="form-control" id="userhandle" placeholder="User handle">
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="email">Email Address</label>
+                <input type="text" class="form-control" id="email" placeholder="Email">
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="pword">Password</label>
+                <input type="text" class="form-control" id="pword" placeholder="Password">
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="confirmpword">Confirm Password</label>
+                <input type="text" class="form-control" id="confirmpword" placeholder=" Confirm Password">
+            </div>
+            
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="profile-pub" id="profile-vis" value="public">
+                <label class="form-check-label" for="profile-vis">
+                    Public<br>
+                    <span style="font-size: x-small;">Your profile will be visible to all users (registered and non-registered) of the site</span>
+                </label>
+                <br>
+                <input class="form-check-input" type="radio" name="profile-priv" id="profile-vis" value="private">
+                <label class="form-check-label" for="profile-vis">
+                    Private<br>
+                    <span style="font-size: x-small;">Your profile will only be visible to registered users you are buddies with</span>
+                </label>
+            </div>
+            <br>
+
+            <input type="submit" value="Go Fish!" class="btn btn-primary btn-block">
+        </form>
+    </div>
+</body>
+</html>
