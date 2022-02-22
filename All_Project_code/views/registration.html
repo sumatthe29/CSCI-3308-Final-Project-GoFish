@@ -14,7 +14,11 @@
     -Validate that the entered passwords are the same. If not, ask user to resubmit with matching passwords
     -Validate that the enetered email address is a valid one (has an @xxxxxx.com at the end)
         -Maybe also check that email site exists? (Not sure how feasible)
+
+    SEE login.js
 -->
+
+
 
 <!--Database-->
 <!--
@@ -37,7 +41,7 @@
     </nav>
     <br>
     <div class="container">
-        <form>
+        <form onSubmit = "return checkPassword(this)">
             <!--Display name and user handle, similar to how Twitter has an @ and a display name - Spencer-->
             <div class="form-group">
                 <label class="sr-only" for="displayName">Display Name</label>
@@ -56,12 +60,12 @@
 
             <div class="form-group">
                 <label class="sr-only" for="pword">Password</label>
-                <input type="text" class="form-control" id="pword" placeholder="Password">
+                <input name="password1" type="password" class="form-control" id="password" placeholder="Password" >
             </div>
 
             <div class="form-group">
                 <label class="sr-only" for="confirmpword">Confirm Password</label>
-                <input type="text" class="form-control" id="confirmpword" placeholder=" Confirm Password">
+                <input name="password2" type="password" class="form-control" id="confirm_password" placeholder=" Confirm Password">
             </div>
             
             <div class="form-check">
@@ -82,5 +86,6 @@
             <input type="submit" value="Go Fish!" class="btn btn-primary btn-block">
         </form>
     </div>
+    <script src="../scripts/login.js"></script>
 </body>
 </html>
