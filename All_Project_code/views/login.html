@@ -13,24 +13,55 @@
 	line-height: 200%;
 	background-color: white;
 }
+
 </style>
+
+<script>
+function byEmail(option) {
+	if(option === 1)
+	{
+		document.getElementById("eoption").style.visibility = "visible";
+		document.getElementById("eoption").style.height = "auto";
+
+		document.getElementById("uoption").style.visibility = "hidden";
+		document.getElementById("uoption").style.height = 0;
+	}
+	else
+	{
+		document.getElementById("eoption").style.visibility = "hidden";
+		document.getElementById("eoption").style.height = 0;
+
+		document.getElementById("uoption").style.visibility = "visible";
+		document.getElementById("uoption").style.height = "auto";
+	}
+	
+}
+</script>
 
 </head>
 
-<body style="background-color:blue;">
+<body style="background-image: url(https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Rivers-of-the-World-Cover.jpg);">
 	<div class="container">
 
 		<h1>Login with your account information</h1>
 
 		<div class="form-group">
 
+			<div class="row" id="uoption">
+				<label for="uname"> </label>
+				<input class="form-control input-sm" type="text" id="uname" placeholder="Enter your username">
+			</div>
 			
-			<label for="uname"> </label>
-			<input class="form-control input-sm" type="text" id="uname" placeholder="Enter your username">
-			
+			Use email instead?
+			<label for="yesEmail"> Yes </label>
+			<input class="form-check-input" onclick="byEmail(1)"  type="radio" name="Question" id="yesEmail"  value="Yes">
+			<label for="noEmail"> No </label>
+			<input class="form-check-input" onclick="byEmail(0)"  type="radio" name="Question" id="noEmail"  value="No" checked>
 
-			<label for="email"> </label>
-			<input class="form-control input-sm" type="email" id="email" placeholder="Enter your email">
+			<div class="row" id="eoption">
+				<label for="email"> </label>
+				<input class="form-control input-sm" type="email" id="email" placeholder="Enter your email">
+			</div>
 
 			<label for"password"> </label>
 			<input class="form-control input-sm" type="password" id="password" placeholder="Enter your password">
