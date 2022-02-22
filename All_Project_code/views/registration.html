@@ -11,9 +11,10 @@
 
 <!--Javascript-->
 <!--
-    -Validate that the entered passwords are the same. If not, ask user to resubmit with matching passwords
+    -COMPLETED Matthew -> Validate that the entered passwords are the same. If not, ask user to resubmit with matching passwords 
     -Validate that the enetered email address is a valid one (has an @xxxxxx.com at the end)
         -Maybe also check that email site exists? (Not sure how feasible)
+    -Built in alert function for missing parameters (also diff required fields from optional fields)
 
     SEE login.js
 -->
@@ -41,6 +42,18 @@
     </nav>
     <br>
     <div class="container">
+
+        <div class="jumbotron">
+            <!-- Template Needs to be implemented at a later time -->
+            <h1 class="display-4"><center>Registration (placeholder for full template)</center></h1>
+            
+            <br>
+
+            <p><center>Fill out all information below (all fields are required!!!)</center></p>
+            <hr class="my-4">
+          </div>
+
+        
         <form onSubmit = "return checkPassword(this)">
             <!--Display name and user handle, similar to how Twitter has an @ and a display name - Spencer-->
             <div class="form-group">
