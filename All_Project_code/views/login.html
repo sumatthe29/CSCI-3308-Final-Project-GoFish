@@ -12,6 +12,12 @@
 	text-align: center;
 	line-height: 200%;
 	background-color: white;
+	height: 100%;
+	width: 30%;
+}
+
+html, body {
+	height: 100%;
 }
 
 </style>
@@ -21,18 +27,18 @@ function byEmail(option) {
 	if(option === 1)
 	{
 		document.getElementById("eoption").style.visibility = "visible";
-		document.getElementById("eoption").style.height = "auto";
+		//document.getElementById("eoption").style.height = "auto";
 
 		document.getElementById("uoption").style.visibility = "hidden";
-		document.getElementById("uoption").style.height = 0;
+		//document.getElementById("uoption").style.height = 0;
 	}
 	else
 	{
 		document.getElementById("eoption").style.visibility = "hidden";
-		document.getElementById("eoption").style.height = 0;
+		//document.getElementById("eoption").style.height = 0;
 
 		document.getElementById("uoption").style.visibility = "visible";
-		document.getElementById("uoption").style.height = "auto";
+		//document.getElementById("uoption").style.height = "auto";
 	}
 	
 }
@@ -40,7 +46,7 @@ function byEmail(option) {
 
 </head>
 
-<body style="background-image: url(https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Rivers-of-the-World-Cover.jpg);">
+<body style="background-image: url(https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Rivers-of-the-World-Cover.jpg); background-repeat: no-repeat; background-size: cover;">
 	<div class="container">
 
 		<h1>Login with your account information</h1>
@@ -58,9 +64,9 @@ function byEmail(option) {
 			<label for="noEmail"> No </label>
 			<input class="form-check-input" onclick="byEmail(0)"  type="radio" name="Question" id="noEmail"  value="No" checked>
 
-			<div class="row" id="eoption">
+			<div class="row" id="eoption" style="visibility:hidden">
 				<label for="email"> </label>
-				<input class="form-control input-sm" type="email" id="email" placeholder="Enter your email">
+				<input class="custom-select input-sm" type="email" id="email" placeholder="Enter your email">
 			</div>
 
 			<label for"password"> </label>
