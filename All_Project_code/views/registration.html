@@ -58,17 +58,17 @@
             <!--Display name and user handle, similar to how Twitter has an @ and a display name - Spencer-->
             <div class="form-group">
                 <label class="sr-only" for="displayName">Display Name</label>
-                <input type="text" required class="form-control" id="displayName" oninput="invalidusernames(id);" placeholder="Display name">
+                <input type="text" required class="form-control" required = "required" id="displayName" oninput="invalidusernames(id);" placeholder="Display name">
             </div>
 
             <div class="form-group">
                 <label class="sr-only" for="userhandle">User handle</label>
-                <input type="text" required class="form-control" id="userhandle" oninput="invalidusernames(id);" placeholder="User handle">
+                <input type="text" required class="form-control" required = "required" id="userhandle" oninput="invalidusernames(id);" placeholder="User handle">
             </div>
 
             <div class="form-group">
                 <label class="sr-only" for="email">Email Address</label>
-                <input type="email" required class="form-control" id="email" placeholder="Email">
+                <input type="email" required class="form-control" required="required" id="email" placeholder="Email">
             </div>
 
             <!-- <div class="form-group">
@@ -78,16 +78,16 @@
 
             <div class="form-group">
                 <label class="sr-only" for="pword">Password</label>
-                <input name="password1" type="password" class="form-control" id="password" placeholder="Password" >
+                <input name="password1" type="password" required = "required" class="form-control" id="password" placeholder="Password" >
             </div>
 
             <div class="form-group">
                 <label class="sr-only" for="confirmpword">Confirm Password</label>
-                <input name="password2" type="password" class="form-control" id="confirm_password" placeholder=" Confirm Password">
+                <input name="password2" type="password" required = "required" class="form-control" id="confirm_password" placeholder=" Confirm Password">
             </div>
             
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="profile-pub" id="profile-vis" value="public">
+                <input class="form-check-input" type="radio" required = "required" name="profile-pub" id="profile-vis" value="public">
                 <label class="form-check-label" for="profile-vis">
                     Public<br>
                     <span style="font-size: x-small;">Your profile will be visible to all users (registered and non-registered) of the site</span>
