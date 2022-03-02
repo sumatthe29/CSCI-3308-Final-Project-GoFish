@@ -34,74 +34,149 @@
 <head>
     <title>Register a New Account</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <style type="text/css">
+        /* Use this to add a background image to a jumbotron -Matthew */
+      .jbimage {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+    /* Adds highlight to text when required (tested during formatting) -Matthew */
+
+      .text-block {
+      background-color: blanchedalmond;
+      color: black;
+
+    }
+
+    /* Submit Button is green -Matthew */
+
+    .subbut {background-color: #4CAF50;}
+
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    /* Keeps background full and scaled -Matthew */
+
+    .bg {
+      /* The image used */
+      background-image: url("https://i.pinimg.com/originals/eb/57/ce/eb57ced271aecdfc5e63b4b6d23024a1.jpg");
+
+      /* Full height */
+      height: 100%; 
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    </style>
+
+    <nav class="navbar navbar-expand-sm sticky-top" style="background-color: blanchedalmond;">
+        <ul class="navbar-nav">
+            <li>
+                <a href="https://www.google.com/search?q=fish&rlz=1C1CHZO_enUS907US907&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj3hdrEj5L2AhU0O30KHag5AvgQ_AUoAXoECAEQAw" target="_bla">
+                    <img src="..\img\GoFishLogo.png" width="300px" height="50px">
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav  ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href= gofishhome.html>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href= GoFishFeed.html >Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href= registration.html >Profile</a>
+          </li>
+        </ul>
+    </nav>
 
 </head>
-<body style="background-color:deepskyblue;">
+<body class="bg">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: blanchedalmond;">
 
     </nav>
     <br>
     <div class="container">
 
-        <div class="jumbotron">
+        <div class="jumbotron" style="background-color: blanchedalmond;">
             <!-- Template Needs to be implemented at a later time -->
-            <h1 class="display-4"><center>Registration (placeholder for full template)</center></h1>
+            <h1 class="display-4" style="font-family:'Impact'"><center><strong>Creating a GoFish Account</strong></center></h1>
             
             <br>
 
-            <p><center>Fill out all information below (all fields are required!!!)</center></p>
             <hr class="my-4">
+
+            <p><strong><center>Fill out all information below (all fields are required!)</center></strong></p>
+            <br><br>
+
+            <form style="background-color: blanchedalmond;" onSubmit = "return checkPassword(this)">
+                <!--Display name and user handle, similar to how Twitter has an @ and a display name - Spencer-->
+                <div class="form-group">
+                    <label class="sr-only" for="displayName">Display Name</label>
+                    <input type="text" required class="form-control" required = "required" id="displayName" oninput="invalidusernames(id);" placeholder="Display Name" size="10">
+                </div>
+    
+    
+                <div class="form-group">
+                    <label class="sr-only" for="userhandle">User Handle</label>
+                    <input type="text" required class="form-control" required = "required" id="userhandle" oninput="invalidusernames(id);" placeholder="User Handle">
+                </div>
+    
+                <br>
+
+                <div class="form-group">
+                    <label class="sr-only" for="pword">Password</label>
+                    <input name="password1" type="password" required = "required" class="form-control" id="password" placeholder="Password" >
+                </div>
+    
+                <div class="form-group">
+                    <label class="sr-only" for="confirmpword">Confirm Password</label>
+                    <input name="password2" type="password" required = "required" class="form-control" id="confirm_password" placeholder="Confirm Password">
+                </div>
+    
+                <br>
+    
+                <div class="form-group">
+                    <label class="sr-only" for="email">Email Address</label>
+                    <input type="email" required class="form-control" required="required" id="email" placeholder="Email">
+                </div>
+    
+                <br><br><br><br>
+                <!-- <div class="form-group">
+                    <label class="sr-only" for="email">Email Address</label>
+                    <input type="text" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required class="form-control" id="email" placeholder="Email">
+                </div> -->
+    
+                
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" required = "required" name="profile-pub" id="profile-vis" value="public">
+                    <label class="form-check-label" for="profile-vis">
+                        Public<br>
+                        <span style="font-size: x-small;">Your profile will be visible to all users (registered and non-registered) of the site</span>
+                    </label>
+                    <br>
+                    <input class="form-check-input" type="radio" name="profile-priv" id="profile-vis" value="private">
+                    <label class="form-check-label" for="profile-vis">
+                        Private<br>
+                        <span style="font-size: x-small;">Your profile will only be visible to registered users you are buddies with</span>
+                    </label>
+                </div>
+                <br>
           </div>
 
         
-        <form onSubmit = "return checkPassword(this)">
-            <!--Display name and user handle, similar to how Twitter has an @ and a display name - Spencer-->
-            <div class="form-group">
-                <label class="sr-only" for="displayName">Display Name</label>
-                <input type="text" required class="form-control" required = "required" id="displayName" oninput="invalidusernames(id);" placeholder="Display name">
-            </div>
+       
 
-            <div class="form-group">
-                <label class="sr-only" for="userhandle">User handle</label>
-                <input type="text" required class="form-control" required = "required" id="userhandle" oninput="invalidusernames(id);" placeholder="User handle">
-            </div>
-
-            <div class="form-group">
-                <label class="sr-only" for="email">Email Address</label>
-                <input type="email" required class="form-control" required="required" id="email" placeholder="Email">
-            </div>
-
-            <!-- <div class="form-group">
-                <label class="sr-only" for="email">Email Address</label>
-                <input type="text" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required class="form-control" id="email" placeholder="Email">
-            </div> -->
-
-            <div class="form-group">
-                <label class="sr-only" for="pword">Password</label>
-                <input name="password1" type="password" required = "required" class="form-control" id="password" placeholder="Password" >
-            </div>
-
-            <div class="form-group">
-                <label class="sr-only" for="confirmpword">Confirm Password</label>
-                <input name="password2" type="password" required = "required" class="form-control" id="confirm_password" placeholder=" Confirm Password">
-            </div>
-            
-            <div class="form-check">
-                <input class="form-check-input" type="radio" required = "required" name="profile-pub" id="profile-vis" value="public">
-                <label class="form-check-label" for="profile-vis">
-                    Public<br>
-                    <span style="font-size: x-small;">Your profile will be visible to all users (registered and non-registered) of the site</span>
-                </label>
-                <br>
-                <input class="form-check-input" type="radio" name="profile-priv" id="profile-vis" value="private">
-                <label class="form-check-label" for="profile-vis">
-                    Private<br>
-                    <span style="font-size: x-small;">Your profile will only be visible to registered users you are buddies with</span>
-                </label>
-            </div>
-            <br>
 
             <input type="submit" value="Go Fish!" onclick="checkPassword" class="btn btn-primary btn-block">
+            <br><br><br>
         </form>
     </div>
     <script src="../scripts/login.js"></script>
