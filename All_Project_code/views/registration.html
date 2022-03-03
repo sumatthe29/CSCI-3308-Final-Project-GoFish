@@ -75,6 +75,17 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
+
+    /* Made it so that font sitewide matches font used in logo */
+
+    @font-face {
+    font-family: b2g2a;
+    src: url(bengrraas-bold.woff);
+    }
+
+    * {
+    font-family: b2g2a;
+    }
     </style>
 
     <nav class="navbar navbar-expand-sm sticky-top" style="background-color: blanchedalmond;">
@@ -108,7 +119,7 @@
 
         <div class="jumbotron" style="background-color: blanchedalmond;">
             <!-- Template Needs to be implemented at a later time -->
-            <h1 class="display-4" style="font-family:'Impact'"><center><strong>Creating a GoFish Account</strong></center></h1>
+            <h1 class="display-4" style="font-family:''"><center><strong>Creating a GoFish Account</strong></center></h1>
             
             <br>
 
@@ -150,28 +161,37 @@
                 </div>
     
                 <br><br><br><br>
+
                 <!-- <div class="form-group">
                     <label class="sr-only" for="email">Email Address</label>
                     <input type="text" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required class="form-control" id="email" placeholder="Email">
                 </div> -->
     
-                
-                
+
+                <!-- Note: Name for both inputs must be the same to reflect selection of one option over the other -->
+
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" required = "required" name="profile-pub" id="profile-vis" value="public">
-                    <label class="form-check-label" for="profile-vis">
-                        Public<br>
-                        <span style="font-size: x-small;">Your profile will be visible to all users (registered and non-registered) of the site</span>
+                    <input class="form-check-input" type="radio" name="profile-status" id="pub">
+                    <label class="form-check-label" for="pub">
+                        Public <br>
+                        <span style="font-size: small;">Your profile will be visible to all users (registered and non-registered) of the site</span>
+                        
                     </label>
-                    <br>
-                    <input class="form-check-input" type="radio" name="profile-priv" id="profile-vis" value="private">
-                    <label class="form-check-label" for="profile-vis">
-                        Private<br>
-                        <span style="font-size: x-small;">Your profile will only be visible to registered users you are buddies with</span>
+                  </div>
+                  <br>
+
+                 
+                  <div class="form-check">
+                    <!-- Private by default (checked) -->
+                    <input class="form-check-input" type="radio" name="profile-status" id="priv" checked>
+
+                    <label class="form-check-label" for="priv">
+                        Private <br>
+                        <span style="font-size: small;">Your profile will only be visible to registered users you are buddies with</span> 
                     </label>
-                </div>
-                <br>
-          </div>
+                  </div>
+
+    </div>
 
         
        
