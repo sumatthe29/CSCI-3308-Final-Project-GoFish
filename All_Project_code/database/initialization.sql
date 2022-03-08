@@ -17,15 +17,17 @@ SET default_with_oids = false;
 
 
 
-
-CREATE TABLE user (
+DROP TABLE IF EXISTS user CASCADE;
+CREATE TABLE IF NOT EXISTS user (
     userid SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
+    password TEXT NOT NULL,
     email TEXT NOT NULL,
     posts int NOT NULL
 );
 
-CREATE TABLE heatmap_data {
+DROP TABLE IF EXISTS heatmap_data CASCADE;
+CREATE TABLE IF NOT EXISTS heatmap_data {
     spot VARCHAR(200) PRIMARY KEY,
     posts int NOT NULL,
     RefreshDate DATE NOT NULL
