@@ -131,6 +131,16 @@
             <form style="background-color: blanchedalmond;" onSubmit = "return checkPassword(this)">
                 <!--Display name and user handle, similar to how Twitter has an @ and a display name - Spencer-->
                 <div class="form-group">
+                    <label class="sr-only" for="firstname">Firstname</label>
+                    <input type="text" required class="form-control" required = "required" id="firstname" oninput="invalidusernames(id);" placeholder="First name" size="10">
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="lastname">Lastname</label>
+                    <input type="text" required class="form-control" required = "required" id="lastname" oninput="invalidusernames(id);" placeholder="Last name" size="10">
+                </div>
+                
+                <div class="form-group">
                     <label class="sr-only" for="displayName">Display Name</label>
                     <input type="text" required class="form-control" required = "required" id="displayName" oninput="invalidusernames(id);" placeholder="Display Name" size="10">
                 </div>
