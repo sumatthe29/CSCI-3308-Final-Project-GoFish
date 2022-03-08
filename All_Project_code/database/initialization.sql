@@ -1,34 +1,20 @@
---
--- PostgreSQL database dump
---
+DROP TABLE IF EXISTS Users;
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
-
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
-
-
-DROP TABLE IF EXISTS user CASCADE;
-CREATE TABLE IF NOT EXISTS user (
-    userid SERIAL PRIMARY KEY,
-    username TEXT NOT NULL,
-    password TEXT NOT NULL,
-    email TEXT NOT NULL,
-    posts int NOT NULL
+CREATE TABLE IF NOT EXISTS Users(          -- This table is for register page
+  User_id INT PRIMARY KEY,
+  First_Name VARCHAR(45) NOT NULL,
+  Last_Name VARCHAR(45) NOT NULL,
+  User_Name VARCHAR(45) NOT NULL,
+  User_Email VARCHAR(45) NOT NULL,		
+  User_Password VARCHAR(45) NOT NULL,
+  User_Handle TEXT NOT NULL
 );
 
-DROP TABLE IF EXISTS heatmap_data CASCADE;
-CREATE TABLE IF NOT EXISTS heatmap_data {
-    spot VARCHAR(200) PRIMARY KEY,
-    posts int NOT NULL,
-    RefreshDate DATE NOT NULL
-};
+DROP TABLE IF EXISTS Posts;
+
+CREATE TABLE IF NOT EXISTS Posts(            -- This table is for Feed page
+  Post_id INT PRIMARY KEY,
+  Post_Name VARCHAR(45) NOT NULL,
+  Post_Date DATE NOT NULL,
+  Post_Time TIME NOT NULL
+);
