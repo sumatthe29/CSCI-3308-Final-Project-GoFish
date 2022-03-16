@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body style="background-image: url(..../img/login_background.jpg); background-repeat: no-repeat; background-size: cover;">
+	<div class="container">
+
+		<h1>Login with your account information</h1>
+
+		<div class="form-group">
+
+			<div class="row" id="uoption">
+				<label for="uname"> </label>
+				<input class="form-control input-sm" type="text" id="uname" placeholder="Enter your username">
+			</div>
+			
+			Use email instead?
+			<label for="yesEmail"> Yes </label>
+			<input class="form-check-input" onclick="byEmail(1)"  type="radio" name="Question" id="yesEmail"  value="Yes">
+			<label for="noEmail"> No </label>
+			<input class="form-check-input" onclick="byEmail(0)"  type="radio" name="Question" id="noEmail"  value="No" checked>
+
+			<div class="row" id="eoption" style="visibility:hidden">
+				<label for="email"> </label>
+				<input class="custom-select input-sm" type="email" id="email" placeholder="Enter your email">
+			</div>
+
+			<label for"password"> </label>
+			<input class="form-control input-sm" type="password" id="password" placeholder="Enter your password">
+<br>
+			
+			<form action="login.html">
+			<input type="submit" value="login" class="btn btn-primary btn-block">
+			</form>
+
+		</div>
+	</div>
+
+</body>
+</html>
