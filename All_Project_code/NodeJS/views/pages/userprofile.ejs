@@ -1,0 +1,112 @@
+<%- include('../partials/header') %>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col">
+            <div class="card bg-light">
+                <img class="card-img-top" src="../img/hotdogman.png" height="125px" width="125px">
+                <h4>Hotdog Jim</h4>
+                <h6>@HotDogWater488</h6>
+                <h7>Location: Missouri</h7>
+                <p>I love hot dogs!</p>
+            </div>
+            
+        </div>
+        <div class="col-10">
+            <div class="card bg-light">
+                <h3>Best Catches</h3>
+                <div class="card-deck">
+                    <!-- possible database method for inserting catches-->
+                    <%
+                    var count = 0;
+
+                    while (count < <!--number of catches var-->)
+                    {%>
+                        <div class="card bg-light">
+                            <img class="card-img-top" src=<%- JSON.stringify(<!--catches var-->[count].img) %> height="250px" width="250px">
+                            <h5>Species: <%- <!--catches var-->[count].species %></h5>
+                            <h5>Length: <%- <!--catches var-->[count].length %>''</h5>
+                            <h5>Weight: <%- <!--catches var-->[count].weight %> lb</h5>
+                            <h5>Date: <%- <!--catches var-->[count].date %></h5>
+                            <h5>Location: <%- <!--catches var-->[count].location %></h5> 
+                        </div>
+
+                    <% count = count + 1;
+                    } %>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="col-2">
+        <form action="userprofile.html">
+            <input type="submit" value="Add a Catch" class="btn btn-success btn-block">
+        </form>
+    </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+        <br>
+        <div class="col-2">
+            <div class="card bg-light">
+                <h4>Fishing Buddies</h4>
+                <ul class="list-group">
+
+                    <!-- possible database method for adding friends-->
+                    <%
+                    var count = 0;
+
+                    while (count < <!--number of friends var-->)
+                    {%>
+
+                        <li class="list-group-item">
+                            <div class="media">
+                                <img src=<%- JSON.stringify(<!--friends var-->[count].img) %> width="48" class="mr-3 rounded">
+                                <div class="media-body">
+                                    <p class="mb-1">
+                                    <a href="#"><%- <!--friends var-->[count].name %></a>
+                                    </p>
+                                </div>
+                            </div>    
+                        </li>
+                    <% count = count + 1;
+                    } %>
+                    
+
+                    <li class="list-group-item">
+                        <div class="media">
+                            Add friend
+                            
+                        </div>
+                        <br>
+                            <div class="row" id="uoption">
+                                <label for="fcode"> </label>
+                                <input class="form-control input-sm" type="text" id="fcode" placeholder="Enter friend code">
+                            </div>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="card bg-light">
+                <h3>Most Recent Post</h3>
+                <div class="card">
+                    <div class="card-body">
+                      <div class="media">
+                        <img src="https://pbs.twimg.com/media/Ed92L0NWsAE1Ugy.jpg" width="70px" height="90px" class="mr-2 rounded">
+                          <div class="media-body text-muted">
+                            I love fish just about as much as I love hotdogs! Lets go!
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
