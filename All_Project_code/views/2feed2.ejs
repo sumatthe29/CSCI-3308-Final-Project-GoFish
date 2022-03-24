@@ -66,30 +66,50 @@
 
             <button class="btn subbut center" type="submit" style="margin-left:600px">Create Post</button>
             <br>
-            <div class="media">
-              <img src="../img/bateman.jpg" width="48" class="mr-3 rounded">
-                <div class="media-body">
-                  <p class="mb-1">
-                    <a href="2profile2.html">Christian Bale</a>
-                  </p>
-                  <p>
-                    @BigBatmanBale
-                  </p>
 
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="media">
-                        <img src="https://bloximages.chicago2.vip.townnews.com/willmarradio.com/content/tncms/assets/v3/editorial/b/cd/bcd369d2-e5fc-11e5-8aa4-cfedadbceac3/56e028546501b.image.jpg" width="70px" height="90px" class="mr-2 rounded">
-                          <div class="media-body text-muted">
-                            My friend Paul just caught this behemoth, talk about a rivermonster! We were fishing by the Mason River when he caught this thing.
+            <!-- Taken from Lab 7, used to generate posts-->
+
+            <form action="/2feed2/" method="get">
+              <%
+              if (data) {
+                var posts = '';
+                data.forEach(function(pdata){
+                  posts += '<div class="media">
+                    <img src="../img/bateman.jpg" width="48" class="mr-3 rounded">
+                      <div class="media-body">
+                        <p class="mb-1">
+                          <a href="2profile2.html"> pdata.postn </a>
+                        </p>
+                        <p>
+                          @BigBatmanBale
+                        </p>
+      
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="media">
+                              <img src="https://bloximages.chicago2.vip.townnews.com/willmarradio.com/content/tncms/assets/v3/editorial/b/cd/bcd369d2-e5fc-11e5-8aa4-cfedadbceac3/56e028546501b.image.jpg" width="70px" height="90px" class="mr-2 rounded">
+                                <div class="media-body text-muted">
+                                  pdata.postt
+                                </div>
+                            </div>
                           </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
+                  </div>';
+                    <!-- if(item.name){
+                    buttons += item.name + '</button>';
+                    }
+                    else{
+                      buttons += item.hex_value + '</button>';
+                    } -->
+                }); %>
+                <%- posts %>
+              <% } %>
+            </form>
+
+            
   <hr/>
-            <div class="media">
+            <!-- <div class="media">
               <img src="../img/hotdogman.png" width="48" class="mr-3 rounded">
                 <div class="media-body">
                   <p class="mb-1">
@@ -160,7 +180,7 @@
           </div>
         </div>
         </div>
-        <br><br>
+        <br><br> -->
 
 
 
