@@ -1,0 +1,29 @@
+# This file is based on the one from lab 7, but with the db environment variables stored as secrets -- Spencer
+services:
+  db:
+    image: postgres
+    env_file:
+      - .env
+    expose:
+      - "5432"
+    volumes:
+      - groupproject-db:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d #runs the intialization script for the database -- Spencer
+
+  web:
+    image: node:12
+    user: "node"
+    working_dir: /home/node/app
+    #environment:
+      #Note: we want stuff here for prodction, but right now its off so we can see changes to ejs files w/o restarting docker-compose -- Spencer
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/home/node/app
+    
+    command: "npm start"
+
+volumes:
+  groupproject-db: {}
