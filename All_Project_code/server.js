@@ -127,6 +127,82 @@ app.post('/login', function(req, res){
 });
 */
 
+//registration page
+app.get('/register', function(req, res) {
+	res.render('pages/register', {
+		my_title: "Register",
+        User_id: '', 
+		First_Name: '',
+        Last_Name: '',
+        User_Name: '',
+		User_Email: '',
+		User_Password: '',
+		User_Handle: '', //Same as user name? -Rooney
+	})
+});
+
+app.post('/register', function(req, res){
+
+    var emailVar = req.body.email;
+    var firstNameVar = req.body.first_name;
+    var lastNameVar = req.body.last_name;
+    var displayNameVar = req.body.displayName;
+    var userHandleVar = req.body.user_handle;
+    var passwordVar = req.body.password;
+
+	var regComplete = true;
+
+    var databaseStatement = "INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password, User_Handle) VALUES('" + firstNameVar + "', '" + lastNameVar + "', '" + displayNameVar + "', '" + emailVar + "',  '" + passwordVar + "', '" + userHandleVar + "' );";
+
+	db.task('get-everything', task => {
+		return task.batch([
+			task.any(insert_statement)
+		]);
+	})
+
+	.then(info => {
+
+		if(emailVar != "" && passwordVar != "" && passwordVar.length >= 5) {
+			regComplete = true; //check various requirements for registering
+		}
+
+		if(regComplete == true) { //When login info is done implement here -Rooney
+
+			/*res.render('pages/login', {
+				my_title: "Login",
+				data: info,
+				email: emailVar,
+				password: passwordVar,
+				regComplete: 'Registration successful',
+			})*/
+		}
+
+		else {
+
+			res.render('pages/register', {
+				my_title: "Register",
+				data: info,
+				email: member_email_variable,
+				password: member_password_variable,
+				register_requirements: 'Registration parameters not met',
+			})
+		}
+	})
+	
+	.catch(err => {
+		console.log('error', err);
+		res.render('pages/register', {
+			my_title: "Register",
+			data: '',
+			email: '',
+			password: '',
+			register_requirements: '',
+		})
+	});
+
+
+})
+
 //Taken from lab 7, keeps server and front end connected
 app.listen(3000);
 console.log('3000 is the magic port');
