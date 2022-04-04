@@ -203,6 +203,58 @@ app.post('/register', function(req, res){
 
 })
 
+//user page
+app.get('/userprofile/:user_id', function(req, res){
+    var id = req.query.user_id;
+
+    var friends = `SELECT * FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+    var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
+    var posts = `SELECT * FROM Posts WHERE User_id = '${id}';`;
+
+    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = '${id}';`;
+    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = '${id}';`;
+
+    db.task('get-everything', task => {
+        return task.batch([
+            task.any(friends),
+            task.any(catches),
+            task.any(posts),
+            task.any(fCount),
+            task.any(cCount),
+            task.any(pCount)
+        ]);
+    })
+
+	.then(info => {
+			res.render('pages/userprofile', {
+				my_title: 'User Profile',
+				user_id: id,
+				friends: info[0],
+				catches: info[1],
+				posts: info[2],
+				fCount: info[3][0].count,
+                cCount: info[4][0].count,
+                pCount: info[5][0].count
+			})
+	})
+	.catch(err => {
+		console.log('error', err);
+		res.render('pages/userprofile', {
+			my_title: 'User Profile',
+				user_id: '',
+				friends: '',
+				catches: '',
+				posts: '',
+				fCount: '',
+                cCount: '',
+                pCount: ''
+		})
+	});
+
+
+});
+
 //Taken from lab 7, keeps server and front end connected
 app.listen(3000);
 console.log('3000 is the magic port');
