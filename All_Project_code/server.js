@@ -154,7 +154,7 @@ app.post('/register', function(req, res){
 
 	db.task('get-everything', task => {
 		return task.batch([
-			task.any(insert_statement)
+			task.any(databaseStatement)
 		]);
 	})
 
