@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS Users(          -- This table is for register page
   User_Name VARCHAR(45) NOT NULL,
   User_Email VARCHAR(45) NOT NULL,		
   User_Password VARCHAR(45) NOT NULL,
-  User_Handle TEXT NOT NULL,
   PRIMARY KEY(User_Id)
 );
 

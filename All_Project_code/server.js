@@ -137,7 +137,6 @@ app.get('/register', function(req, res) {
         User_Name: '',
 		User_Email: '',
 		User_Password: '',
-		User_Handle: '', //Same as user name? -Rooney
 	})
 });
 
@@ -146,13 +145,12 @@ app.post('/register', function(req, res){
     var emailVar = req.body.email;
     var firstNameVar = req.body.first_name;
     var lastNameVar = req.body.last_name;
-    var displayNameVar = req.body.displayName;
-    var userHandleVar = req.body.user_handle;
+    var userNameVar = req.body.user_name;
     var passwordVar = req.body.password;
 
 	var regComplete = true;
 
-    var databaseStatement = "INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password, User_Handle) VALUES('" + firstNameVar + "', '" + lastNameVar + "', '" + displayNameVar + "', '" + emailVar + "',  '" + passwordVar + "', '" + userHandleVar + "' );";
+    var databaseStatement = "INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password) VALUES('" + firstNameVar + "', '" + lastNameVar + "', '" + userNameVar + "', '" + emailVar + "',  '" + passwordVar + "');";
 
 	db.task('get-everything', task => {
 		return task.batch([
@@ -182,9 +180,9 @@ app.post('/register', function(req, res){
 			res.render('pages/register', {
 				my_title: "Register",
 				data: info,
-				email: member_email_variable,
-				password: member_password_variable,
-				register_requirements: 'Registration parameters not met',
+				email: emailVar,
+				password: passwordVar,
+				regComplete: 'Registration incomplete',
 			})
 		}
 	})
@@ -196,11 +194,9 @@ app.post('/register', function(req, res){
 			data: '',
 			email: '',
 			password: '',
-			register_requirements: '',
+			regComplete: '',
 		})
 	});
-
-
 })
 
 //user page
