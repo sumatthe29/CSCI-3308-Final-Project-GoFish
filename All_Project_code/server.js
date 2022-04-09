@@ -137,7 +137,6 @@ app.get('/register', function(req, res) {
         User_Name: '',
 		User_Email: '',
 		User_Password: '',
-		User_Handle: '', //Same as user name? -Rooney
 	})
 });
 
@@ -146,17 +145,16 @@ app.post('/register', function(req, res){
     var emailVar = req.body.email;
     var firstNameVar = req.body.first_name;
     var lastNameVar = req.body.last_name;
-    var displayNameVar = req.body.displayName;
-    var userHandleVar = req.body.user_handle;
+    var userNameVar = req.body.user_name;
     var passwordVar = req.body.password;
 
 	var regComplete = true;
 
-    var databaseStatement = "INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password, User_Handle) VALUES('" + firstNameVar + "', '" + lastNameVar + "', '" + displayNameVar + "', '" + emailVar + "',  '" + passwordVar + "', '" + userHandleVar + "' );";
+    var databaseStatement = "INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password) VALUES('" + firstNameVar + "', '" + lastNameVar + "', '" + userNameVar + "', '" + emailVar + "',  '" + passwordVar + "');";
 
 	db.task('get-everything', task => {
 		return task.batch([
-			task.any(insert_statement)
+			task.any(databaseStatement)
 		]);
 	})
 
@@ -182,9 +180,9 @@ app.post('/register', function(req, res){
 			res.render('pages/register', {
 				my_title: "Register",
 				data: info,
-				email: member_email_variable,
-				password: member_password_variable,
-				register_requirements: 'Registration parameters not met',
+				email: emailVar,
+				password: passwordVar,
+				regComplete: 'Registration incomplete',
 			})
 		}
 	})
@@ -196,18 +194,17 @@ app.post('/register', function(req, res){
 			data: '',
 			email: '',
 			password: '',
-			register_requirements: '',
+			regComplete: '',
 		})
 	});
-
-
 })
 
 //user page
 app.get('/userprofile/:user_id', function(req, res){
     var id = req.query.user_id;
+    var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
 
-    var friends = `SELECT * FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+    var friends = `SELECT * FROM Users WHERE User_Id = '${friend_id}';`;
     var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
     var posts = `SELECT * FROM Posts WHERE User_id = '${id}';`;
 
@@ -254,6 +251,39 @@ app.get('/userprofile/:user_id', function(req, res){
 
 
 });
+
+
+// home page searching a friend!!!
+app.get('/2home2', function(req, res){
+    var id = req.query.User_Name;
+    var friend_username = `SELECT * FROM Users WHERE User_Name = '${id}';`;
+    var friend_id = `SELECT * FROM Users WHERE User_Name = ${id}';`;
+    // how to find link to user profile page and redirect i do not know
+    db.task('get-everything', task => {
+        return task.batch([
+            task.any(friend_username),
+            task.any(friend_id)
+        ]);
+    })
+	.then(info => {
+			res.render('pages/2home2', {
+				my_title: 'Friend Page',
+				user_id: id
+			})
+	})
+	.catch(err => {
+		console.log('error', err);
+		res.render('pages/2home2', {
+			my_title: 'Friend Page',
+				user_id: ''
+		})
+	});
+});
+    
+
+
+app.post('/2home2', function(req, res){
+});    
 
 //Taken from lab 7, keeps server and front end connected
 app.listen(3000);

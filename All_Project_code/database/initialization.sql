@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Users (          -- This table is for register page
   User_Name VARCHAR(45) NOT NULL,
   User_Email VARCHAR(45) NOT NULL,		
   User_Password VARCHAR(45) NOT NULL,
-  User_Handle TEXT NOT NULL,
+  User_Friend_List_Id INT NOT NULL,
   PRIMARY KEY(User_Id)
 );
 
@@ -39,9 +39,13 @@ CREATE TABLE IF NOT EXISTS Catches(                           --This table is fo
   Catch_Id INT NOT NULL,
   Catch_Name VARCHAR(45) NOT NULL,
   Catch_Length FLOAT NOT NULL,
-  Catch_Loaction TEXT NOT NULL,
+  Catch_Location TEXT NOT NULL,
   Catch_Date DATE NOT NULL,
   User_id INT,
   PRIMARY KEY(Catch_Id),
   FOREIGN KEY(User_Id) REFERENCES Users(User_Id)
 );
+
+DROP TABLE IF EXISTS Friends;
+
+CREATE TABLE IF NOT EXISTS Friends

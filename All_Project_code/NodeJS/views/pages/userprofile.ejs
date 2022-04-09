@@ -23,15 +23,15 @@
                     <%
                     var count = 0;
 
-                    while (count < <!--number of catches var-->)
+                    while (count < cCount)
                     {%>
                         <div class="card bg-light">
-                            <img class="card-img-top" src=<%- JSON.stringify(<!--catches var-->[count].img) %> height="250px" width="250px">
-                            <h5>Species: <%- <!--catches var-->[count].species %></h5>
-                            <h5>Length: <%- <!--catches var-->[count].length %>''</h5>
-                            <h5>Weight: <%- <!--catches var-->[count].weight %> lb</h5>
-                            <h5>Date: <%- <!--catches var-->[count].date %></h5>
-                            <h5>Location: <%- <!--catches var-->[count].location %></h5> 
+                            <img class="card-img-top" src=<%- JSON.stringify(<!--catches var-->[count].img<!--needed!-->) %> height="250px" width="250px">
+                            <h5>Species: <%- catches[count].Catch_Name %></h5>
+                            <h5>Length: <%- catches[count].Catch_Length %>''</h5>
+                            <h5>Weight: <%- catches[count].weight <!--needed!--> %> lb</h5>
+                            <h5>Date: <%- catches[count].Catch_Date %></h5>
+                            <h5>Location: <%- catches[count].Catch_Location %></h5> 
                         </div>
 
                     <% count = count + 1;
@@ -61,15 +61,15 @@
                     <%
                     var count = 0;
 
-                    while (count < <!--number of friends var-->)
+                    while (count < fCount)
                     {%>
 
                         <li class="list-group-item">
                             <div class="media">
-                                <img src=<%- JSON.stringify(<!--friends var-->[count].img) %> width="48" class="mr-3 rounded">
+                                <img src=<%- JSON.stringify(<!--friends var-->[count].img<!--needed!-->) %> width="48" class="mr-3 rounded">
                                 <div class="media-body">
                                     <p class="mb-1">
-                                    <a href="#"><%- <!--friends var-->[count].name %></a>
+                                    <a href="#"><%- friends[count].User_Name %></a>
                                     </p>
                                 </div>
                             </div>    
