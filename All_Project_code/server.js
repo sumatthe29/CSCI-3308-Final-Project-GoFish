@@ -202,8 +202,9 @@ app.post('/register', function(req, res){
 //user page
 app.get('/userprofile/:user_id', function(req, res){
     var id = req.query.user_id;
+    var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
 
-    var friends = `SELECT * FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+    var friends = `SELECT * FROM Users WHERE User_Id = '${friend_id}';`;
     var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
     var posts = `SELECT * FROM Posts WHERE User_id = '${id}';`;
 
