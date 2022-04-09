@@ -45,7 +45,3 @@ CREATE TABLE IF NOT EXISTS Catches(                           --This table is fo
   PRIMARY KEY(Catch_Id),
   FOREIGN KEY(User_Id) REFERENCES Users(User_Id)
 );
-
-DROP TABLE IF EXISTS Friends;
-
-CREATE TABLE IF NOT EXISTS Friends
