@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Users;
 
-CREATE TABLE IF NOT EXISTS Users(          -- This table is for register page
-  User_Id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS Users (          -- This table is for register page
+  User_Id SERIAL NOT NULL,
   First_Name VARCHAR(45) NOT NULL,
   Last_Name VARCHAR(45) NOT NULL,
   User_Name VARCHAR(45) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Users(          -- This table is for register page
   PRIMARY KEY(User_Id)
 );
 
-DROP TABLE IF EXISTS User_relationship(                 --User Buddies
+DROP TABLE IF EXISTS User_relationship;             --User Buddies
 
 CREATE TABLE IF NOT EXISTS User_relationship(
   User_Requester_Id INT NOT NULL,

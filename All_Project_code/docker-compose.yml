@@ -7,7 +7,7 @@ services:
     expose:
       - "5432"
     volumes:
-      - groupproject-db:/var/lib/postgresql/data
+      - groupproj-db:/var/lib/postgresql/data
       - ./database:/docker-entrypoint-initdb.d #runs the intialization script for the database -- Spencer
 
   web:
@@ -26,4 +26,4 @@ services:
     command: "npm start"
 
 volumes:
-  groupproject-db: {}
+  groupproj-db: {}
