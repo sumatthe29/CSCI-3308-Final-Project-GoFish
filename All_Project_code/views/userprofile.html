@@ -85,10 +85,48 @@
             </div>
 
             <div class="col-2">
-                <form action="userprofile.html">
-                    <input type="submit" value="Add a Catch" class="btn btn-success btn-block">
+                <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick="addCatch()">
+
+                <form action="userprofile.html" method="post" id="catch" style="visibility: hidden; height: 0">
+                    <label for="name">Enter the name of the fish you caught</label>
+                    <input class="form-control input-sm" type="text" id="name" placeholder="specimen name">
+                    <br>
+                    <label for="length">Enter the length of the fish you caught</label>
+                    <input class="form-control input-sm" type="text" id="length" placeholder="fish length">
+                    <br>
+                    <label for="weight">Enter the weight of the fish you caught</label>
+                    <input class="form-control input-sm" type="text" id="weight" placeholder="fish weight">
+                    <br>
+                    <label for="date">Enter the date you caught this fish(in MM/DD/YYYY format)</label>
+                    <input class="form-control input-sm" type="text" id="date" placeholder="date of catch">
+                    <br>
+                    <label for="location">Enter where you caught this fish</label>
+                    <input class="form-control input-sm" type="text" id="location" placeholder="location of catch">
+                    <br>
+
+                    <input class="btn btn-success" type="submit" value="submit" onclick="close(1)">
+
+                    <input class="btn" type="submit" value="cancel" onclick="close(0)">
+
                 </form>
+                
             </div>
+
+            <!--script to load table for adding a catch-->
+            <script>
+                function addCatch()
+                {
+                    document.getElementById("catch").style.visibility = "visible";
+		            document.getElementById("catch").style.height = "auto";
+                }
+
+                function close(type)
+                {
+                    document.getElementById("catch").style.visibility = "hidden";
+		            document.getElementById("catch").style.height = 0;
+                }
+            </script>
+
 
             <div class="row"><br></div>
 

@@ -248,8 +248,39 @@ app.get('/userprofile/:user_id', function(req, res){
                 pCount: ''
 		})
 	});
+});
 
+app.post('/userprofile/addCatch', function(req, res) {
+    var id = req.query.user_id;
 
+	var name= req.body.name;
+	var length = req.body.length;
+	var date = req.body.date;
+    var location = req.body.location;
+	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Location, Catch_Date, User_id) SELECT * FROM( VALUES('${name}', '${length}', '${location}', '${date}', '${id}')) as foo;`
+	var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
+
+	db.task('get-everything', task => {
+        return task.batch([
+            task.any(catches),
+            task.any(newCatch)
+        ]);
+    })
+    .then(info => {
+    	res.render('pages/userprofile',{
+            my_title: 'User Profile',
+            user_id: id,
+            catches: info[0]
+			})
+    })
+    .catch(err => {
+        console.log('error', err);
+            res.render('pages/userprofile', {
+                my_title: 'User Profile',
+				user_id: '',
+				catches: ''
+            })
+    });
 });
 
 
