@@ -252,6 +252,39 @@ app.get('/userprofile/:user_id', function(req, res){
 
 });
 
+
+// home page searching a friend!!!
+app.get('/2home2', function(req, res){
+    var id = req.query.User_Name;
+    var friend_username = `SELECT * FROM Users WHERE User_Name = '${id}';`;
+    var friend_id = `SELECT * FROM Users WHERE User_Name = ${id}';`;
+    // how to find link to user profile page and redirect i do not know
+    db.task('get-everything', task => {
+        return task.batch([
+            task.any(friend_username),
+            task.any(friend_id)
+        ]);
+    })
+	.then(info => {
+			res.render('pages/2home2', {
+				my_title: 'Friend Page',
+				user_id: id
+			})
+	})
+	.catch(err => {
+		console.log('error', err);
+		res.render('pages/2home2', {
+			my_title: 'Friend Page',
+				user_id: ''
+		})
+	});
+});
+    
+
+
+app.post('/2home2', function(req, res){
+});    
+
 //Taken from lab 7, keeps server and front end connected
 app.listen(3000);
 console.log('3000 is the magic port');
