@@ -32,24 +32,30 @@ app.use(express.static(__dirname + '/'));
 // initial get for 2feed2 page - Matthew
 
 
-app.get('/2feed2', function(res,req){
-    var query = 'select * from posts;';
+app.get('/feed', function(res,req){
+    
+    var query = 'select * from Posts ORDER BY Post_Date;';
 
-    db.any(query)
-        .then(function(posts) {
-            res.render('views/2feed2', {
-                my_title: "GoFishFeed",
-                data: posts,
-            })
+    db.task('posts', task =>
+	{
+		return task.batch([
+			task.any(query)
+		]);
+	})
+    .then(data =>{
+        res.render('NodeJS/views/pages/feed', {
+            my_title: "GoFishFeed",
+            items: data[0],
         })
-        .catch(function(err) {
-            console.log('error', err)
-            res.render('views/2feed2', {
-                my_title: 'GoFishFeed',
-                data: ''
+    })
+    .catch(function(err) {
+        console.log('error', err)
+        res.render('views/feed', {
+            my_title: 'GoFishFeed',
+            items: ''
 
-            })
         })
+    })
 
 });
 
