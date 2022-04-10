@@ -263,7 +263,7 @@ app.post('/userprofile/addCatch', function(req, res) {
 	var length = req.body.length;
 	var date = req.body.date;
     var location = req.body.location;
-	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Location, Catch_Date, User_id) SELECT * FROM( VALUES('${name}', '${length}', '${location}', '${date}', '${id}')) as foo;`
+	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Location, Catch_Date, User_id) SELECT * FROM( VALUES('${name}', '${length}', '${location}', '${date}', '${id}')) as foo;`;
 	var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
 
 	db.task('get-everything', task => {
@@ -288,6 +288,35 @@ app.post('/userprofile/addCatch', function(req, res) {
             })
     });
 });
+
+app.post('/profile/:id/addfriend', function(req, res) {
+    var id = req.query.user_id;
+
+    var friend_id = req.param.id;
+
+    var addFriend = `INSERT INTO User_relationship(User_Requester_Id, User_Addressee_Id) SELECT * FROM( VALUES('${id}', '${friend_id}')) as foo;`;
+
+    db.task('get-everything', task => {
+        return task.batch([
+            task.any(addFriend)
+        ]);
+    })
+    .then(info => {
+    	res.render('pages/profile',{
+            my_title: 'Profile',
+            added_friend: info[0]
+			})
+    })
+    .catch(err => {
+        console.log('error', err);
+            res.render('pages/profile', {
+                my_title: 'Profile',
+                added_friend: ''
+            })
+    });
+});
+
+
 
 
 // home page searching a friend!!!
