@@ -108,26 +108,13 @@
                                 <img src=<%- JSON.stringify(<!--friends var-->[count].img<!--needed!-->) %> width="48" class="mr-3 rounded">
                                 <div class="media-body">
                                     <p class="mb-1">
-                                    <a href="#"><%- friends[count].User_Name %></a>
+                                    <a href="/profile/<%-friends[count].User_Id%>"><!--?--><%- friends[count].User_Name %></a>
                                     </p>
                                 </div>
                             </div>    
                         </li>
                     <% count = count + 1;
                     } %>
-                    
-
-                    <li class="list-group-item">
-                        <div class="media">
-                            Add friend
-                            
-                        </div>
-                        <br>
-                            <div class="row" id="uoption">
-                                <label for="fcode"> </label>
-                                <input class="form-control input-sm" type="text" id="fcode" placeholder="Enter friend code">
-                            </div>
-                    </li>
                 </ul>
 
 
