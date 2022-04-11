@@ -2,6 +2,7 @@ var express = require('express'); //Ensure our express framework has been added
 var app = express();
 var bodyParser = require('body-parser'); //Ensure our body-parser tool has been added
 var dotenv = require('dotenv').config(); //Lets us pull environement variables from .env for db configuration -- Spencer
+var session = require('express-session'); //Lets us track sessions for logins -- Spencer
 app.use(bodyParser.json());    
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //app.use(express.static(__dirname + '/NodeJS')); lets Node use static files like cs for styling - Spencer
@@ -25,6 +26,11 @@ app.set('view engine', 'ejs');
 //This line is necessary for us to use relative paths 
 //and access our resources directory
 app.use(express.static(__dirname + '/'));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    name: "testsessionID",
+    saveUninitialized: false
+}))
 
 
 
@@ -105,12 +111,27 @@ app.post('/2newpost2/create_post', function (req,res) {
     });
 });
 
-//Post function to process login request
-/*
+//Basic get request to render a home page -- Spencer
+app.get('/', function(req, res) {
+    res.render('pages/home', {
+        my_title: "Home",
+        user: req.session.user
+    })
+});
+//Get request to display login page when you first visit to login -- Spencer
+app.get('/login', function(req, res){
+    res.render('pages/login', {
+        my_title: "Login",
+        error:'',
+        user: ''
+    })
+});
+
+//Post request to allow user to login using the login form -- Spencer
 app.post('/login', function(req, res){
     var username = req.body.uname;
     var email = req.body.email;
-    var pword = req.body.pword;
+    var pword = req.body.password;
     var user;
 
     if (email != "") {
@@ -121,17 +142,19 @@ app.post('/login', function(req, res){
 
    db.any(user)
     .then(function(rows){
-            res.render('pages/userprofile', {
-
-            })
-
+        req.session.user = rows[0].user_name;
+        res.redirect('/') //redirects user to home page if they successfully login
    })
    .catch(function(err) {
-
+        res.render('pages/login', {
+            my_title: "Login",
+            error: 'Invalid credentials, try again',
+            user: ''
+        })
    })
    
 });
-*/
+
 
 //registration page
 app.get('/register', function(req, res) {

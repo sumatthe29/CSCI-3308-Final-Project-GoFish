@@ -10,15 +10,24 @@
       <li class="nav-item active">
         <a class="nav-link" href= gofishhome.html>Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href= GoFishFeed.html >Feed</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href= registration.html>Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href= login.html>Log In</a>
-      </li>
+      <% var endLinks = ''; %>
+      <% if (user) {
+        endLinks += `<li class="nav-item">
+          <a class="nav-link" href= registration.html>Feed</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href= login.html>Profile</a>
+        </li>`;
+      } else {
+        endLinks += `<li class="nav-item">
+          <a class="nav-link" href= registration.html>Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href= login.html>Log In</a>
+        </li>`;
+      } %>
+      <%- endLinks %>
+      
     </ul>
   </nav>
 </head>
