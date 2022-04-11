@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS User_relationship(
 DROP TABLE IF EXISTS Posts;
 
 CREATE TABLE IF NOT EXISTS Posts(            -- This table is for Feed page
-  Post_Id INT NOT NULL,
+  Post_Id SERIAL NOT NULL,
   Post_Name VARCHAR(45) NOT NULL,
   Post_Date DATE NOT NULL,
   Post_Time TIME NOT NULL, 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Posts(            -- This table is for Feed page
 DROP TABLE IF EXISTS Catches;
 
 CREATE TABLE IF NOT EXISTS Catches(                           --This table is for Catches
-  Catch_Id INT NOT NULL,
+  Catch_Id SERIAL NOT NULL,
   Catch_Name VARCHAR(45) NOT NULL,
   Catch_Length FLOAT NOT NULL,
   Catch_Location TEXT NOT NULL,

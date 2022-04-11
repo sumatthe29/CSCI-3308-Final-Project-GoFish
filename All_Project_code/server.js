@@ -67,50 +67,6 @@ app.get('/feed', function(res,req){
 
 // Post function to add new posts (NEED CREATE POSTS PAGE) - Matthew
 
-app.post('/2newpost2/create_post', function (req,res) {
-    // post name
-    var pname = req.body.post_name;
-    // post text
-    var ptext = req.body.post_text;
-    // post date
-    var pdate = req.body.post_text;
-    // post time
-    var ptime = req.body.post_time;
-
-    // DB Statements
-
-    var insertinto = `INSERT INTO Posts(Post_Name,Post_Text,Post_Date,Post_Time) VALUES ('${pname}', '${ptext}', '${pdate}', '${ptime}');`; 
-    var posts = 'SELECT * from Posts;';
-
-    db.task('retrieve', task => {
-        return task.batch([
-            task.any(insertinto),
-            task.any(posts)
-        ]);
-    })
-    .then(posts => {
-        res.render('views/2feed2', {
-            my_title: "GoFishFeed",
-            data: posts[1],
-            postn: pname,
-            postt: ptext,
-            postd: pdate,
-            posttime: ptime
-        })
-    })
-    .catch(err => {
-        console.log('error', err);
-        res.render('views/2feed2', {
-            my_title: "GoFishFeed",
-            data: '',
-            postn: '',
-            postt: '',
-            postd: '',
-            posttime: ''
-        })
-    });
-});
-
 //Basic get request to render a home page -- Spencer
 app.get('/', function(req, res) {
     res.render('pages/home', {
@@ -230,7 +186,7 @@ app.post('/register', function(req, res){
 
 //user page
 app.get('/userprofile/:user_id', function(req, res){
-    var id = req.query.user_id;
+    var id = req.session.user_name;
     var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
 
     var friends = `SELECT * FROM Users WHERE User_Id = '${friend_id}';`;
@@ -279,8 +235,8 @@ app.get('/userprofile/:user_id', function(req, res){
 	});
 });
 
-app.post('/userprofile/addCatch', function(req, res) {
-    var id = req.query.user_id;
+app.post('/userprofile/:user_id/addCatch', function(req, res) {
+    var id = req.session.user_name;
 
 	var name= req.body.name;
 	var length = req.body.length;
@@ -312,8 +268,8 @@ app.post('/userprofile/addCatch', function(req, res) {
     });
 });
 
-app.post('/profile/:id/addfriend', function(req, res) {
-    var id = req.query.user_id;
+app.post('/profile/:user_id/addfriend', function(req, res) {
+    var id = req.session.user_name;
 
     var friend_id = req.param.id;
 
@@ -372,7 +328,6 @@ app.get('/home/:id/', function(req, res){
 });
     
 app.post('/2createpost2/addpost', function(req, res) {     //post request for the create post page --Yuhe
-    numPosts++;
     var post_name = req.body.Postname;
     var post_content = req.body.Postcontent;
     var post_tag = req.body.Posttag;
@@ -388,7 +343,7 @@ app.post('/2createpost2/addpost', function(req, res) {     //post request for th
     }
     var post_date = year + '-' + month + '-' + day;
     var post_tag = req.body.Posttag;
-    var insert_posts = `INSERT INTO Posts(Post_Id, Post_Name, Post_Date, Post_Tag, Post_Content) VALUES(${numPosts}, '${post_name}', '${post_date}', '${post_tag}', '${post_content}');` 
+    var insert_posts = `INSERT INTO Posts(Post_Name, Post_Date, Post_Tag, Post_Content) VALUES('${post_name}', '${post_date}', '${post_tag}', '${post_content}');` 
     var query = 'SELECT * FROM Posts;'
     db.task('add-post', task => {
       return task.batch([
