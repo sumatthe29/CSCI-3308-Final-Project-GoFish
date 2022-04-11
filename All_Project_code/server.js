@@ -49,14 +49,14 @@ app.get('/feed', function(res,req){
 		]);
 	})
     .then(data =>{
-        res.render('NodeJS/views/pages/feed', {
+        res.render('pages/feed', {
             my_title: "GoFishFeed",
             items: data[0],
         })
     })
     .catch(function(err) {
         console.log('error', err)
-        res.render('views/feed', {
+        res.render('pages/feed', {
             my_title: 'GoFishFeed',
             items: ''
 
