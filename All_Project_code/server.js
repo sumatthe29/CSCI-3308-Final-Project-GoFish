@@ -369,7 +369,45 @@ app.get('/2home2', function(req, res){
 	});
 });
     
-
+app.post('/2createpost2/addpost', function(req, res) {     //post request for the create post page --Yuhe
+    numPosts++;
+    var post_name = req.body.Postname;
+    var post_content = req.body.Postcontent;
+    var post_tag = req.body.Posttag;
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    var day = date.getDay();
+    if (month < 10){
+        month = "0" + month;
+    }
+    if (day < 10){
+        day = "0" + day;
+    }
+    var post_date = year + '-' + month + '-' + day;
+    var post_tag = req.body.Posttag;
+    var insert_posts = `INSERT INTO Posts(Post_Id, Post_Name, Post_Date, Post_Tag, Post_Content) VALUES(${numPosts}, '${post_name}', '${post_date}', '${post_tag}', '${post_content}');` 
+    var query = 'SELECT * FROM Posts;'
+    db.task('add-post', task => {
+      return task.batch([
+        task.any(insert_posts)
+      ])
+    })
+    db.any(query)
+    .then(rows => {
+      res.render('views/feed',{
+        data: rows
+      })
+      setInterval("contentRefresh();", 10000 );
+    })
+    .catch(err => {
+      console.log('error', err);
+      res.render('views/2createpost2', {
+          my_title: 'post page'
+      })
+    });
+  });
+  
 
 app.post('/2home2', function(req, res){
 });    
