@@ -343,10 +343,10 @@ app.post('/profile/:id/addfriend', function(req, res) {
 
 
 // home page searching a friend!!!
-app.get('/2home2', function(req, res){
+app.get('/home/:id/', function(req, res){
     var id = req.query.User_Name;
     var friend_username = `SELECT * FROM Users WHERE User_Name = '${id}';`;
-    var friend_id = `SELECT * FROM Users WHERE User_Name = ${id}';`;
+    var friend_id = `SELECT User_Id FROM Users WHERE User_Name = ${id}';`;
     // how to find link to user profile page and redirect i do not know
     db.task('get-everything', task => {
         return task.batch([
@@ -357,14 +357,16 @@ app.get('/2home2', function(req, res){
 	.then(info => {
 			res.render('pages/2home2', {
 				my_title: 'Friend Page',
-				user_id: id
+				user_id: info[1],
+                user_info: info[0]
 			})
 	})
 	.catch(err => {
 		console.log('error', err);
 		res.render('pages/2home2', {
 			my_title: 'Friend Page',
-				user_id: ''
+				user_id: '',
+                user_info: ''
 		})
 	});
 });
