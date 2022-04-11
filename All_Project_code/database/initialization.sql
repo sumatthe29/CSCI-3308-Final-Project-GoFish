@@ -2,12 +2,12 @@ DROP TABLE IF EXISTS Users;
 
 CREATE TABLE IF NOT EXISTS Users (          -- This table is for register page
   User_Id SERIAL NOT NULL,
-  First_Name VARCHAR(45) NOT NULL,
-  Last_Name VARCHAR(45) NOT NULL,
+  First_Name VARCHAR(45),
+  Last_Name VARCHAR(45),
   User_Name VARCHAR(45) NOT NULL,
   User_Email VARCHAR(45) NOT NULL,		
   User_Password VARCHAR(45) NOT NULL,
-  User_Friend_List_Id INT NOT NULL,
+  User_Friend_List_Id INT,
   PRIMARY KEY(User_Id)
 );
 
@@ -45,3 +45,5 @@ CREATE TABLE IF NOT EXISTS Catches(                           --This table is fo
   PRIMARY KEY(Catch_Id),
   FOREIGN KEY(User_Id) REFERENCES Users(User_Id)
 );
+
+INSERT INTO users (User_Name, User_Email, User_Password) VALUES('testuser','testemail@notactuallyarealemail.com','testpassword');
