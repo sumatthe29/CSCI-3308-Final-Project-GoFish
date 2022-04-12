@@ -326,7 +326,16 @@ app.get('/home/:id/', function(req, res){
 	});
 });
     
-app.post('/2createpost2/addpost', function(req, res) {     //post request for the create post page --Yuhe
+app.get('/createpost', function(req, res){
+    res.render('pages/createpost', {
+        my_title: "Createpost",
+        error:'',
+        user: ''
+    })
+});
+
+
+app.post('/createpost/addpost', function(req, res) {     //post request for the create post page --Yuhe
     var post_name = req.body.Postname;
     var post_content = req.body.Postcontent;
     var post_tag = req.body.Posttag;
@@ -351,14 +360,14 @@ app.post('/2createpost2/addpost', function(req, res) {     //post request for th
     })
     db.any(query)
     .then(rows => {
-      res.render('views/feed',{
+      res.render('pages/feed',{
         data: rows
       })
       setInterval("contentRefresh();", 10000 );
     })
     .catch(err => {
       console.log('error', err);
-      res.render('views/2createpost2', {
+      res.render('pages/createpost', {
           my_title: 'post page'
       })
     });
