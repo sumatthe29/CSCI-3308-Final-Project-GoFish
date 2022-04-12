@@ -38,27 +38,24 @@ app.use(session({
 // initial get for 2feed2 page - Matthew
 
 
-app.get('/feed', function(res,req){
+app.get('/feed', function(req, res){
     
     var query = 'select * from Posts ORDER BY Post_Date;';
 
-    db.task('posts', task =>
-	{
-		return task.batch([
-			task.any(query)
-		]);
-	})
-    .then(data =>{
+    db.task(query)
+    .then(function(data) {
         res.render('pages/feed', {
             my_title: "GoFishFeed",
             items: data[0],
+            user: ''
         })
     })
     .catch(function(err) {
         console.log('error', err)
         res.render('pages/feed', {
             my_title: 'GoFishFeed',
-            items: ''
+            items: '',
+            user: ''
 
         })
     })
