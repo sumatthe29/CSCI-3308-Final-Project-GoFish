@@ -113,7 +113,7 @@ app.post('/login', function(req, res){
 
 
 //registration page
-app.get('/register', function(req, res) {
+app.get('/registration', function(req, res) {
 	res.render('pages/registration', {
 		my_title: "Register",
         User_id: '', 
@@ -125,7 +125,7 @@ app.get('/register', function(req, res) {
 	})
 });
 
-app.post('/register', function(req, res){
+app.post('/registration', function(req, res){
 
     var emailVar = req.body.email;
     var firstNameVar = req.body.first_name;
