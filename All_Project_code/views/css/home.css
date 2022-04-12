@@ -1,0 +1,21 @@
+@font-face {
+    font-family: b2g2a;
+    src: url(bengrraas-bold.woff);
+    }
+    
+    * {
+    font-family: b2g2a;
+    }
+    
+      /* Use this to add a background image to a jumbotron -Matthew */
+.jbimage {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    .subbut {background-color: #4CAF50;}
+
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
