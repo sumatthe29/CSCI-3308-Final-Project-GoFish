@@ -114,7 +114,7 @@ app.post('/login', function(req, res){
 
 //registration page
 app.get('/register', function(req, res) {
-	res.render('pages/register', {
+	res.render('pages/registration', {
 		my_title: "Register",
         User_id: '', 
 		First_Name: '',
@@ -151,21 +151,22 @@ app.post('/register', function(req, res){
 
 		if(regComplete == true) { //When login info is done implement here -Rooney
 
-			/*res.render('pages/login', {
+			res.render('pages/login', {
 				my_title: "Login",
 				data: info,
 				email: emailVar,
+                username: userNameVar,
 				password: passwordVar,
 				regComplete: 'Registration successful',
-			})*/
+			})
 		}
 
 		else {
-
-			res.render('pages/register', {
+			res.render('pages/registration', {
 				my_title: "Register",
 				data: info,
 				email: emailVar,
+                username: userNameVar,
 				password: passwordVar,
 				regComplete: 'Registration incomplete',
 			})
@@ -174,12 +175,13 @@ app.post('/register', function(req, res){
 	
 	.catch(err => {
 		console.log('error', err);
-		res.render('pages/register', {
+		res.render('pages/registration', {
 			my_title: "Register",
 			data: '',
 			email: '',
+            username: '',
 			password: '',
-			regComplete: '',
+			regComplete: 'Registration did not work',
 		})
 	});
 })
