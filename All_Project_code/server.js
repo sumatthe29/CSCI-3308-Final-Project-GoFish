@@ -216,7 +216,8 @@ app.get('/userprofile/:user_id', function(req, res){
 				posts: info[2],
 				fCount: info[3][0].count,
                 cCount: info[4][0].count,
-                pCount: info[5][0].count
+                pCount: info[5][0].count,
+                user: ''
 			})
 	})
 	.catch(err => {
@@ -229,7 +230,8 @@ app.get('/userprofile/:user_id', function(req, res){
 				posts: '',
 				fCount: '',
                 cCount: '',
-                pCount: ''
+                pCount: '',
+                user: ''
 		})
 	});
 });

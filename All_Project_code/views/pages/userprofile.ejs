@@ -1,10 +1,9 @@
 <%- include('../partials/header') %>
-<%- include'../partials/navbar' %>
+<%- include('../partials/navbar') %>
 <link rel="stylesheet" href="/views/css/profile.css" type="text/css">
 </head>
 
-<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">  -->
-
+<body>
 <div class="container" style="background-color: white;">
     <div class="row">
         <div class="col">
@@ -21,17 +20,17 @@
             <div class="card bg-light">
                 <h3>Best Catches</h3>
                 <div class="card-deck">
-                    <!-- possible database method for inserting catches-->
+                    <%/*<!-- possible database method for inserting catches-->*/%>
                     <%
                     var count = 0;
 
                     while (count < cCount)
                     {%>
                         <div class="card bg-light">
-                            <img class="card-img-top" src=<%- JSON.stringify(<!--catches var-->[count].img<!--needed!-->) %> height="250px" width="250px">
+                            <%/*<img class="card-img-top" src=JSON.stringify(catches[count].img) height="250px" width="250px">*/%>
                             <h5>Species: <%- catches[count].Catch_Name %></h5>
                             <h5>Length: <%- catches[count].Catch_Length %>''</h5>
-                            <h5>Weight: <%- catches[count].weight <!--needed!--> %> lb</h5>
+                            <h5>Weight: <%/* catches[count].weight */%> lb</h5>
                             <h5>Date: <%- catches[count].Catch_Date %></h5>
                             <h5>Location: <%- catches[count].Catch_Location %></h5> 
                         </div>
@@ -44,10 +43,10 @@
         </div>
     </div>
 
-    <!--adding fish post method-->
+    <%/*<!--adding fish post method-->*/%>
 
     <div class="col-2">
-        <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick="addCatch()">
+        <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick=addCatch()>
 
         <form action="/userprofile/addCatch" method="post" id="catch" style="visibility: hidden; height: 0">
             <label for="name">Enter the name of the fish you caught</label>
@@ -66,15 +65,15 @@
             <input class="form-control input-sm" type="text" id="location" placeholder="location of catch">
             <br>
 
-            <input class="btn btn-success" type="submit" value="submit" onclick="close(1)">
+            <input class="btn btn-success" type="submit" value="submit" onclick=close(1)>
 
-            <input class="btn" type="submit" value="cancel" onclick="close(0)">
+            <input class="btn" type="submit" value="cancel" onclick=close(0)>
 
         </form>
         
     </div>
 
-    <!--script to load table for adding a catch-->
+    <%/*<!--script to load table for adding a catch-->*/%>
     <script>
         function addCatch()
         {
@@ -98,7 +97,7 @@
                 <h4>Fishing Buddies</h4>
                 <ul class="list-group">
 
-                    <!-- possible database method for adding friends-->
+                    <%/*<!-- possible database method for adding friends-->*/%>
                     <%
                     var count = 0;
 
@@ -107,10 +106,10 @@
 
                         <li class="list-group-item">
                             <div class="media">
-                                <img src=<%- JSON.stringify(<!--friends var-->[count].img<!--needed!-->) %> width="48" class="mr-3 rounded">
+                                <%/*<img src=JSON.stringify(friends[count].img) width="48" class="mr-3 rounded">*/%>
                                 <div class="media-body">
                                     <p class="mb-1">
-                                    <a href="/profile/<%-friends[count].User_Id%>"><!--?--><%- friends[count].User_Name %></a>
+                                    <a href="/profile/<%-friends[count].User_Id%>"><%- friends[count].User_Name %></a>
                                     </p>
                                 </div>
                             </div>    
@@ -127,7 +126,7 @@
                 <h3>Most Recent Posts</h3>
 
 
-                <!-- Possible method for adding displaying posts-->
+                <%/*<!-- Possible method for adding displaying posts-->*/%>
 
                 <% 
                 var count = 0;
@@ -138,14 +137,19 @@
                 <div class="card">
                     <div class="card-body">
                       <div class="media">
-                        <img src=<%- JSON.stringify(posts[count].img) %> width="70px" height="90px" class="mr-2 rounded">
+                        <%/*<img src= JSON.stringify(posts[count].img) width="70px" height="90px" class="mr-2 rounded">*/%>
                           <div class="media-body text-muted">
                             <%- posts[count].Post_Content %>
                           </div>
                       </div>
                     </div>
                   </div>
+                  <% count = count + 1;
+                    } %>
             </div>
         </div>
     </div>
 </div>
+</body>
+
+</html>
