@@ -236,7 +236,7 @@ app.get('/userprofile/:user_id', function(req, res){
 	});
 });
 
-app.post('/userprofile/:user_id/addCatch', function(req, res) {
+app.post('/userprofile/:user_id', function(req, res) {
     var id = req.session.user_name;
 
 	var name= req.body.name;
@@ -255,8 +255,14 @@ app.post('/userprofile/:user_id/addCatch', function(req, res) {
     .then(info => {
     	res.render('pages/userprofile',{
             my_title: 'User Profile',
-            user_id: id,
-            catches: info[0]
+				user_id: id,
+				friends: '',
+				catches: info[0],
+				posts: '',
+				fCount: '',
+                cCount: '',
+                pCount: '',
+                user: ''
 			})
     })
     .catch(err => {
@@ -264,7 +270,13 @@ app.post('/userprofile/:user_id/addCatch', function(req, res) {
             res.render('pages/userprofile', {
                 my_title: 'User Profile',
 				user_id: '',
-				catches: ''
+				friends: '',
+				catches: '',
+				posts: '',
+				fCount: '',
+                cCount: '',
+                pCount: '',
+                user: ''
             })
     });
 });

@@ -48,7 +48,7 @@
     <div class="col-2">
         <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick=addCatch()>
 
-        <form action="/userprofile/addCatch" method="post" id="catch" style="visibility: hidden; height: 0">
+        <form action="/userprofile/:user_id" method="post" id="catch" style="visibility: hidden; height: 0">
             <label for="name">Enter the name of the fish you caught</label>
             <input class="form-control input-sm" type="text" id="name" placeholder="specimen name">
             <br>
