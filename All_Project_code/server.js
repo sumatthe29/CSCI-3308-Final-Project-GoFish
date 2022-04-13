@@ -68,7 +68,7 @@ app.get('/feed', function(req, res){
 app.get('/', function(req, res) {
     res.render('pages/home', {
         my_title: "Home",
-        user: req.session.user
+        user: req.session.user_id
     })
 });
 //Get request to display login page when you first visit to login -- Spencer
@@ -95,7 +95,8 @@ app.post('/login', function(req, res){
 
    db.any(user)
     .then(function(rows){
-        req.session.user = rows[0].user_name;
+        req.session.username = rows[0].user_name;
+        req.session.user_id = rows[0].user_id;
         res.redirect('/') //redirects user to home page if they successfully login
    })
    .catch(function(err) {
@@ -185,7 +186,7 @@ app.post('/registration', function(req, res){
 
 //user page
 app.get('/userprofile/:user_id', function(req, res){
-    var id = req.session.user_name;
+    var id = req.session.user_id;
     var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
 
     var friends = `SELECT * FROM Users WHERE User_Id = '${friend_id}';`;
@@ -237,7 +238,7 @@ app.get('/userprofile/:user_id', function(req, res){
 });
 
 app.post('/userprofile/:user_id', function(req, res) {
-    var id = req.session.user_name;
+    var id = req.session.user_id;
 
 	var name= req.body.name;
 	var length = req.body.length;
