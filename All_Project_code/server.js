@@ -451,15 +451,11 @@ app.post('/createpost/addpost', function(req, res) {     //post request for the 
     var query = 'SELECT * FROM Posts;'
     db.task('add-post', task => {
       return task.batch([
-        task.any(insert_posts)
-      ])
-    })
-    db.any(query)
-    .then(rows => {
-      res.render('pages/feed',{
-        data: rows
-      })
-      setInterval("contentRefresh();", 10000 );
+        task.any(insert_posts),
+        res.render('pages/feed',{
+            my_title:"feed Page"
+          })
+      ]);
     })
     .catch(err => {
       console.log('error', err);
@@ -468,6 +464,7 @@ app.post('/createpost/addpost', function(req, res) {     //post request for the 
       })
     });
   });
+  
   
 
 app.post('/2home2', function(req, res){
