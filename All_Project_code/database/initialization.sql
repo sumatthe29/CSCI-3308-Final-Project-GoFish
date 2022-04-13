@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS Catches(                           --This table is fo
   Catch_Id SERIAL NOT NULL,
   Catch_Name VARCHAR(45) NOT NULL,
   Catch_Length FLOAT NOT NULL,
+  Catch_Weight FLOAT NOT NULL,
   Catch_Location TEXT NOT NULL,
   Catch_Date DATE NOT NULL,
   User_id INT,

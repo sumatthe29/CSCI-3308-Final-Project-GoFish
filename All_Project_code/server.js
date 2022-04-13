@@ -241,9 +241,10 @@ app.post('/userprofile/:user_id', function(req, res) {
 
 	var name= req.body.name;
 	var length = req.body.length;
+    var weight = req.body.weight;
 	var date = req.body.date;
     var location = req.body.location;
-	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Location, Catch_Date, User_id) SELECT * FROM( VALUES('${name}', '${length}', '${location}', '${date}', '${id}')) as foo;`;
+	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, User_id) SELECT * FROM( VALUES('${name}', '${length}', '${weight}', '${location}', '${date}', '${id}')) as foo;`;
 	var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
 
 	db.task('get-everything', task => {
@@ -279,6 +280,58 @@ app.post('/userprofile/:user_id', function(req, res) {
                 user: ''
             })
     });
+});
+
+app.get('/profile/:user_id', function(req, res){
+    var id = req.query.user_id;
+    var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+
+    var friends = `SELECT * FROM Users WHERE User_Id = '${friend_id}';`;
+    var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
+    var posts = `SELECT * FROM Posts WHERE User_id = '${id}';`;
+
+    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = '${id}';`;
+    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = '${id}';`;
+
+    db.task('get-everything', task => {
+        return task.batch([
+            task.any(friends),
+            task.any(catches),
+            task.any(posts),
+            task.any(fCount),
+            task.any(cCount),
+            task.any(pCount)
+        ]);
+    })
+
+	.then(info => {
+			res.render('pages/profile', {
+				my_title: 'Profile',
+				user_id: id,
+				friends: info[0],
+				catches: info[1],
+				posts: info[2],
+				fCount: info[3][0].count,
+                cCount: info[4][0].count,
+                pCount: info[5][0].count,
+                user: ''
+			})
+	})
+	.catch(err => {
+		console.log('error', err);
+		res.render('pages/profile', {
+			my_title: 'Profile',
+				user_id: '',
+				friends: '',
+				catches: '',
+				posts: '',
+				fCount: '',
+                cCount: '',
+                pCount: '',
+                user: ''
+		})
+	});
 });
 
 app.post('/profile/:user_id/addfriend', function(req, res) {
