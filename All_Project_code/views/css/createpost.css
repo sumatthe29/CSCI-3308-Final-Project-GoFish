@@ -1,24 +1,13 @@
-.container {
-	text-align: center;
-	line-height: 200%;
-	background-color: white;
-	height: 100%;
-	width: 30%;
+   /* Use this to add a background image to a jumbotron -Matthew */
+.jbimage {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
-html, body {
-	height: 100%;
-}
-	/* Use this to add a background image to a jumbotron -Matthew */
-  .jbimage {
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: cover;
-  }
 
 /* Adds highlight to text when required (tested during formatting) -Matthew */
 
-  .text-block {
+.text-block {
   background-color: blanchedalmond;
   color: black;
 
@@ -46,17 +35,16 @@ body, html {
 
   /* Center and scale */
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
 }
 
 /* Made it so that font sitewide matches font used in logo */
 
 @font-face {
-font-family: b2g2a;
-src: url(../bengrraas-bold.woff);
+    font-family: b2g2a;
+    src: url(../bengrraas-bold.woff);
 }
 
 * {
-font-family: b2g2a;
+    font-family: b2g2a;
 }

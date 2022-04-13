@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<link rel="stylesheet" href="/views/css/profile.css" type="text/css">
+</head>
+<body>
+    div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col">
+            <div class="card bg-light">
+                <img class="card-img-top" src="../img/hotdogman.png" height="125px" width="125px">
+                <h4>Hotdog Jim</h4>
+                <h6>@HotDogWater488</h6>
+                <h7>Location: Missouri</h7>
+                <p>I love hot dogs!</p>
+            </div>
+            
+        </div>
+        <div class="col-10">
+            <div class="card bg-light">
+                <h3>Best Catches</h3>
+                <div class="card-deck">
+                    <%/*<!-- possible database method for inserting catches-->*/%>
+                    <%
+                    var count = 0;
+
+                    while (count < cCount)
+                    {%>
+                        <div class="card bg-light">
+                            <%/*<img class="card-img-top" src=JSON.stringify(catches[count].img) height="250px" width="250px">*/%>
+                            <h5>Species: <%- catches[count].Catch_Name %></h5>
+                            <h5>Length: <%- catches[count].Catch_Length %>''</h5>
+                            <h5>Weight: <%- catches[count].Catch_Weight %> lb</h5>
+                            <h5>Date: <%- catches[count].Catch_Date %></h5>
+                            <h5>Location: <%- catches[count].Catch_Location %></h5> 
+                        </div>
+
+                    <% count = count + 1;
+                    } %>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
