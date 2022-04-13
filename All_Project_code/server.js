@@ -364,28 +364,28 @@ app.post('/profile/:user_id/addfriend', function(req, res) {
 
 
 app.post('/profile/:user_id/removefriend', function(req, res) {
-    var id = req.session.user_name;
+    var id = req.session.user_id;
 
-    var friend_id = req.param.id;
+    var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
 
-    var addFriend = `DROP FROM User_relationship(User_Requester_Id, User_Addressee_I) SELECT * FROM( VALUES('${id}', '${friend_id}'));`;
+    var removeFriend = `DROP FROM User_relationship(User_Requester_Id, User_Addressee_I) SELECT * FROM( VALUES('${id}', '${friend_id}'));`;
 
     db.task('drop', task => {
         return task.batch([
-            task.any(addFriend)
+            task.any(removeFriend)
         ]);
     })
     .then(info => {
         res.render('pages/profile',{
             my_title: 'ProfileRMV',
-            removeFriend: info[0]
+            removed_Friend: info[0]
         })
     })
     .catch(err => {
         console.log('error', err);
             res.render('pages/profile', {
                 my_title: 'ProfileRMV',
-                removeFriend: ''
+                removed_Friend: ''
             })
     });   
 })
