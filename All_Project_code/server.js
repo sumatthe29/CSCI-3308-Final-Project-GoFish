@@ -363,6 +363,34 @@ app.post('/profile/:user_id/addfriend', function(req, res) {
 });
 
 
+app.post('/profile/:user_id/removefriend', function(req, res) {
+    var id = req.session.user_name;
+
+    var friend_id = req.param.id;
+
+    var addFriend = `DROP FROM User_relationship(User_Requester_Id, User_Addressee_I) SELECT * FROM( VALUES('${id}', '${friend_id}'));`;
+
+    db.task('drop', task => {
+        return task.batch([
+            task.any(addFriend)
+        ]);
+    })
+    .then(info => {
+        res.render('pages/profile',{
+            my_title: 'ProfileRMV',
+            removeFriend: info[0]
+        })
+    })
+    .catch(err => {
+        console.log('error', err);
+            res.render('pages/profile', {
+                my_title: 'ProfileRMV',
+                removeFriend: ''
+            })
+    });   
+})
+
+
 
 
 // home page searching a friend!!!
@@ -378,16 +406,16 @@ app.get('/home/:id/', function(req, res){
         ]);
     })
 	.then(info => {
-			res.render('pages/2home2', {
-				my_title: 'Friend Page',
+			res.redirect('profile' + friend_id, {
+				my_title: 'friendPage',
 				user_id: info[1],
                 user_info: info[0]
 			})
 	})
 	.catch(err => {
 		console.log('error', err);
-		res.render('pages/2home2', {
-			my_title: 'Friend Page',
+		res.render('pages/home', {
+			my_title: 'friendPage',
 				user_id: '',
                 user_info: ''
 		})
