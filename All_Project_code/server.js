@@ -187,9 +187,9 @@ app.post('/registration', function(req, res){
 //user page
 app.get('/userprofile/:user_id', function(req, res){
     var id = req.session.user_id;
-    var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+    
 
-    var friends = `SELECT * FROM Users WHERE User_Id = '${friend_id}';`;
+    var friends = `SELECT User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = '${id}';`;
     var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
     var posts = `SELECT * FROM Posts WHERE User_id = '${id}';`;
 
@@ -285,9 +285,9 @@ app.post('/userprofile/:user_id', function(req, res) {
 
 app.get('/profile/:user_id', function(req, res){
     var id = req.query.user_id;
-    var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+    
 
-    var friends = `SELECT * FROM Users WHERE User_Id = '${friend_id}';`;
+    var friends = `SELECT User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = '${id}';`;
     var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
     var posts = `SELECT * FROM Posts WHERE User_id = '${id}';`;
 
