@@ -71,7 +71,7 @@ function invalidusernames(id) {
     
     // We may need to expand on this later, most likely implement the array for which all our other usernames
     // are stored so that duplicate usernames cannot exist
-    var restrictedWords = new Array("kill", "fight", "slap", "hick", "fish and chips"); 
+    var restrictedWords = new Array("kill", "fight", "slap", "hick", "fuck", "shit", "bitch", "ass", "tits", "pussy", "dick", "damn", "goddamn", "god",); 
     
     
     var txtInput = document.getElementById(id).value;  
