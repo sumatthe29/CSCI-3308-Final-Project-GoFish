@@ -18,36 +18,27 @@
             <p><strong><center>Create a New GoFish Post  (all fields are required!)</center></strong></p>
             <br><br>
 
-            <form style="background-color: blanchedalmond;" onSubmit = "checkPassword(this)" action="/2createpost2/addpost" method="post" >
-               
+            <form action="/createpost/addpost" method="post">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Post Title:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="Postname" id="Postname"  placeholder="Enter Hex Value">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Post Content:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="Postcontent" id="Postcontent" placeholder="Enter Color's Name">
+                    </div>
+                </div>
 
-                <!-- Post Name -->
-                <div class="form-group">
-                    <label class="sr-only" for="firstname">Postname</label>
-                    <p>Title</p>
-                    <input type="text" required class="form-control" required = "required" id="Postname" oninput="invalidusernames(id);" placeholder="Post Name" size="10">
-                </div>
-                <!-- Post Text -->
-                <div class="form-group">
-                    <label class="sr-only" for="lastname">Postcontent</label>
-                    <p>Post</p>
-                    <input type="text" required class="form-control" required = "required" id="Postcontent" oninput="invalidusernames(id);" placeholder="Tell Us About What you want to share" height="200px">
-                </div>
-                
-                <!-- Post Tag -->
-                <div class="form-group">
-                    <label class="sr-only" for="displayName">Posttag</label>
-                    <p>Post Tag</p>
-                    <input type="text" required class="form-control" required = "required" id="Posttag" oninput="invalidusernames(id);" placeholder="add a tag to your post, start with #" size="10">
-                </div>
-    
-                <!-- Post Time -->
                 <form method = "post" enctype = "multipart/form-data" id = "file_upload">
                   <p>Picture Upload</p>
                   <p>
                     <input type = "file" id = "file" name ="upload_image" accept = "image/jpg, image/gif, image/png">
                     <input type = "button" value="download image" onclick="save()">
                   </p>
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
     
                 <br>
@@ -55,7 +46,6 @@
                 <br><br><br><br>
 
 
-            <input type="submit" value="Go Fish!" onclick= addpost class="btn subbut btn-primary btn-block sub">
             
                 </div>
         </form>

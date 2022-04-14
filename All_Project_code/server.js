@@ -462,7 +462,7 @@ app.get('/createpost', function(req, res){
     res.render('pages/createpost', {
         my_title: "Createpost",
         error:'',
-        user: ''
+        user: req.session.user_id
     })
 });
 
@@ -470,11 +470,12 @@ app.get('/createpost', function(req, res){
 app.post('/createpost/addpost', function(req, res) {     //post request for the create post page --Yuhe
     var post_name = req.body.Postname;
     var post_content = req.body.Postcontent;
-    var post_tag = req.body.Posttag;
+    console.log(req.body.Postname);
+    console.log(req.body.Postcontent);
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth();
-    var day = date.getDay();
+    var day = date.getDate();
     if (month < 10){
         month = "0" + month;
     }
@@ -482,21 +483,30 @@ app.post('/createpost/addpost', function(req, res) {     //post request for the 
         day = "0" + day;
     }
     var post_date = year + '-' + month + '-' + day;
-    var post_tag = req.body.Posttag;
-    var insert_posts = `INSERT INTO Posts(Post_Name, Post_Date, Post_Tag, Post_Content) VALUES('${post_name}', '${post_date}', '${post_tag}', '${post_content}');` 
-    var query = 'SELECT * FROM Posts;'
-    db.task('add-post', task => {
-      return task.batch([
-        task.any(insert_posts),
+    var query = 'select * from Posts ORDER BY Post_Date;';
+    var insert_posts = `INSERT INTO Posts(Post_Name, Post_Date, Post_Content, User_Id) VALUES('${post_name}', '${post_date}', '${post_content}', ${req.session.user_id});` 
+    db.task('loadfeed', task =>
+	 {
+	 	return task.batch([
+            task.any(insert_posts),
+            task.any(query)
+  
+	 	]);
+	 })
+     .then(function(data){
         res.render('pages/feed',{
-            my_title:"feed Page"
+            my_title:"feed Page",
+            items:data[1],
+            user:req.session.user_id,
+            error:''
           })
-      ]);
     })
     .catch(err => {
       console.log('error', err);
       res.render('pages/createpost', {
-          my_title: 'post page'
+          my_title: 'post page',
+          user:req.session.user_id,
+          error: "create post failed"
       })
     });
   });
