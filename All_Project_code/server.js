@@ -223,7 +223,7 @@ app.post('/registration', function(req, res){
 //user page
 app.get('/userprofile/:user_id', function(req, res){
     var id = parseInt(req.query.user_id);
-    var view_id = 1;//req.session.user_id;
+    var view_id = req.session.user_id;
     var viewing_self = 0;
 
     //console.log(req.query);
@@ -238,6 +238,8 @@ app.get('/userprofile/:user_id', function(req, res){
     var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = ${id};`;
     var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = ${id};`;
 
+    var user_data = `SELECT * FROM Users WHERE User_id = ${id};`;
+
     if (id === view_id)
     {
         viewing_self = 1;
@@ -251,7 +253,8 @@ app.get('/userprofile/:user_id', function(req, res){
             task.any(posts),
             task.any(fCount),
             task.any(cCount),
-            task.any(pCount)
+            task.any(pCount),
+            task.any(user_data)
         ]);
     })
 
@@ -266,6 +269,7 @@ app.get('/userprofile/:user_id', function(req, res){
 				fCount: info[3][0].count,
                 cCount: info[4][0].count,
                 pCount: info[5][0].count,
+                user_data: info[6],
                 self: viewing_self,
                 user: ''
 			})
@@ -281,6 +285,7 @@ app.get('/userprofile/:user_id', function(req, res){
 				fCount: '',
                 cCount: '',
                 pCount: '',
+                user_data: '',
                 self: '',
                 user: ''
 		})
@@ -314,6 +319,7 @@ app.post('/userprofile/:user_id', function(req, res) {
 				fCount: '',
                 cCount: '',
                 pCount: '',
+                user_data: '',
                 self: 1,
                 user: ''
 			})
@@ -329,6 +335,7 @@ app.post('/userprofile/:user_id', function(req, res) {
 				fCount: '',
                 cCount: '',
                 pCount: '',
+                user_data: '',
                 self: '',
                 user: ''
             })
@@ -358,6 +365,7 @@ app.post('/userprofile/addfriend', function(req, res) {
 			fCount: '',
             cCount: '',
             pCount: '',
+            user_data: '',
             self: '',
             user: ''
 			})
@@ -374,6 +382,7 @@ app.post('/userprofile/addfriend', function(req, res) {
 				fCount: '',
                 cCount: '',
                 pCount: '',
+                user_data: '',
                 self: '',
                 user: ''
             })
