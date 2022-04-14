@@ -8,14 +8,14 @@
     </ul>
     <ul class="navbar-nav  ml-auto">
       <% var endLinks = ''; %>
-      <% if (user) {
+      <% if (user && user > 0) {
         endLinks += `<li class="nav-item">
           <a class="nav-link" href="/feed">Feed</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/profile/${user}">Profile</a>
         </li>
-        <li class = "btn btn-primary" href ="/logout">Logout</li>`;
+        <a class = "btn btn-primary" href ="/logout">Logout</a>`;
       } else {
         endLinks += `<li class="nav-item">
           <a class="nav-link" href="/registration">Register</a>
