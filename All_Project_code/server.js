@@ -114,6 +114,7 @@ app.post('/login', function(req, res){
 app.get('/registration', function(req, res) {
 	res.render('pages/registration', {
 		my_title: "Register",
+        user: '',
         User_id: '', 
 		First_Name: '',
         Last_Name: '',
@@ -132,6 +133,7 @@ app.post('/registration', function(req, res){
     var passwordVar = req.body.password;
 
 	var regComplete = true;
+    var regMessage = "";
 
     var databaseStatement = "INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password) VALUES('" + firstNameVar + "', '" + lastNameVar + "', '" + userNameVar + "', '" + emailVar + "',  '" + passwordVar + "');";
 
@@ -147,26 +149,29 @@ app.post('/registration', function(req, res){
 			regComplete = true; //check various requirements for registering
 		}
 
-		if(regComplete == true) { //When login info is done implement here -Rooney
+		if(regComplete == true) { 
 
 			res.render('pages/login', {
 				my_title: "Login",
+                user: '',
 				data: info,
 				email: emailVar,
                 username: userNameVar,
 				password: passwordVar,
-				regComplete: 'Registration successful',
+				regMessage: 'Registration successful',
 			})
 		}
 
 		else {
 			res.render('pages/registration', {
 				my_title: "Register",
+                user: '',
 				data: info,
 				email: emailVar,
                 username: userNameVar,
 				password: passwordVar,
-				regComplete: 'Registration incomplete',
+				regMessage: 'Registration incomplete',
+                user: '',
 			})
 		}
 	})
@@ -175,11 +180,12 @@ app.post('/registration', function(req, res){
 		console.log('error', err);
 		res.render('pages/registration', {
 			my_title: "Register",
+            user: '',
 			data: '',
 			email: '',
             username: '',
 			password: '',
-			regComplete: 'Registration did not work',
+			regMessage: 'Registration did not work',
 		})
 	});
 })
