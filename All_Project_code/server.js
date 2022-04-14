@@ -483,7 +483,7 @@ app.post('/createpost/addpost', function(req, res) {     //post request for the 
         day = "0" + day;
     }
     var post_date = year + '-' + month + '-' + day;
-    var query = 'select * from Posts ORDER BY Post_Date;';
+    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date;';
     var insert_posts = `INSERT INTO Posts(Post_Name, Post_Date, Post_Content, User_Id) VALUES('${post_name}', '${post_date}', '${post_content}', ${req.session.user_id});` 
     db.task('loadfeed', task =>
 	 {
@@ -510,11 +510,7 @@ app.post('/createpost/addpost', function(req, res) {     //post request for the 
       })
     });
   });
-  
-  
-
-app.post('/2home2', function(req, res){
-});    
+    
 
 //Taken from lab 7, keeps server and front end connected
 app.listen(3000);
