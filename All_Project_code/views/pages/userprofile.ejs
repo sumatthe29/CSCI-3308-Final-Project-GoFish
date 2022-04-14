@@ -44,6 +44,8 @@
     </div>
 
     <%/*<!--adding fish post method-->*/%>
+    <% if (self === 1)
+    { %>
 
     <div class="col-2">
         <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick=addCatch()>
@@ -72,6 +74,8 @@
         </form>
         
     </div>
+
+    <% } %>
 
     <%/*<!--script to load table for adding a catch-->*/%>
     <script>

@@ -222,16 +222,27 @@ app.post('/registration', function(req, res){
 
 //user page
 app.get('/userprofile/:user_id', function(req, res){
-    var id = req.session.user_id;
+    var id = parseInt(req.query.user_id);
+    var view_id = 1;//req.session.user_id;
+    var viewing_self = 0;
+
+    //console.log(req.query);
+    console.log(id);
     
 
-    var friends = `SELECT User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = '${id}';`;
-    var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
-    var posts = `SELECT * FROM Posts WHERE User_id = '${id}';`;
+    var friends = `SELECT User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
+    var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
+    var posts = `SELECT * FROM Posts WHERE User_id = ${id};`;
 
-    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = '${id}';`;
-    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = '${id}';`;
-    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = '${id}';`;
+    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = ${id};`;
+    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = ${id};`;
+    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = ${id};`;
+
+    if (id === view_id)
+    {
+        viewing_self = 1;
+        console.log("success");
+    }
 
     db.task('get-everything', task => {
         return task.batch([
@@ -245,6 +256,7 @@ app.get('/userprofile/:user_id', function(req, res){
     })
 
 	.then(info => {
+        console.log(info);
 			res.render('pages/userprofile', {
 				my_title: 'User Profile',
 				user_id: id,
@@ -254,6 +266,7 @@ app.get('/userprofile/:user_id', function(req, res){
 				fCount: info[3][0].count,
                 cCount: info[4][0].count,
                 pCount: info[5][0].count,
+                self: viewing_self,
                 user: ''
 			})
 	})
@@ -268,21 +281,22 @@ app.get('/userprofile/:user_id', function(req, res){
 				fCount: '',
                 cCount: '',
                 pCount: '',
+                self: '',
                 user: ''
 		})
 	});
 });
 
 app.post('/userprofile/:user_id', function(req, res) {
-    var id = req.session.user_id;
+    var id = parseInt(req.query.user_id);
 
 	var name= req.body.name;
 	var length = req.body.length;
     var weight = req.body.weight;
 	var date = req.body.date;
     var location = req.body.location;
-	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, User_id) SELECT * FROM( VALUES('${name}', '${length}', '${weight}', '${location}', '${date}', '${id}')) as foo;`;
-	var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
+	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, User_id) SELECT * FROM( VALUES('${name}', ${length}, ${weight}, '${location}', '${date}', ${id})) as foo;`;
+	var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
 
 	db.task('get-everything', task => {
         return task.batch([
@@ -300,6 +314,7 @@ app.post('/userprofile/:user_id', function(req, res) {
 				fCount: '',
                 cCount: '',
                 pCount: '',
+                self: 1,
                 user: ''
 			})
     })
@@ -314,6 +329,7 @@ app.post('/userprofile/:user_id', function(req, res) {
 				fCount: '',
                 cCount: '',
                 pCount: '',
+                self: '',
                 user: ''
             })
     });
