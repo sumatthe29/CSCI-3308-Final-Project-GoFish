@@ -9,20 +9,20 @@
       
         <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%- post.Post_Name%></h5>
+          <h5 class="card-title"><%-post.post_name%></h5>
           <p class="card-text">Posted By:  </p>
           <!-- Will be implemenmted later to link to user profile page -->
           <button class="btn btn-primary" onclick = "window.location.href = '';">
-            <%- post.User_id %>
+            <%- post.user_id %>
             <br>
           </button> <br>
   
           <br>
           
           <p class="card-text">Published Date and time: </p>
-          <p class="card-text"><%- post.Post_Date%></p>
+          <p class="card-text"><%- post.post_date%></p>
           <br>
-          <p class="card-text"><%- post.Post_Content%></p>
+          <p class="card-text"><%- post.post_content%></p>
   
           
           </div>
