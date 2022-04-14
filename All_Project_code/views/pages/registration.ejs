@@ -34,7 +34,6 @@
 <link rel="stylesheet" href="/views/css/registration.css">
 
 </head>
-
 <body class="bg">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: blanchedalmond;">
 
@@ -53,15 +52,18 @@
             <p><strong><center>Fill out all information below (all fields are required!)</center></strong></p>
             <br><br>
 
-            <form style="background-color: blanchedalmond;" onSubmit = "checkPassword(this)">
+
+            
+
+            <form style="background-color: blanchedalmond;" method="post" action="/registration">
                 <!--Display name and user handle, similar to how Twitter has an @ and a display name - Spencer-->
                 <div class="form-group">
-                    <label class="sr-only" for="firstname">Firstname</label>
+                    <label class="sr-only" for="firstname">First name</label>
                     <input type="text" required class="form-control" required = "required" id="firstname" oninput="invalidusernames(id);" placeholder="First name" size="10" name="first_name">
                 </div>
 
                 <div class="form-group">
-                    <label class="sr-only" for="lastname">Lastname</label>
+                    <label class="sr-only" for="lastname">Last name</label>
                     <input type="text" required class="form-control" required = "required" id="lastname" oninput="invalidusernames(id);" placeholder="Last name" size="10" name="last_name">
                 </div>
                 
@@ -79,12 +81,12 @@
   
                 <div class="form-group">
                     <label class="sr-only" for="pword">Password</label>
-                    <input name="password1" type="password" required = "required" class="form-control" id="password" placeholder="Password" name="password" >
+                    <input type="password" required = "required" class="form-control" id="pword" placeholder="Password" name="password1">
                 </div>
     
                 <div class="form-group">
                     <label class="sr-only" for="confirmpword">Confirm Password</label>
-                    <input name="password2" type="password" required = "required" class="form-control" id="confirm_password" placeholder="Confirm Password">
+                    <input name="password2" type="password" required = "required" class="form-control" id="confirmpword" placeholder="Confirm Password">
                 </div>
     
                 <br>
@@ -100,7 +102,12 @@
 
                 <!-- Note: Name for both inputs must be the same to reflect selection of one option over the other -->
     </div>
-            <input type="submit" value="Go Fish!" onclick="checkPassword" class="btn btn-primary btn-block" method="post" action="/registration">
+
+        
+       
+
+
+            <input type="submit" value="Go Fish!" class="btn btn-primary btn-block">
             <br><br><br>
         </form>
     </div>

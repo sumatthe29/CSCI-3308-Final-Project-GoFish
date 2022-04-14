@@ -140,13 +140,26 @@ app.post('/registration', function(req, res){
     var firstNameVar = req.body.first_name;
     var lastNameVar = req.body.last_name;
     var userNameVar = req.body.user_name;
-    var passwordVar = req.body.password;
+    var passwordVar = req.body.password1;
+    
 
-	var regComplete = true;
-    var regMessage = "";
+	//var regComplete = true;
 
-    var databaseStatement = "INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password) VALUES('" + firstNameVar + "', '" + lastNameVar + "', '" + userNameVar + "', '" + emailVar + "',  '" + passwordVar + "');";
+    var databaseStatement = `INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password) VALUES('${firstNameVar}', '${lastNameVar}', '${userNameVar}', '${emailVar}',  '${passwordVar}');`;
 
+
+
+    db.any(databaseStatement)
+    .then(function(rows){
+        res.redirect('/login'); //redirects user to home page if they successfully login
+   })
+   .catch(function(err) {
+        res.render('pages/registration', {
+            my_title: "Register",
+            user: ''
+        })
+   })
+    /*
 	db.task('get-everything', task => {
 		return task.batch([
 			task.any(databaseStatement)
@@ -159,29 +172,26 @@ app.post('/registration', function(req, res){
 			regComplete = true; //check various requirements for registering
 		}
 
-		if(regComplete == true) { 
+		if(regComplete == true) { //When login info is done implement here -Rooney
 
 			res.render('pages/login', {
 				my_title: "Login",
-                user: '',
 				data: info,
 				email: emailVar,
                 username: userNameVar,
 				password: passwordVar,
-				regMessage: 'Registration successful',
+				regComplete: 'Registration successful',
 			})
 		}
 
 		else {
 			res.render('pages/registration', {
 				my_title: "Register",
-                user: '',
 				data: info,
 				email: emailVar,
                 username: userNameVar,
 				password: passwordVar,
-				regMessage: 'Registration incomplete',
-                user: '',
+				regComplete: 'Registration incomplete',
 			})
 		}
 	})
@@ -190,15 +200,14 @@ app.post('/registration', function(req, res){
 		console.log('error', err);
 		res.render('pages/registration', {
 			my_title: "Register",
-            user: '',
 			data: '',
 			email: '',
             username: '',
 			password: '',
-			regMessage: 'Registration did not work',
+			regComplete: 'Registration did not work',
 		})
-	});
-})
+	});*/
+});
 
 //user page
 app.get('/userprofile/:user_id', function(req, res){
