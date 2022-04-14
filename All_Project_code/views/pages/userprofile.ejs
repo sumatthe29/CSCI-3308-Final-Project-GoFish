@@ -75,6 +75,13 @@
         
     </div>
 
+    <% }
+        else{ %>
+            
+            <input class="btn btn-success" type="submit" value="Gain a fishing buddy" onclick=add()>
+            
+
+
     <% } %>
 
     <%/*<!--script to load table for adding a catch-->*/%>
@@ -89,6 +96,10 @@
         {
             document.getElementById("catch").style.visibility = "hidden";
             document.getElementById("catch").style.height = 0;
+        }
+        function add()
+        {
+            window.location.href = "/userprofile/addfriend?user_id=" + "<%-user_id%>";
         }
     </script>
 

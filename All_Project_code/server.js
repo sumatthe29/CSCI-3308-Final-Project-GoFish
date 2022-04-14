@@ -335,62 +335,10 @@ app.post('/userprofile/:user_id', function(req, res) {
     });
 });
 
-app.get('/profile/:user_id', function(req, res){
-    var id = req.query.user_id;
-    
-
-    var friends = `SELECT User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = '${id}';`;
-    var catches = `SELECT * FROM Catches WHERE User_id = '${id}';`;
-    var posts = `SELECT * FROM Posts WHERE User_id = '${id}';`;
-
-    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = '${id}';`;
-    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = '${id}';`;
-    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = '${id}';`;
-
-    db.task('get-everything', task => {
-        return task.batch([
-            task.any(friends),
-            task.any(catches),
-            task.any(posts),
-            task.any(fCount),
-            task.any(cCount),
-            task.any(pCount)
-        ]);
-    })
-
-	.then(info => {
-			res.render('pages/profile', {
-				my_title: 'Profile',
-				user_id: id,
-				friends: info[0],
-				catches: info[1],
-				posts: info[2],
-				fCount: info[3][0].count,
-                cCount: info[4][0].count,
-                pCount: info[5][0].count,
-                user: ''
-			})
-	})
-	.catch(err => {
-		console.log('error', err);
-		res.render('pages/profile', {
-			my_title: 'Profile',
-				user_id: '',
-				friends: '',
-				catches: '',
-				posts: '',
-				fCount: '',
-                cCount: '',
-                pCount: '',
-                user: ''
-		})
-	});
-});
-
-app.post('/profile/:user_id/addfriend', function(req, res) {
+app.post('/userprofile/addfriend', function(req, res) {
     var id = req.session.user_name;
 
-    var friend_id = req.param.id;
+    var friend_id = req.query.user_id;
 
     var addFriend = `INSERT INTO User_relationship(User_Requester_Id, User_Addressee_Id) SELECT * FROM( VALUES('${id}', '${friend_id}')) as foo;`;
 
@@ -400,16 +348,34 @@ app.post('/profile/:user_id/addfriend', function(req, res) {
         ]);
     })
     .then(info => {
-    	res.render('pages/profile',{
-            my_title: 'Profile',
-            added_friend: info[0]
+    	res.render('pages/userprofile',{
+            my_title: 'User Profile',
+            added_friend: info[0],
+            user_id: '',
+			friends: '',
+			catches: '',
+			posts: '',
+			fCount: '',
+            cCount: '',
+            pCount: '',
+            self: '',
+            user: ''
 			})
     })
     .catch(err => {
         console.log('error', err);
-            res.render('pages/profile', {
-                my_title: 'Profile',
-                added_friend: ''
+            res.render('pages/userprofile', {
+                my_title: 'User Profile',
+                added_friend: '',
+                user_id: '',
+				friends: '',
+				catches: '',
+				posts: '',
+				fCount: '',
+                cCount: '',
+                pCount: '',
+                self: '',
+                user: ''
             })
     });
 });
