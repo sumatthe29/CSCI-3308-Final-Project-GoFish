@@ -40,20 +40,24 @@ app.use(session({
 
 app.get('/feed', function(req, res){
     
-    var query = 'select * from Posts ORDER BY Post_Date;';
+    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date;';
+    // var userpost = 'select username from users inner join posts '
 
     // db.task('loadfeed', task =>
 	// {
 	// 	return task.batch([
-	// 		task.any(query)
+	// 		task.any(query),
+    //         // task.any(userpost)
 	// 	]);
 	// })
+
     db.any(query)
     .then(function(data) {
         console.log(data)
         res.render('pages/feed', {
             my_title: "GoFishFeed",
             items: data,
+            // names: data[1],
             user: req.session.user_id,
             error: ''
         })
@@ -64,7 +68,9 @@ app.get('/feed', function(req, res){
             my_title: 'GoFishFeed',
             data: '',
             user: req.session.user_id,
-            error: 'failed to load'
+            message: 'failed to load feed',
+            error: 'failed',
+            items: ''
             
 
         })
