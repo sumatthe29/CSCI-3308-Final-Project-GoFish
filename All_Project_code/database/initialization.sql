@@ -48,3 +48,5 @@ CREATE TABLE IF NOT EXISTS Catches(                           --This table is fo
 );
 
 INSERT INTO users (User_Name, User_Email, User_Password) VALUES('testuser','testemail@notactuallyarealemail.com','testpassword');
+
+INSERT INTO Posts (Post_Name,Post_Date,Post_Content) VALUES('testpost','2001-03-01','This is a sentence about the post');

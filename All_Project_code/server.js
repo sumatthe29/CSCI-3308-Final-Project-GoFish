@@ -42,12 +42,12 @@ app.get('/feed', function(req, res){
     
     var query = 'select * from Posts ORDER BY Post_Date;';
 
-    db.task(query)
+    db.any(query)
     .then(function(data) {
         res.render('pages/feed', {
             my_title: "GoFishFeed",
-            items: data[0],
-            user: ''
+            items: data,
+            user: req.session.user_id
         })
     })
     .catch(function(err) {
@@ -55,7 +55,8 @@ app.get('/feed', function(req, res){
         res.render('pages/feed', {
             my_title: 'GoFishFeed',
             items: '',
-            user: ''
+            user: req.session.user_id
+            
 
         })
     })
