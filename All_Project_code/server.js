@@ -119,6 +119,11 @@ app.post('/login', function(req, res){
    
 });
 
+app.get('/logout', function(req, res) {
+    req.session.username = "";
+    req.session.user_id = -1;
+    res.redirect('/');
+})
 
 //registration page
 app.get('/registration', function(req, res) {
