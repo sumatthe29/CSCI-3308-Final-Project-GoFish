@@ -42,20 +42,27 @@ app.get('/feed', function(req, res){
     
     var query = 'select * from Posts ORDER BY Post_Date;';
 
-    db.any(query)
+    db.task('loadfeed', task =>
+	{
+		return task.batch([
+			task.any(query)
+		]);
+	})
     .then(function(data) {
         res.render('pages/feed', {
             my_title: "GoFishFeed",
-            items: data,
-            user: req.session.user_id
+            items: data[0],
+            user: req.session.user_id,
+            error: ''
         })
     })
     .catch(function(err) {
         console.log('error', err)
         res.render('pages/feed', {
             my_title: 'GoFishFeed',
-            items: '',
-            user: req.session.user_id
+            data: '',
+            user: req.session.user_id,
+            error: 'failed to load'
             
 
         })

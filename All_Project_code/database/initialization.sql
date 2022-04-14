@@ -25,8 +25,7 @@ DROP TABLE IF EXISTS Posts;
 CREATE TABLE IF NOT EXISTS Posts(            -- This table is for Feed page
   Post_Id SERIAL NOT NULL,
   Post_Name VARCHAR(45) NOT NULL,
-  Post_Date DATE NOT NULL,
-  Post_Time TIME NOT NULL, 
+  Post_Date DATE NOT NULL, 
   Post_Content TEXT NOT NULL,
   User_id INT,
   PRIMARY KEY(Post_Id),

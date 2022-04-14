@@ -23,45 +23,13 @@
 
             <!-- Taken from Lab 7, used to generate posts-->
 
-            <form action="/feed/" method="get">
-              <% if (items) { %>
+            <div class="container-lg" style="margin-top: 2%">
+              <% if (error) { %>
+              <div class="alert alert-danger"><%- message %></div>
+              console.logs(items):
+              <% } %> <%- include('../partials/feedget', {items: items}); %>
+            </div>
 
-                
-                <div class="card-columns">
-                <!-- OPTION 2: Iterate over items and output html within the loop  -->
-                <% items.forEach(function(post) { %>
-                  
-              
-                  
-                    <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title"><%- post.Post_Name%></h5>
-                      <p class="card-text">Posted By:  </p>
-                      <!-- Will be implemenmted later to link to user profile page -->
-                      <button class="btn btn-primary" onclick = "window.location.href = '';">
-                        <%- post.User_id %>
-                        <br>
-                      </button> <br>
-              
-                      <br>
-                      
-                      <p class="card-text">Published Date and time: </p>
-                      <p class="card-text"><%- post.Post_Date, post.Post_Time %></p>
-                      <br>
-                      <p class="card-text"><%- post.Post_Content%></p>
-              
-                      
-                      </div>
-                    </div>
-                    
-    
-              
-                <% }) %>
-              
-              </div>
-              
-              <% } %>
-            </form>
 
             
   <hr/>
