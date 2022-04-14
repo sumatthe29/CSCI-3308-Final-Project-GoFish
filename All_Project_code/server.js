@@ -170,7 +170,7 @@ app.post('/registration', function(req, res){
             user: ''
         })
    })
-    /*
+    
 	db.task('get-everything', task => {
 		return task.batch([
 			task.any(databaseStatement)
@@ -217,7 +217,7 @@ app.post('/registration', function(req, res){
 			password: '',
 			regComplete: 'Registration did not work',
 		})
-	});*/
+	});
 });
 
 //user page
