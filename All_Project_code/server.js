@@ -362,6 +362,7 @@ app.get('/userprofile/:user_id', function(req, res){
     var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = ${id};`;
 
     var user_data = `SELECT * FROM Users WHERE User_id = ${id};`;
+    var isFriend = `SELECT COUNT(*) FROM User_relationship WHERE User_Addressee_Id = ${id} AND User_Requester_Id = ${view_id};`;
 
 
     db.task('get-everything', task => {
@@ -372,12 +373,13 @@ app.get('/userprofile/:user_id', function(req, res){
             task.any(fCount),
             task.any(cCount),
             task.any(pCount),
-            task.any(user_data)
+            task.any(user_data),
+            task.any(isFriend)
         ]);
     })
 
 	.then(info => {
-        console.log(info[2]);
+         var viewing_Friend = info[7][0].count == 1;
 			res.render('pages/userprofile', {
 				my_title: 'User Profile',
 				user_id: id,
@@ -389,7 +391,8 @@ app.get('/userprofile/:user_id', function(req, res){
                 pCount: info[5][0].count,
                 user_data: info[6],
                 self: viewing_self,
-                user: req.session.user_id
+                user: req.session.user_id,
+                viewingFriend: viewing_Friend
 			})
 	})
 	.catch(err => {
@@ -509,30 +512,32 @@ app.post('/userprofile/:user_id/addfriend', function(req, res) {
 });
 
 
-app.post('/profile/:user_id/removefriend', function(req, res) {
+app.post('/userprofile/:user_id/removefriend', function(req, res) {
     var id = req.session.user_id;
 
-    var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
+    var friend_id = parseInt(req.params.user_id);
 
-    var removeFriend = `DELETE * FROM User_relationship WHERE User_Addressee_Id = '${friend_id}' AND User_Requestee_Id = '${id}', ;`;
+    var removeFriend = `DELETE FROM User_relationship WHERE User_Addressee_Id = ${friend_id} AND User_Requester_Id = ${id};`;
 
-    db.task('drop', task => {
-        return task.batch([
-            task.any(removeFriend)
-        ]);
-    })
-    .then(info => {
-        res.render('pages/profile',{
-            my_title: 'ProfileRMV',
-            removed_Friend: info[0]
-        })
+    db.any(removeFriend)
+    .then(function(rows) {
+        res.redirect('back');
     })
     .catch(err => {
         console.log('error', err);
-            res.render('pages/profile', {
-                my_title: 'ProfileRMV',
-                removed_Friend: ''
-            })
+        res.render('pages/userprofile', {
+            my_title: 'User Profile',
+            user_id: '',
+            friends: '',
+            catches: '',
+            posts: '',
+            fCount: '',
+            cCount: '',
+            pCount: '',
+            user_data: '',
+            self: '',
+            user: ''
+        })
     });   
 })
 
