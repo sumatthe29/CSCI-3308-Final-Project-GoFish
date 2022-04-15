@@ -353,7 +353,7 @@ app.get('/userprofile/:user_id', function(req, res){
     console.log(id);
     
 
-    var friends = `SELECT users.User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
+    var friends = `SELECT * FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
     var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
     var posts = `SELECT * FROM Posts WHERE User_id = ${id};`;
 
@@ -530,7 +530,7 @@ app.post('/profile/:user_id/removefriend', function(req, res) {
 
     var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
 
-    var removeFriend = `DROP FROM User_relationship(User_Requester_Id, User_Addressee_I) SELECT * FROM( VALUES('${id}', '${friend_id}'));`;
+    var removeFriend = `DELETE * FROM User_relationship WHERE User_Addressee_Id = '${friend_id}' AND User_Requestee_Id = '${id}', ;`;
 
     db.task('drop', task => {
         return task.batch([

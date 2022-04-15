@@ -128,23 +128,24 @@
 
                     <%/*<!-- possible database method for adding friends-->*/%>
                     <%
-                    var count = 0;
+                    if (friends) {
+                        var frienddisp = '';
+                        friends.forEach(function(item){
+                            frienddisp += `<li class="list-group-item">
+                                <div class="media">
+                                    <img src='${item.user_img}'width="48" class="mr-3 rounded">
+                                      <div class="media-body">
+                                        <p class="mb-1">
+                                          <a href='/userprofile/${item.user_id}'>${item.user_name}</a>
+                                        </p>
+                                    </div>
+                                </div>    
+                            </li>`;
+        
+                        }); %>
+                        <%- frienddisp %>
+                    <% } %>
 
-                    while (count < fCount)
-                    {%>
-
-                        <li class="list-group-item">
-                            <div class="media">
-                                <%/*<img src=JSON.stringify(friends[count].img) width="48" class="mr-3 rounded">*/%>
-                                <div class="media-body">
-                                    <p class="mb-1">
-                                    <a href="/userprofile/:user_id?user_id=<%-friends[count].user_id%>"><%- friends[count].user_name %></a>
-                                    </p>
-                                </div>
-                            </div>    
-                        </li>
-                    <% count = count + 1;
-                    } %>
                 </ul>
 
 
