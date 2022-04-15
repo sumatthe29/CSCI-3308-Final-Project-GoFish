@@ -13,8 +13,8 @@
       <div class="card">
       <div class="card-body">
         <h5 class="card-title"><%-post.post_name%></h5>
-        
-        <p> Posted By: <a href="/userprofile/${post.user_id}"><%-post.user_name%></a> </p> 
+        <% var postedBy = `Posted By: <a href='/userprofile/${post.user_id}'>${post.user_name}</a>`; %>
+        <p><%- postedBy %></p> 
         <% var picture = ''; %>
         <% if (post.post_image != '') { %>
           <% picture += `<img src= '${post.post_image}' height= "300px" width="310px" display="block" margin-left="auto" margin-right="auto">`; %>
