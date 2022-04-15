@@ -89,16 +89,20 @@
         
     </div>
 
-    <% }
-        else{ %>
-            <% var buddy = `<form method="post" action='/userprofile/${user_id}/addfriend'>
-                <input class="btn btn-success" type="submit" value="Add buddy">
-            </form>`; %>
+    <% } else if (user > 0) { %>
+            <% var buddy = ''; %>
+            <% if (!viewingFriend) { %>
+                <% buddy += `<form method="post" action='/userprofile/${user_id}/addfriend'>
+                    <input class="btn btn-success" type="submit" value="Add buddy">
+                </form>`; %>
+            <% } else { %>
+                <% buddy += `<form method="post" action='/userprofile/${user_id}/removefriend'>
+                    <input class="btn btn-danger" type="submit" value="Throw back in the river">
+                </form>`; %>
+            <% } %>
             <%- buddy %>
             
             
-
-
     <% } %>
 
     <%/*<!--script to load table for adding a catch-->*/%>
@@ -188,3 +192,5 @@
 </body>
 
 </html>
+
+
