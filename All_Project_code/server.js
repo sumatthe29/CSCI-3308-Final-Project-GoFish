@@ -163,7 +163,7 @@ app.post('/userprofile/:user_id/newpic', imageUpload.single('profile-pic'), func
 
 app.get('/feed', function(req, res){
     
-    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.Post_Image, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date DESC;';
+    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.Post_Image, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_ID DESC;';
     // var userpost = 'select username from users inner join posts '
 
     // db.task('loadfeed', task =>

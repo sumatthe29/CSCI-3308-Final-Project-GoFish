@@ -13,9 +13,10 @@
       <div class="card">
       <div class="card-body">
         <h5 class="card-title"><%-post.post_name%></h5>
-        <p class="card-text">Posted By: <a class="nav-link" float = "right" href="/userprofile/${post.user_id}"><%-post.user_name%></a></p> 
         
-          <img src= '<%-post.post_image%>' alt="Image Failed to Load" height= "300px" width="310px" display="block" margin-left="auto" margin-right="auto">
+        <p> Posted By: <a href="/userprofile/${post.user_id}"><%-post.user_name%></a> </p> 
+        <img src= '<%-post.post_image%>' alt="Image Failed to Load" height= "300px" width="310px" display="block" margin-left="auto" margin-right="auto">
+          
         
         
         <br>
