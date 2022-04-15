@@ -3,16 +3,16 @@ var app = express();
 var bodyParser = require('body-parser'); //Ensure our body-parser tool has been added
 var dotenv = require('dotenv').config(); //Lets us pull environement variables from .env for db configuration -- Spencer
 var session = require('express-session'); //Lets us track sessions for logins -- Spencer
+var multer = require('multer');
 app.use(bodyParser.json());    
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-//app.use(express.static(__dirname + '/NodeJS')); lets Node use static files like cs for styling - Spencer
 //Create Database Connection
 var pgp = require('pg-promise')();
 
 
 // Image uploader
 
-const multer = require('multer');
+
 
 const imageStorage = multer.diskStorage({
     // Destination to store image     
@@ -275,15 +275,15 @@ app.post('/registration', function(req, res){
 
 //user page
 app.get('/userprofile/:user_id', function(req, res){
-    var id = parseInt(req.query.user_id);
+    var id = parseInt(req.params.user_id);
     var view_id = req.session.user_id;
-    var viewing_self = 0;
+    var viewing_self = id === view_id;
 
     //console.log(req.query);
     console.log(id);
     
 
-    var friends = `SELECT User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
+    var friends = `SELECT users.User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
     var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
     var posts = `SELECT * FROM Posts WHERE User_id = ${id};`;
 
@@ -293,11 +293,6 @@ app.get('/userprofile/:user_id', function(req, res){
 
     var user_data = `SELECT * FROM Users WHERE User_id = ${id};`;
 
-    if (id === view_id)
-    {
-        viewing_self = 1;
-        console.log("success");
-    }
 
     db.task('get-everything', task => {
         return task.batch([
@@ -312,7 +307,7 @@ app.get('/userprofile/:user_id', function(req, res){
     })
 
 	.then(info => {
-        console.log(info);
+        console.log(info[2]);
 			res.render('pages/userprofile', {
 				my_title: 'User Profile',
 				user_id: id,
