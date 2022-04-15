@@ -319,7 +319,7 @@ app.get('/userprofile/:user_id', function(req, res){
                 pCount: info[5][0].count,
                 user_data: info[6],
                 self: viewing_self,
-                user: ''
+                user: req.session.user_id
 			})
 	})
 	.catch(err => {
@@ -335,41 +335,58 @@ app.get('/userprofile/:user_id', function(req, res){
                 pCount: '',
                 user_data: '',
                 self: '',
-                user: ''
+                user: req.session.user_id
 		})
 	});
 });
 
-app.post('/userprofile/:user_id', function(req, res) {
-    var id = parseInt(req.query.user_id);
+app.post('/userprofile/:user_id/submit_catch', function(req, res) {
+    var id = parseInt(req.params.user_id);
+    var view_id = req.session.user_id;
+    var viewing_self = id === view_id;
 
 	var name= req.body.name;
 	var length = req.body.length;
     var weight = req.body.weight;
 	var date = req.body.date;
     var location = req.body.location;
-	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, User_id) SELECT * FROM( VALUES('${name}', ${length}, ${weight}, '${location}', '${date}', ${id})) as foo;`;
-	var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
+	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, User_id) VALUES('${name}', ${length}, ${weight}, '${location}', '${date}', ${id});`;
+
+    var friends = `SELECT users.User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
+    var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
+    var posts = `SELECT * FROM Posts WHERE User_id = ${id};`;
+
+    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = ${id};`;
+    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = ${id};`;
+    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = ${id};`;
+
+    var user_data = `SELECT * FROM Users WHERE User_id = ${id};`;
 
 	db.task('get-everything', task => {
         return task.batch([
+            task.any(newCatch),
+            task.any(friends),
             task.any(catches),
-            task.any(newCatch)
+            task.any(posts),
+            task.any(fCount),
+            task.any(cCount),
+            task.any(pCount),
+            task.any(user_data)
         ]);
     })
     .then(info => {
     	res.render('pages/userprofile',{
-            my_title: 'User Profile',
-				user_id: id,
-				friends: '',
-				catches: info[0],
-				posts: '',
-				fCount: '',
-                cCount: '',
-                pCount: '',
-                user_data: '',
-                self: 1,
-                user: ''
+                my_title: 'User Profile',
+                user_id: id,
+                friends: info[1],
+                catches: info[2],
+                posts: info[3],
+                fCount: info[4][0].count,
+                cCount: info[5][0].count,
+                pCount: info[6][0].count,
+                user_data: info[7],
+                self: viewing_self,
+                user: req.session.user_id
 			})
     })
     .catch(err => {

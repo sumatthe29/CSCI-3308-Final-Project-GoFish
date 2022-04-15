@@ -42,32 +42,32 @@
     </div>
 
     <%/*<!--adding fish post method-->*/%>
-    <% if (self === 1)
+    <% if (self)
     { %>
 
     <div class="col-2">
         <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick=addCatch()>
-
-        <form method="post" id="catch" style="visibility: hidden; height: 0">
+        <% var form = `<form method="post" action='/userprofile/${user}/submit_catch' id="catch" style="visibility: hidden; height: 0">`; %>
+        <%- form %>
             <label for="name">Enter the name of the fish you caught</label>
-            <input class="form-control input-sm" type="text" id="name" placeholder="specimen name">
+            <input class="form-control input-sm" type="text" id="name" placeholder="specimen name" name="name">
             <br>
             <label for="length">Enter the length of the fish you caught</label>
-            <input class="form-control input-sm" type="text" id="length" placeholder="fish length">
+            <input class="form-control input-sm" type="text" id="length" placeholder="fish length" name="length">
             <br>
             <label for="weight">Enter the weight of the fish you caught</label>
-            <input class="form-control input-sm" type="text" id="weight" placeholder="fish weight">
+            <input class="form-control input-sm" type="text" id="weight" placeholder="fish weight" name="weight">
             <br>
             <label for="date">Enter the date you caught this fish(in MM/DD/YYYY format)</label>
-            <input class="form-control input-sm" type="text" id="date" placeholder="date of catch">
+            <input class="form-control input-sm" type="text" id="date" placeholder="date of catch" name="date">
             <br>
             <label for="location">Enter where you caught this fish</label>
-            <input class="form-control input-sm" type="text" id="location" placeholder="location of catch">
+            <input class="form-control input-sm" type="text" id="location" placeholder="location of catch" name="location">
             <br>
 
             <input class="btn btn-success" type="submit" value="submit" onclick=close(1)>
 
-            <input class="btn" type="submit" value="cancel" onclick=close(0)>
+            <<input class="btn" type="submit" value="cancel" onclick=close(0)>
 
         </form>
         
