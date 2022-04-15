@@ -48,6 +48,14 @@ CREATE TABLE IF NOT EXISTS Catches(                           --This table is fo
 );
 
 INSERT INTO users (User_Name, User_Email, User_Password) VALUES('testuser','testemail@notactuallyarealemail.com','testpassword');
+INSERT INTO users (User_Name, User_Email, User_Password) VALUES('matthewsu','matthewsu@notactuallyarealemail.com','matthewsu');
+INSERT INTO users (User_Name, User_Email, User_Password) VALUES('spencerj','spencerj@notactuallyarealemail.com','spencerj');
+INSERT INTO users (User_Name, User_Email, User_Password) VALUES('johnr','johnr@notactuallyarealemail.com','johnr');
+INSERT INTO users (User_Name, User_Email, User_Password) VALUES('caelusk','caelus@notactuallyarealemail.com','caelusk');
+INSERT INTO users (User_Name, User_Email, User_Password) VALUES('yuhez','yuhez@notactuallyarealemail.com','yuhez');
+INSERT INTO users (User_Name, User_Email, User_Password) VALUES('victorian','yuhez@notactuallyarealemail.com','victorian');
+
+
 
 -- INSERT INTO Posts (Post_Name,Post_Date,Post_Content) VALUES('testpost','2001-03-01','This is a sentence about the post');
 -- INSERT INTO Posts (Post_Name,Post_Date,Post_Content) VALUES('testpost','2001-03-01','This is a sentence about the post');
