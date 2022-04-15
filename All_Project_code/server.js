@@ -353,7 +353,7 @@ app.get('/userprofile/:user_id', function(req, res){
     console.log(id);
     
 
-    var friends = `SELECT users.User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
+    var friends = `SELECT * FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
     var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
     var posts = `SELECT * FROM Posts WHERE User_id = ${id};`;
 
