@@ -1,8 +1,9 @@
     /* Use this to add a background image to a jumbotron -Matthew */
     .jbimage {
-        background-position: center center;
+        background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background-attachment: fixed;
       }
 
     /* Adds highlight to text when required (tested during formatting) -Matthew */
@@ -37,6 +38,7 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
+      background-attachment: fixed;
     }
 
     /* Made it so that font sitewide matches font used in logo */
