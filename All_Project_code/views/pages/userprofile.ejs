@@ -10,7 +10,10 @@
         <div class="col-sm-2">
             <div class="card bg-light">
                 <% var image = '<img class="card-img-top" src="' + user_data[0].user_img + '" height="125px" width="125px">';%>
+                <% if (image != null)
+                { %>
                 <%- image %>
+                <% } %>
                 <h4><%- user_data[0].first_name %> <%- user_data[0].last_name %></h4>
                 <h6><%- user_data[0].user_name %></h6>
             </div>
@@ -182,8 +185,13 @@
                         <p><h5 class="card-title"><%- posts[count].post_name %></h5></p>
                         <br>
                           <div class="card-body">
+                            
+                            <% if (posts[count].post_image != '')
+                            { %>
+                                <% var postimg = `<img src='../${posts[count].post_image}' width="70px" height="90px" class="mr-2 rounded">`; %>
+                                <%- postimg %>
+                            <% } %>
                             <%- posts[count].post_content %>
-                            <%/* var postimg = `<img src='${posts[count].post_image}' width="70px" height="90px" class="mr-2 rounded">`; */%>
                           </div>
                       </div>
                     </div>
