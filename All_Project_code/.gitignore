@@ -4,3 +4,7 @@
 
 # ignore node_modules. The .dockerignore should prevent these anyway, but JIC.
 node_modules/
+
+# ignore post images folder, should be local folder purely for testing. 
+
+postimages/

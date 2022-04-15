@@ -10,6 +10,59 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var pgp = require('pg-promise')();
 
 
+// Image uploader
+
+const multer = require('multer');
+
+const imageStorage = multer.diskStorage({
+    // Destination to store image     
+    destination: '../images', 
+      filename: (req, file, cb) => {
+          cb(null, file.fieldname + '_' + Date.now() 
+             + path.extname(file.originalname))
+            // file.fieldname is name of the field (image)
+            // path.extname get the uploaded file extension
+    }
+});
+
+const imageUpload = multer({
+    storage: imageStorage,
+    limits: {
+      fileSize: 1000000 // 1000000 Bytes = 1 MB
+    },
+    fileFilter(req, file, cb) {
+      if (!file.originalname.match(/\.(png|jpg)$/)) { 
+         // upload only png and jpg format
+         return cb(new Error('Please upload a Image'))
+       }
+     cb(undefined, true)
+  }
+}) 
+
+// For Single image upload
+
+
+// const upload = multer({ dest: 'uploads/' })
+
+// app.post('/createposts/addimage', upload.single('avatar'), function (req, res, next) {
+//   // req.file is the `avatar` file
+//   // req.body will hold the text fields, if there were any
+// })
+
+// const cpUpload = upload.fields([{ name: 'avatar', maxCount: 1 }])
+// app.post('/cool-profile', cpUpload, function (req, res, next) {
+//   // req.files is an object (String -> Array) where fieldname is the key, and the value is array of files
+//   //
+//   // e.g.
+//   //  req.files['avatar'][0] -> File
+//   //  req.files['gallery'] -> Array
+//   //
+//   // req.body will contain the text fields, if there were any
+// })
+
+
+
+
 // Copied over from lab7 to use as a test - Matthew
 const dbConfig = {
 	host: 'db',
@@ -457,6 +510,21 @@ app.get('/createpost', function(req, res){
     })
 });
 
+// app.post('/createpost/uploadImage', imageUpload.single('image'), (req, res) => {
+//     res.send(req.file.upload_image)
+//     console.log(req.file)
+// }, (error, req, res, next) => {
+//     res.status(400).send({ error: error.message })
+// })
+
+const upload = multer({ dest: './postimages/' })
+
+app.post('/createpost/uploadImage', upload.single('upload_image'), function (req, res) {
+    // req.file is the name of your file in the form above, here 'uploaded_file'
+    // req.body will hold the text fields, if there were any
+    // res.send(req.file) 
+    console.log(req.file)
+ });
 
 app.post('/createpost/addpost', function(req, res) {     //post request for the create post page --Yuhe
     var post_name = req.body.Postname;

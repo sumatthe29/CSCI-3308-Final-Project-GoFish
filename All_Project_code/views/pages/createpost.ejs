@@ -31,24 +31,33 @@
                         <input type="text" class="form-control" name="Postcontent" id="Postcontent" placeholder="Enter Color's Name">
                     </div>
                 </div>
-
-                <form method = "post" enctype = "multipart/form-data" id = "file_upload">
-                  <p>Picture Upload</p>
-                  <p>
-                    <input type = "file" id = "file" name ="upload_image" accept = "image/jpg, image/gif, image/png">
-                    <input type = "button" value="download image" onclick="save()">
-                  </p>
-                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                </form>
     
                 <br>
 
                 <br><br><br><br>
 
+                
+
 
             
                 </div>
-        </form>
+            </form>
+
+            <div class="jumbotron" style="background-color: blanchedalmond;">
+                <form action="/createpost/uploadImage" method = "post" enctype = "multipart/form-data" id = "file_upload">
+                    <p>Picture Upload</p>
+                    <p>
+                      <input type = "file" id = "file" name ="upload_image">
+                      <input type = "button" value="download image" onclick="save()">
+                    </p>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+
+            
+           
+
+        
     </div>
     <script src="../scripts/login.js"></script>
     <br><br>
