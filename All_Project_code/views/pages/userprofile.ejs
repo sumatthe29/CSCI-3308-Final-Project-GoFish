@@ -32,7 +32,53 @@
             <% } %>
             <%- upload %>
                 
+            <% if (self)
+    { %>
+
+        <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick=addCatch()>
+        <% var form = `<form method="post" action='/userprofile/${user}/submit_catch' id="catch" enctype = "multipart/form-data" style="visibility: hidden; height: 0">`; %>
+        <%- form %>
+            <label for="name">Enter the name of the fish you caught</label>
+            <input class="form-control input-sm" type="text" id="name" placeholder="specimen name" name="name">
+            <br>
+            <label for="length">Enter the length of the fish you caught</label>
+            <input class="form-control input-sm" type="text" id="length" placeholder="fish length" name="length">
+            <br>
+            <label for="weight">Enter the weight of the fish you caught</label>
+            <input class="form-control input-sm" type="text" id="weight" placeholder="fish weight" name="weight">
+            <br>
+            <label for="date">Enter the date you caught this fish(in MM/DD/YYYY format)</label>
+            <input class="form-control input-sm" type="text" id="date" placeholder="date of catch" name="date">
+            <br>
+            <label for="location">Enter where you caught this fish</label>
+            <input class="form-control input-sm" type="text" id="location" placeholder="location of catch" name="location">
+            <br>
+            <label for="file">Upload a picture</label>
+            <input type = "file" id = "file" name ="catch-pic">
+            <br>
+
+            <input class="btn btn-success" type="submit" value="submit" onclick=close(1)>
+
+            <input class="btn" type="submit" value="cancel" onclick=close(0)>
+
+        </form>
+        
+
+    <% } else if (user > 0) { %>
+            <% var buddy = ''; %>
+            <% if (!viewingFriend) { %>
+                <% buddy += `<form method="post" action='/userprofile/${user_id}/addfriend'>
+                    <input class="btn btn-success" type="submit" value="Add buddy">
+                </form>`; %>
+            <% } else { %>
+                <% buddy += `<form method="post" action='/userprofile/${user_id}/removefriend'>
+                    <input class="btn btn-danger" type="submit" value="Throw back in the river">
+                </form>`; %>
+            <% } %>
+            <%- buddy %>
             
+            
+    <% } %>
         </div>
         <div class="col-10">
             <div class="card bg-light">
@@ -63,55 +109,7 @@
     </div>
 
     <%/*<!--adding fish post method-->*/%>
-    <% if (self)
-    { %>
-
-    <div class="col-2">
-        <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick=addCatch()>
-        <% var form = `<form method="post" action='/userprofile/${user}/submit_catch' id="catch" enctype = "multipart/form-data" style="visibility: hidden; height: 0">`; %>
-        <%- form %>
-            <label for="name">Enter the name of the fish you caught</label>
-            <input class="form-control input-sm" type="text" id="name" placeholder="specimen name" name="name">
-            <br>
-            <label for="length">Enter the length of the fish you caught</label>
-            <input class="form-control input-sm" type="text" id="length" placeholder="fish length" name="length">
-            <br>
-            <label for="weight">Enter the weight of the fish you caught</label>
-            <input class="form-control input-sm" type="text" id="weight" placeholder="fish weight" name="weight">
-            <br>
-            <label for="date">Enter the date you caught this fish(in MM/DD/YYYY format)</label>
-            <input class="form-control input-sm" type="text" id="date" placeholder="date of catch" name="date">
-            <br>
-            <label for="location">Enter where you caught this fish</label>
-            <input class="form-control input-sm" type="text" id="location" placeholder="location of catch" name="location">
-            <br>
-            <label for="file">Upload a picture</label>
-            <input type = "file" id = "file" name ="catch-pic">
-            <br>
-
-            <input class="btn btn-success" type="submit" value="submit" onclick=close(1)>
-
-            <input class="btn" type="submit" value="cancel" onclick=close(0)>
-
-        </form>
-        
-    </div>
-
-    <% } else if (user > 0) { %>
-            <% var buddy = ''; %>
-            <% if (!viewingFriend) { %>
-                <% buddy += `<form method="post" action='/userprofile/${user_id}/addfriend'>
-                    <input class="btn btn-success" type="submit" value="Add buddy">
-                </form>`; %>
-            <% } else { %>
-                <% buddy += `<form method="post" action='/userprofile/${user_id}/removefriend'>
-                    <input class="btn btn-danger" type="submit" value="Throw back in the river">
-                </form>`; %>
-            <% } %>
-            <%- buddy %>
-            
-            
-    <% } %>
+    
 
     <%/*<!--script to load table for adding a catch-->*/%>
     <script>
