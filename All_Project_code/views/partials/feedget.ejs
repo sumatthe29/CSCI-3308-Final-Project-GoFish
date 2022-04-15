@@ -5,26 +5,18 @@
     <!-- OPTION 2: Iterate over items and output html within the loop  -->
     <% items.forEach(function(post) { %>
       
-  
-
         <div class="card">
         <div class="card-body">
           <h5 class="card-title"><%-post.post_name%></h5>
           <p class="card-text">Posted By: <%-post.user_name%></p>
+          <img src='post.post_img'alt="Image Failed to Load" width = 50px height = 50px>
           <!-- Will be implemenmted later to link to user profile page -->
           <button class="btn btn-primary" onclick = "window.location.href = '';">
-            <%- post.user_id %>
             <br>
           </button> <br>
   
           <br>
-
-          <img src='../postimages/3e0006ef37d36209d099ce6c867a962a'alt="Italian Trulli">
           
-          <p class="card-text">Published Date and time: </p>
-          <p class="card-text">User Id <%- post.user_id%></p>
-          <p class="card-text"><%- post.post_date%></p>
-          <br>
           <p class="card-text"><%- post.post_content%></p>
   
           

@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS Posts(            -- This table is for Feed page
   Post_Name VARCHAR(45) NOT NULL,
   Post_Date DATE NOT NULL, 
   Post_Content TEXT NOT NULL,
+  Post_Image TEXT,
   User_id INT,
   PRIMARY KEY(Post_Id),
   FOREIGN KEY(User_Id) REFERENCES Users(User_Id)
