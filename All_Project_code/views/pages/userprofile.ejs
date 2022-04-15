@@ -8,10 +8,26 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="card bg-light">
-                <img class="card-img-top" src="../img/hotdogman.png" height="125px" width="125px">
+                <% var image = '<img class="card-img-top" src="' + user_data[0].user_img + '" height="125px" width="125px">';%>
+                <%- image %>
                 <h4><%- user_data[0].user_name %></h4>
                 <h6><%- user_data[0].user_email %></h6>
             </div>
+            <% var upload = ''; %>
+            <% if (self) { %>
+            <% upload += `<form action="/userprofile/${user}/newpic" method = "post" enctype = "multipart/form-data" id = "file_upload">
+                <p><center><strong>Picture Upload</strong></center></p>
+                <p>
+                  <input type = "file" id = "file" name ="profile-pic">
+
+                </p>
+
+                <button type="submit" class="btn btn-primary btn-block">Upload Image</button>
+                
+            </form>`; %>
+            <% } %>
+            <%- upload %>
+                
             
         </div>
         <div class="col-10">

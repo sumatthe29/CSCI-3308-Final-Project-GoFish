@@ -4,6 +4,7 @@ var bodyParser = require('body-parser'); //Ensure our body-parser tool has been 
 var dotenv = require('dotenv').config(); //Lets us pull environement variables from .env for db configuration -- Spencer
 var session = require('express-session'); //Lets us track sessions for logins -- Spencer
 var multer = require('multer');
+var path = require('path');
 app.use(bodyParser.json());    
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //Create Database Connection
@@ -16,10 +17,10 @@ var pgp = require('pg-promise')();
 
 const imageStorage = multer.diskStorage({
     // Destination to store image     
-    destination: '../images', 
+    destination: './images', 
       filename: (req, file, cb) => {
-          cb(null, file.fieldname + '_' + Date.now() 
-             + path.extname(file.originalname))
+          const fileSuffix = '_' + Date.now() + path.extname(file.originalname);
+          cb(null, file.fieldname + fileSuffix)
             // file.fieldname is name of the field (image)
             // path.extname get the uploaded file extension
     }
@@ -33,11 +34,13 @@ const imageUpload = multer({
     fileFilter(req, file, cb) {
       if (!file.originalname.match(/\.(png|jpg)$/)) { 
          // upload only png and jpg format
-         return cb(new Error('Please upload a Image'))
+         return cb(new Error('Not an accepted file format. Pleas upload a png or jpg file.'))
        }
      cb(undefined, true)
   }
 }) 
+
+
 
 // For Single image upload
 
@@ -89,7 +92,74 @@ app.use(session({
 
 
 // initial get for 2feed2 page - Matthew
+app.post('/userprofile/:user_id/newpic', imageUpload.single('profile-pic'), function(req, res, next) {
+    var id = parseInt(req.params.user_id);
+    var view_id = req.session.user_id;
+    var viewing_self = id === view_id;
 
+    //console.log(req.query);
+    console.log(id);
+    
+    var path = '/' + req.file.path;
+
+    var updateProfPic = `UPDATE users SET User_IMG = '${path}' WHERE User_id = ${id};`;
+
+    var friends = `SELECT users.User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
+    var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
+    var posts = `SELECT * FROM Posts WHERE User_id = ${id};`;
+
+    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = ${id};`;
+    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = ${id};`;
+    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = ${id};`;
+
+    var user_data = `SELECT * FROM Users WHERE User_id = ${id};`;
+
+    db.task('get-everything', task => {
+        return task.batch([
+            task.any(updateProfPic),
+            task.any(friends),
+            task.any(catches),
+            task.any(posts),
+            task.any(fCount),
+            task.any(cCount),
+            task.any(pCount),
+            task.any(user_data)
+        ]);
+    })
+
+	.then(info => {
+			res.render('pages/userprofile', {
+				my_title: 'User Profile',
+				user_id: id,
+				friends: info[0],
+				catches: info[1],
+				posts: info[2],
+				fCount: info[3][0].count,
+                cCount: info[4][0].count,
+                pCount: info[5][0].count,
+                user_data: info[6],
+                self: viewing_self,
+                user: req.session.user_id
+			})
+	})
+	.catch(err => {
+		console.log('error', err);
+		res.render('pages/userprofile', {
+			my_title: 'User Profile',
+				user_id: '',
+				friends: '',
+				catches: '',
+				posts: '',
+				fCount: '',
+                cCount: '',
+                pCount: '',
+                user_data: '',
+                self: '',
+                user: req.session.user_id
+		})
+	});    
+    
+});
 
 app.get('/feed', function(req, res){
     
@@ -486,30 +556,22 @@ app.post('/profile/:user_id/removefriend', function(req, res) {
 
 
 // home page searching a friend!!!
-app.get('/home/:id/', function(req, res){
-    var id = req.query.User_Name;
-    var friend_username = `SELECT * FROM Users WHERE User_Name = '${id}';`;
-    var friend_id = `SELECT User_Id FROM Users WHERE User_Name = ${id}';`;
+app.post('/search', function(req, res){
+    var id = req.body.uname;
+    var friend_id = `SELECT User_Id FROM Users WHERE User_Name = '${id}';`;
     // how to find link to user profile page and redirect i do not know
-    db.task('get-everything', task => {
-        return task.batch([
-            task.any(friend_username),
-            task.any(friend_id)
-        ]);
-    })
-	.then(info => {
-			res.redirect('profile' + friend_id, {
-				my_title: 'friendPage',
-				user_id: info[1],
-                user_info: info[0]
-			})
+    db.any(friend_id)
+	.then(function(rows) {
+            var friend = rows[0].user_id;
+			res.redirect(`/userprofile/${friend}`);
 	})
 	.catch(err => {
 		console.log('error', err);
 		res.render('pages/home', {
-			my_title: 'friendPage',
+			    my_title: 'Home',
 				user_id: '',
-                user_info: ''
+                user_info: '',
+                user: req.session.user_id
 		})
 	});
 });
