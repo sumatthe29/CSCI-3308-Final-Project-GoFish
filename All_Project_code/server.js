@@ -163,7 +163,7 @@ app.post('/userprofile/:user_id/newpic', imageUpload.single('profile-pic'), func
 
 app.get('/feed', function(req, res){
     
-    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.User_Id, Posts.Post_Image, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date;';
+    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.Post_Image, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date DESC;';
     // var userpost = 'select username from users inner join posts '
 
     // db.task('loadfeed', task =>
@@ -600,11 +600,13 @@ app.post('/createpost/uploadImage', upload.single('upload_image'), function (req
     // console.log(req.file)
  });
 
-app.post('/createpost/addpost', function(req, res) {     //post request for the create post page --Yuhe
+app.post('/createpost/addpost',upload.single('upload_image'), function(req, res) {     //post request for the create post page --Yuhe
     var post_name = req.body.Postname;
     var post_content = req.body.Postcontent;
+    var image = req.file.path;
     console.log(req.body.Postname);
     console.log(req.body.Postcontent);
+    console.log(req.file.path)
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth();
@@ -616,8 +618,8 @@ app.post('/createpost/addpost', function(req, res) {     //post request for the 
         day = "0" + day;
     }
     var post_date = year + '-' + month + '-' + day;
-    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date;';
-    var insert_posts = `INSERT INTO Posts(Post_Name, Post_Date, Post_Content, User_Id) VALUES('${post_name}', '${post_date}', '${post_content}', ${req.session.user_id});` 
+    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.Post_Image, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date;';
+    var insert_posts = `INSERT INTO Posts(Post_Name, Post_Date, Post_Content, Post_Image, User_Id) VALUES('${post_name}', '${post_date}', '${post_content}', '${image}', ${req.session.user_id});`; 
     db.task('loadfeed', task =>
 	 {
 	 	return task.batch([
@@ -627,13 +629,15 @@ app.post('/createpost/addpost', function(req, res) {     //post request for the 
 	 	]);
 	 })
      .then(function(data){
-        res.render('pages/feed',{
+        res.render('pages/success',{
             my_title:"feed Page",
-            items:data[1],
+            items: data[1],
             user:req.session.user_id,
             error:''
           })
+        setInterval("contentRefresh();", 10000 );
     })
+    
     .catch(err => {
       console.log('error', err);
       res.render('pages/createpost', {
