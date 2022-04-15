@@ -15,19 +15,38 @@ var pgp = require('pg-promise')();
 
 
 
-const imageStorage = multer.diskStorage({
-    // Destination to store image     
-    destination: './images', 
+const avatarStorage = multer.diskStorage({   
+    destination: './avatars', 
       filename: (req, file, cb) => {
-          const fileSuffix = '_' + Date.now() + path.extname(file.originalname);
+          const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
           cb(null, file.fieldname + fileSuffix)
-            // file.fieldname is name of the field (image)
-            // path.extname get the uploaded file extension
     }
 });
 
-const imageUpload = multer({
-    storage: imageStorage,
+const avatarUpload = multer({
+    storage: avatarStorage,
+    limits: {
+      fileSize: 1000000 // 1000000 Bytes = 1 MB
+    },
+    fileFilter(req, file, cb) {
+      if (!file.originalname.match(/\.(png|jpg)$/)) { 
+         // upload only png and jpg format
+         return cb(new Error('Not an accepted file format. Please upload a png or jpg file.'))
+       }
+     cb(undefined, true)
+  }
+});
+
+const postStorage = multer.diskStorage({    
+    destination: './postimages', 
+      filename: (req, file, cb) => {
+          const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
+          cb(null, file.fieldname + fileSuffix)
+    }
+});
+
+const postUpload = multer({
+    storage: postStorage,
     limits: {
       fileSize: 1000000 // 1000000 Bytes = 1 MB
     },
@@ -38,7 +57,31 @@ const imageUpload = multer({
        }
      cb(undefined, true)
   }
-}) 
+});
+
+const catchStorage = multer.diskStorage({    
+    destination: './catchimages', 
+      filename: (req, file, cb) => {
+          const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
+          cb(null, file.fieldname + fileSuffix)
+    }
+});
+
+const catchUpload = multer({
+    storage: catchStorage,
+    limits: {
+      fileSize: 1000000 // 1000000 Bytes = 1 MB
+    },
+    fileFilter(req, file, cb) {
+      if (!file.originalname.match(/\.(png|jpg)$/)) { 
+         // upload only png and jpg format
+         return cb(new Error('Not an accepted file format. Please upload a png or jpg file.'))
+       }
+     cb(undefined, true)
+  }
+});
+
+
 
 
 
@@ -92,55 +135,15 @@ app.use(session({
 
 
 // initial get for 2feed2 page - Matthew
-app.post('/userprofile/:user_id/newpic', imageUpload.single('profile-pic'), function(req, res, next) {
+app.post('/userprofile/:user_id/newpic', avatarUpload.single('profile-pic'), function(req, res, next) {
     var id = parseInt(req.params.user_id);
-    var view_id = req.session.user_id;
-    var viewing_self = id === view_id;
-
-    //console.log(req.query);
-    console.log(id);
     
     var path = '/' + req.file.path;
 
     var updateProfPic = `UPDATE users SET User_IMG = '${path}' WHERE User_id = ${id};`;
-
-    var friends = `SELECT users.User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
-    var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
-    var posts = `SELECT * FROM Posts WHERE User_id = ${id};`;
-
-    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = ${id};`;
-    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = ${id};`;
-    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = ${id};`;
-
-    var user_data = `SELECT * FROM Users WHERE User_id = ${id};`;
-
-    db.task('get-everything', task => {
-        return task.batch([
-            task.any(updateProfPic),
-            task.any(friends),
-            task.any(catches),
-            task.any(posts),
-            task.any(fCount),
-            task.any(cCount),
-            task.any(pCount),
-            task.any(user_data)
-        ]);
-    })
-
-	.then(info => {
-			res.render('pages/userprofile', {
-				my_title: 'User Profile',
-				user_id: id,
-				friends: info[0],
-				catches: info[1],
-				posts: info[2],
-				fCount: info[3][0].count,
-                cCount: info[4][0].count,
-                pCount: info[5][0].count,
-                user_data: info[6],
-                self: viewing_self,
-                user: req.session.user_id
-			})
+    db.any(updateProfPic)
+	.then(function(rows) {
+			res.redirect('back');
 	})
 	.catch(err => {
 		console.log('error', err);
@@ -346,7 +349,13 @@ app.post('/registration', function(req, res){
 //user page
 app.get('/userprofile/:user_id', function(req, res){
     var id = parseInt(req.params.user_id);
-    var view_id = req.session.user_id;
+    var view_id;
+    if (req.session.user_id) {
+        view_id = req.session.user_id;
+    } else {
+        view_id = -1;
+    }
+     
     var viewing_self = id === view_id;
 
     //console.log(req.query);
@@ -415,8 +424,6 @@ app.get('/userprofile/:user_id', function(req, res){
 
 app.post('/userprofile/:user_id/submit_catch', function(req, res) {
     var id = parseInt(req.params.user_id);
-    var view_id = req.session.user_id;
-    var viewing_self = id === view_id;
 
 	var name= req.body.name;
 	var length = req.body.length;
@@ -425,42 +432,9 @@ app.post('/userprofile/:user_id/submit_catch', function(req, res) {
     var location = req.body.location;
 	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, User_id) VALUES('${name}', ${length}, ${weight}, '${location}', '${date}', ${id});`;
 
-    var friends = `SELECT users.User_Name FROM Users INNER JOIN User_relationship ON Users.User_Id = User_relationship.User_Addressee_Id WHERE User_Requester_Id = ${id};`;
-    var catches = `SELECT * FROM Catches WHERE User_id = ${id};`;
-    var posts = `SELECT * FROM Posts WHERE User_id = ${id};`;
-
-    var fCount = `SELECT COUNT(*) FROM User_relationship WHERE User_Requester_Id = ${id};`;
-    var cCount = `SELECT COUNT(*) FROM Catches WHERE User_id = ${id};`;
-    var pCount = `SELECT COUNT(*) FROM Posts WHERE User_id = ${id};`;
-
-    var user_data = `SELECT * FROM Users WHERE User_id = ${id};`;
-
-	db.task('get-everything', task => {
-        return task.batch([
-            task.any(newCatch),
-            task.any(friends),
-            task.any(catches),
-            task.any(posts),
-            task.any(fCount),
-            task.any(cCount),
-            task.any(pCount),
-            task.any(user_data)
-        ]);
-    })
-    .then(info => {
-    	res.render('pages/userprofile',{
-                my_title: 'User Profile',
-                user_id: id,
-                friends: info[1],
-                catches: info[2],
-                posts: info[3],
-                fCount: info[4][0].count,
-                cCount: info[5][0].count,
-                pCount: info[6][0].count,
-                user_data: info[7],
-                self: viewing_self,
-                user: req.session.user_id
-			})
+	db.any(newCatch)
+    .then(function(rows) {
+    	res.redirect('back');
     })
     .catch(err => {
         console.log('error', err);
@@ -546,8 +520,8 @@ app.post('/userprofile/:user_id/removefriend', function(req, res) {
 
 // home page searching a friend!!!
 app.post('/search', function(req, res){
-    var id = req.body.uname;
-    var friend_id = `SELECT User_Id FROM Users WHERE User_Name = '${id}';`;
+    var uname = req.body.uname;
+    var friend_id = `SELECT User_Id FROM Users WHERE User_Name = '${uname}';`;
     // how to find link to user profile page and redirect i do not know
     db.any(friend_id)
 	.then(function(rows) {
@@ -573,29 +547,22 @@ app.get('/createpost', function(req, res){
     })
 });
 
-// app.post('/createpost/uploadImage', imageUpload.single('image'), (req, res) => {
-//     res.send(req.file.upload_image)
-//     console.log(req.file)
-// }, (error, req, res, next) => {
-//     res.status(400).send({ error: error.message })
-// })
 
-const upload = multer({ dest: './postimages/' })
 
-app.post('/createpost/uploadImage', upload.single('upload_image'), function (req, res) {
-    // req.file is the name of your file in the form above, here 'uploaded_file'
-    // req.body will hold the text fields, if there were any
-    // res.send(req.file) 
-    // console.log(req.file)
- });
 
-app.post('/createpost/addpost',upload.single('upload_image'), function(req, res) {     //post request for the create post page --Yuhe
+app.post('/createpost/addpost', postUpload.single('image'), function(req, res) {     //post request for the create post page --Yuhe
     var post_name = req.body.Postname;
     var post_content = req.body.Postcontent;
-    var image = req.file.path;
+    var image = '';
+    if (req.file) {
+        image = req.file.path;
+    }
     console.log(req.body.Postname);
     console.log(req.body.Postcontent);
-    console.log(req.file.path)
+    if (req.file) {
+        console.log(req.file.path);
+    }
+    
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth();

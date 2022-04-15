@@ -15,7 +15,11 @@
         <h5 class="card-title"><%-post.post_name%></h5>
         
         <p> Posted By: <a href="/userprofile/${post.user_id}"><%-post.user_name%></a> </p> 
-        <img src= '<%-post.post_image%>' alt="Image Failed to Load" height= "300px" width="310px" display="block" margin-left="auto" margin-right="auto">
+        <% var picture = ''; %>
+        <% if (post.post_image != '') { %>
+          <% picture += `<img src= '${post.post_image}' height= "300px" width="310px" display="block" margin-left="auto" margin-right="auto">`; %>
+        <% } %>
+        <%- picture %>
           
         
         
