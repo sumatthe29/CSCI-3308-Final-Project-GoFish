@@ -53,7 +53,7 @@ INSERT INTO users (User_Name, User_Email, User_Password) VALUES('spencerj','spen
 INSERT INTO users (User_Name, User_Email, User_Password) VALUES('johnr','johnr@notactuallyarealemail.com','johnr');
 INSERT INTO users (User_Name, User_Email, User_Password) VALUES('caelusk','caelus@notactuallyarealemail.com','caelusk');
 INSERT INTO users (User_Name, User_Email, User_Password) VALUES('yuhez','yuhez@notactuallyarealemail.com','yuhez');
-INSERT INTO users (User_Name, User_Email, User_Password) VALUES('victorian','yuhez@notactuallyarealemail.com','victorian');
+INSERT INTO users (User_Name, User_Email, User_Password) VALUES('victorian','victorian@notactuallyarealemail.com','victorian');
 
 
 
