@@ -290,7 +290,7 @@ app.post('/registration', function(req, res){
    .catch(function(err) {
         res.render('pages/registration', {
             my_title: "Register",
-            user: ''
+            user: '',
         })
    })
     
