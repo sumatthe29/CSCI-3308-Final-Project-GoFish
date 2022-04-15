@@ -530,7 +530,7 @@ app.post('/profile/:user_id/removefriend', function(req, res) {
 
     var friend_id = `SELECT User_Addressee_Id FROM User_relationship WHERE User_Requester_Id = '${id}';`;
 
-    var removeFriend = `DROP FROM User_relationship(User_Requester_Id, User_Addressee_I) SELECT * FROM( VALUES('${id}', '${friend_id}'));`;
+    var removeFriend = `DELETE * FROM User_relationship WHERE User_Addressee_Id = '${friend_id}' AND User_Requestee_Id = '${id}', ;`;
 
     db.task('drop', task => {
         return task.batch([
