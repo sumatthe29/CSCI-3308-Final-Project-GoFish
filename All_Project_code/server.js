@@ -93,7 +93,7 @@ app.use(session({
 
 app.get('/feed', function(req, res){
     
-    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date;';
+    var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.User_Id, Posts.Post_Image, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_Date;';
     // var userpost = 'select username from users inner join posts '
 
     // db.task('loadfeed', task =>
@@ -535,7 +535,7 @@ app.post('/createpost/uploadImage', upload.single('upload_image'), function (req
     // req.file is the name of your file in the form above, here 'uploaded_file'
     // req.body will hold the text fields, if there were any
     // res.send(req.file) 
-    console.log(req.file)
+    // console.log(req.file)
  });
 
 app.post('/createpost/addpost', function(req, res) {     //post request for the create post page --Yuhe
