@@ -3,15 +3,16 @@
 <link rel="stylesheet" href="/views/css/profile.css" type="text/css">
 </head>
 
-<body>
-<div class="container" style="background-color: white;">
+<body style="background-image: url(https://i.pinimg.com/originals/eb/57/ce/eb57ced271aecdfc5e63b4b6d23024a1.jpg);  background-size: cover; background-attachment: fixed;">
+<br>
+    <div class="container" style="background-color: blanchedalmond;">
     <div class="row">
         <div class="col-sm-2">
             <div class="card bg-light">
                 <% var image = '<img class="card-img-top" src="' + user_data[0].user_img + '" height="125px" width="125px">';%>
                 <%- image %>
-                <h4><%- user_data[0].user_name %></h4>
-                <h6><%- user_data[0].user_email %></h6>
+                <h4><%- user_data[0].first_name %> <%- user_data[0].last_name %></h4>
+                <h6><%- user_data[0].user_name %></h6>
             </div>
             <% var upload = ''; %>
             <% if (self) { %>
@@ -32,25 +33,26 @@
         </div>
         <div class="col-10">
             <div class="card bg-light">
-                <h3>Best Catches</h3>
+                <h3>Catches</h3>
                 <div class="card-deck">
                     <%/*<!-- possible database method for inserting catches-->*/%>
-                    <%
-                    var count = 0;
+                    <% if (catches) {
+                        var catchdisp = '';
+                        catches.forEach(function(item){
+                            catchdisp += `<div class="card bg-light">
+                                <img class="card-img-top" src='${item.catch_image}' height="150px" width="150px">
+                                <h5>Species: ${item.catch_name}</h5>
+                                <h5>Length: ${item.catch_length}</h5>
+                                <h5>Weight: ${item.catch_weight} lb</h5>
+                                <h5>Date: ${item.catch_date}</h5>
+                                <h5>Location: ${item.catch_location}</h5> 
+                            </div>`;
+        
+                        }); %>
+                        <%- catchdisp %>
+                    <% } %>
 
-                    while (count < cCount)
-                    {%>
-                        <div class="card bg-light">
-                            <%/*<img class="card-img-top" src=JSON.stringify(catches[count].img) height="250px" width="250px">*/%>
-                            <h5>Species: <%- catches[count].catch_name %></h5>
-                            <h5>Length: <%- catches[count].catch_length %>''</h5>
-                            <h5>Weight: <%- catches[count].catch_weight %> lb</h5>
-                            <h5>Date: <%- catches[count].catch_date %></h5>
-                            <h5>Location: <%- catches[count].catch_location %></h5> 
-                        </div>
-
-                    <% count = count + 1;
-                    } %>
+                    
                 </div>
             </div>
             
@@ -63,7 +65,7 @@
 
     <div class="col-2">
         <input class="btn btn-success btn-block" type="submit" value="Add catch" onclick=addCatch()>
-        <% var form = `<form method="post" action='/userprofile/${user}/submit_catch' id="catch" style="visibility: hidden; height: 0">`; %>
+        <% var form = `<form method="post" action='/userprofile/${user}/submit_catch' id="catch" enctype = "multipart/form-data" style="visibility: hidden; height: 0">`; %>
         <%- form %>
             <label for="name">Enter the name of the fish you caught</label>
             <input class="form-control input-sm" type="text" id="name" placeholder="specimen name" name="name">
@@ -80,10 +82,13 @@
             <label for="location">Enter where you caught this fish</label>
             <input class="form-control input-sm" type="text" id="location" placeholder="location of catch" name="location">
             <br>
+            <label for="file">Upload a picture</label>
+            <input type = "file" id = "file" name ="catch-pic">
+            <br>
 
             <input class="btn btn-success" type="submit" value="submit" onclick=close(1)>
 
-            <<input class="btn" type="submit" value="cancel" onclick=close(0)>
+            <input class="btn" type="submit" value="cancel" onclick=close(0)>
 
         </form>
         
@@ -160,11 +165,10 @@
         </div>
         <div class="col">
             <div class="card bg-light">
-                <h3>Most Recent Posts</h3>
+                <h3>Posts</h3>
 
 
                 <%/*<!-- Possible method for adding displaying posts-->*/%>
-
                 <% 
                 var count = 0;
 
@@ -179,6 +183,7 @@
                         <br>
                           <div class="card-body">
                             <%- posts[count].post_content %>
+                            <%/* var postimg = `<img src='${posts[count].post_image}' width="70px" height="90px" class="mr-2 rounded">`; */%>
                           </div>
                       </div>
                     </div>
@@ -186,6 +191,7 @@
                   <% count = count + 1;
                     } %>
             </div>
+
         </div>
     </div>
 </div>
