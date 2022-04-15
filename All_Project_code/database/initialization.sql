@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS Catches(                           --This table is fo
   Catch_Weight FLOAT NOT NULL,
   Catch_Location TEXT NOT NULL,
   Catch_Date DATE NOT NULL,
+  Catch_Image TEXT,
   User_id INT,
   PRIMARY KEY(Catch_Id),
   FOREIGN KEY(User_Id) REFERENCES Users(User_Id)

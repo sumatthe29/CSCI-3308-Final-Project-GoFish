@@ -59,8 +59,12 @@
 
             <input class="btn btn-success" type="submit" value="submit" onclick=close(1)>
 
-            <input class="btn" type="submit" value="cancel" onclick=close(0)>
+            
 
+        </form>
+
+        <form id="cancel" style="visibility: hidden; height: 0">
+            <input class="btn" type="submit" value="cancel" onclick=close(0)>
         </form>
         
 
@@ -117,10 +121,17 @@
         {
             document.getElementById("catch").style.visibility = "visible";
             document.getElementById("catch").style.height = "auto";
+
+            document.getElementById("cancel").style.visibility = "visible";
+            document.getElementById("cancel").style.height = "auto";
         }
 
         function close(type)
         {
+            if (type === 0)
+            {
+                location.reload();
+            }
             document.getElementById("catch").style.visibility = "hidden";
             document.getElementById("catch").style.height = 0;
         }

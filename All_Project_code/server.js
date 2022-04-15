@@ -425,12 +425,17 @@ app.get('/userprofile/:user_id', function(req, res){
 app.post('/userprofile/:user_id/submit_catch', function(req, res) {
     var id = parseInt(req.params.user_id);
 
+    var pic = '';
+    if (req.file) {
+        pic = req.file.path;
+    }
+
 	var name= req.body.name;
 	var length = req.body.length;
     var weight = req.body.weight;
 	var date = req.body.date;
     var location = req.body.location;
-	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, User_id) VALUES('${name}', ${length}, ${weight}, '${location}', '${date}', ${id});`;
+	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, Catch_Image, User_id) VALUES('${name}', ${length}, ${weight}, '${location}', '${date}', '${pic}', ${id});`;
 
 	db.any(newCatch)
     .then(function(rows) {
