@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS User_relationship;             --User Buddies
 CREATE TABLE IF NOT EXISTS User_relationship(
   User_Requester_Id INT NOT NULL,
   User_Addressee_Id INT NOT NULL,
-  Created_Date DATE NOT NULL,
   PRIMARY KEY(User_Requester_Id, User_Addressee_Id)
 );
 

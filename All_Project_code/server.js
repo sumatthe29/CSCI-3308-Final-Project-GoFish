@@ -477,33 +477,17 @@ app.post('/userprofile/:user_id/submit_catch', function(req, res) {
     });
 });
 
-app.post('/userprofile/addfriend', function(req, res) {
-    var id = req.session.user_name;
+app.post('/userprofile/:user_id/addfriend', function(req, res) {
+    
+    var id = req.session.user_id;
 
-    var friend_id = req.query.user_id;
+    var friend_id = parseInt(req.params.user_id);
 
-    var addFriend = `INSERT INTO User_relationship(User_Requester_Id, User_Addressee_Id) SELECT * FROM( VALUES('${id}', '${friend_id}')) as foo;`;
+    var addFriend = `INSERT INTO User_relationship (User_Requester_Id, User_Addressee_Id) VALUES(${id}, ${friend_id});`;
 
-    db.task('get-everything', task => {
-        return task.batch([
-            task.any(addFriend)
-        ]);
-    })
+    db.any(addFriend)
     .then(info => {
-    	res.render('pages/userprofile',{
-            my_title: 'User Profile',
-            added_friend: info[0],
-            user_id: '',
-			friends: '',
-			catches: '',
-			posts: '',
-			fCount: '',
-            cCount: '',
-            pCount: '',
-            user_data: '',
-            self: '',
-            user: ''
-			})
+    	res.redirect('back');
     })
     .catch(err => {
         console.log('error', err);
