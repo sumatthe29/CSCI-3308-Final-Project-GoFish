@@ -26,4 +26,15 @@ describe("Server!", () => {
           done();
         });
     });
+
+    it("Should render userprofile with user information", (done) => {
+      chai
+        .request(server)
+        .get("/userprofile/1")
+        .end((err, res) => {
+          expect(res.text).to.include("testuser");
+
+          done();
+        });
+    });
 });
