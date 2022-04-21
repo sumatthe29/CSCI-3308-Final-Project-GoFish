@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var pgp = require('pg-promise')();
 
 
+
 // Image uploader
 
 
@@ -132,9 +133,6 @@ app.use(session({
 }))
 
 
-
-
-// initial get for 2feed2 page - Matthew
 app.post('/userprofile/:user_id/newpic', avatarUpload.single('profile-pic'), function(req, res, next) {
     var id = parseInt(req.params.user_id);
     
@@ -163,6 +161,8 @@ app.post('/userprofile/:user_id/newpic', avatarUpload.single('profile-pic'), fun
 	});    
     
 });
+
+// Get request to load feed Matthew
 
 app.get('/feed', function(req, res){
     
@@ -204,13 +204,13 @@ app.get('/feed', function(req, res){
 
 });
 
-// Post function to add new posts (NEED CREATE POSTS PAGE) - Matthew
 
 //Basic get request to render a home page -- Spencer
 app.get('/', function(req, res) {
     res.render('pages/home', {
         my_title: "Home",
-        user: req.session.user_id
+        user: req.session.user_id,
+        status: "success"
     })
 });
 //Get request to display login page when you first visit to login -- Spencer
@@ -257,7 +257,7 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 })
 
-//registration page
+//registration page John
 app.get('/registration', function(req, res) {
 	res.render('pages/registration', {
 		my_title: "Register",
@@ -523,7 +523,7 @@ app.post('/userprofile/:user_id/removefriend', function(req, res) {
 
 
 
-// home page searching a friend!!!
+// home page searching a friend!!! Victoria
 app.post('/search', function(req, res){
     var uname = req.body.uname;
     var friend_id = `SELECT User_Id FROM Users WHERE User_Name = '${uname}';`;
@@ -610,6 +610,7 @@ app.post('/createpost/addpost', postUpload.single('image'), function(req, res) {
   });
     
 
-//Taken from lab 7, keeps server and front end connected
-app.listen(3000);
+// Module.exports fixes app.address is not a function when deploying mocha for testing -Matthew
+// Also includes our app.listen(3000), don't do two or more or it will throw error (RESOLVED)
+module.exports = app.listen(3000);
 console.log('3000 is the magic port');

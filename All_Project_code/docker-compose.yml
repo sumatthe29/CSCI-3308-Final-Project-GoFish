@@ -17,13 +17,30 @@ services:
     #environment:
       #Note: we want stuff here for prodction, but right now its off so we can see changes to ejs files w/o restarting docker-compose -- Spencer
     depends_on:
-      - db
+      - test # Change this to db if you need to comment out test -- Matthew
     ports:
       - "3000:3000"
     volumes:
       - ./:/home/node/app
     
-    command: "npm start"
+    command: "npm start" # npm starts the website -- Matthew
+
+  # This is how the mocha/chai testing is activated in the docker compose, comment out if it becomes problematic
+  # See comment on line 20 if comment out is required
+
+  test:
+    image: node:12
+    user: "node"
+    working_dir: /home/node/app
+    depends_on:
+      - db
+    volumes:
+      - ./:/home/node/app
+    
+    command: "npm run testandrun"           # This will run your tests, then 
+                                            # nodemon, see  the command in 
+                                            # package.json.
+
 
 volumes:
   groupproj-db: {}
