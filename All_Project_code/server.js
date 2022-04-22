@@ -5,12 +5,13 @@ var dotenv = require('dotenv').config(); //Lets us pull environement variables f
 var session = require('express-session'); //Lets us track sessions for logins -- Spencer
 var multer = require('multer');
 var path = require('path');
+var bcrypt = require('bcrypt'); //To has passwords -- Spencer
 app.use(bodyParser.json());    
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //Create Database Connection
 var pgp = require('pg-promise')();
 
-
+const saltRounds = 10;
 
 // Image uploader
 
@@ -133,39 +134,34 @@ app.use(session({
 }))
 
 
+// initial get for 2feed2 page - Matthew
 app.post('/userprofile/:user_id/newpic', avatarUpload.single('profile-pic'), function(req, res, next) {
     var id = parseInt(req.params.user_id);
     
-    var path = '/' + req.file.path;
+    var path = '';
 
-    var updateProfPic = `UPDATE users SET User_IMG = '${path}' WHERE User_id = ${id};`;
-    db.any(updateProfPic)
-	.then(function(rows) {
+    if (req.file) {
+        path += req.file.path;
+        var updateProfPic = `UPDATE users SET User_IMG = '${path}' WHERE User_id = ${id};`;
+        db.any(updateProfPic)
+	    .then(function(rows) {
 			res.redirect('back');
-	})
-	.catch(err => {
-		console.log('error', err);
-		res.render('pages/userprofile', {
-			my_title: 'User Profile',
-				user_id: '',
-				friends: '',
-				catches: '',
-				posts: '',
-				fCount: '',
-                cCount: '',
-                pCount: '',
-                user_data: '',
-                self: '',
-                user: req.session.user_id
-		})
-	});    
+	    })
+	    .catch(err => {
+		    console.log('error', err);
+            req.session.error = 'Error: Not an image/Could not upload an image';
+		    res.redirect('back');
+	    }); 
+    } else {
+        res.redirect('back');
+    }
     
 });
 
-// Get request to load feed Matthew
-
 app.get('/feed', function(req, res){
-    
+    if (!req.session.user_id || req.session.user_id < 0) {
+        res.redirect('/');
+    }
     var query = 'SELECT Posts.Post_Name, Posts.Post_Date, Posts.Post_Content, Posts.Post_Image, Posts.User_Id, Users.User_name FROM Posts INNER JOIN Users ON Users.User_Id=Posts.User_Id ORDER BY Post_ID DESC;';
     // var userpost = 'select username from users inner join posts '
 
@@ -204,22 +200,31 @@ app.get('/feed', function(req, res){
 
 });
 
+// Post function to add new posts (NEED CREATE POSTS PAGE) - Matthew
 
 //Basic get request to render a home page -- Spencer
 app.get('/', function(req, res) {
+    var errorMsg = req.session.error;
+    req.session.error='';
     res.render('pages/home', {
         my_title: "Home",
         user: req.session.user_id,
-        status: "success"
+        error: errorMsg
     })
 });
 //Get request to display login page when you first visit to login -- Spencer
 app.get('/login', function(req, res){
-    res.render('pages/login', {
-        my_title: "Login",
-        error:'',
-        user: ''
-    })
+    if (req.session.user_id && req.session.user_id != -1) {
+        res.redirect('/');
+    } else {
+        res.status(200).render('pages/login', {
+            my_title: "Login",
+            error:'',
+            user: ''
+        })
+    }
+        
+    
 });
 
 //Post request to allow user to login using the login form -- Spencer
@@ -227,24 +232,39 @@ app.post('/login', function(req, res){
     var username = req.body.uname;
     var email = req.body.email;
     var pword = req.body.password;
+    var errorMsg = '';
     var user;
 
     if (email != "") {
-        user = `SELECT * FROM users WHERE User_Email = '${email}' AND User_Password = '${pword}';`;
+        user = `SELECT * FROM users WHERE User_Email = '${email}';`;
+        errorMsg += 'Invalid email, try again';
     } else {
-        user = `SELECT * FROM users WHERE User_Name = '${username}' AND User_Password = '${pword}';`;
+        user = `SELECT * FROM users WHERE User_Name = '${username}';`;
+        errorMsg += 'Invalid username, try again';
     }
 
    db.any(user)
     .then(function(rows){
-        req.session.username = rows[0].user_name;
-        req.session.user_id = rows[0].user_id;
-        res.redirect('/') //redirects user to home page if they successfully login
+        var password = rows[0].user_password;
+        bcrypt.compare(pword, password, function(err, result) {
+            if (result) {
+                req.session.username = rows[0].user_name;
+                req.session.user_id = rows[0].user_id;
+                req.session.error = '';
+                res.redirect('/') //redirects user to home page if they successfully login
+            } else {
+                res.render('pages/login', {
+                    my_title: "Login",
+                    error: 'Invalid password, try again',
+                    user: ''
+                })
+            }
+        })
    })
    .catch(function(err) {
         res.render('pages/login', {
             my_title: "Login",
-            error: 'Invalid credentials, try again',
+            error: errorMsg,
             user: ''
         })
    })
@@ -254,96 +274,82 @@ app.post('/login', function(req, res){
 app.get('/logout', function(req, res) {
     req.session.username = "";
     req.session.user_id = -1;
+    req.session.error = '';
     res.redirect('/');
 })
 
-//registration page John
+//registration page
 app.get('/registration', function(req, res) {
-	res.render('pages/registration', {
-		my_title: "Register",
-        user: '',
-        User_id: '', 
-		First_Name: '',
-        Last_Name: '',
-        User_Name: '',
-		User_Email: '',
-		User_Password: '',
-	})
+	if (req.session.user_id && req.session.user_id != -1) {
+        res.redirect(`/userprofile/${req.session.user_id}`);
+    } else {
+        res.status(200).render('pages/registration', {
+            my_title: "Register",
+            user: '',
+            error: ''
+        })
+    }
 });
 
 app.post('/registration', function(req, res){
-
     var emailVar = req.body.email;
     var firstNameVar = req.body.first_name;
     var lastNameVar = req.body.last_name;
     var userNameVar = req.body.user_name;
     var passwordVar = req.body.password1;
-    
+    var confPassVar = req.body.password2;
 
-	//var regComplete = true;
-
-    var databaseStatement = `INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password) VALUES('${firstNameVar}', '${lastNameVar}', '${userNameVar}', '${emailVar}',  '${passwordVar}');`;
-
-
-
-    db.any(databaseStatement)
-    .then(function(rows){
-        res.redirect('/login'); //redirects user to home page if they successfully login
-   })
-   .catch(function(err) {
+    var emailFormat = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z.]+$/; //regex expression for email format - should most email forms including stuff ending with .co.uk and stuff -- Spencer
+    //Below is yoinked from lab 5 where we made the sign up modal -- Spencer
+    var lowerCaseLetters = /[a-z]/g; // : Fill in the regular expression for lowerCaseLetters
+      var upperCaseLetters = /[A-Z]/g; // : Fill in the regular expression for upperCaseLetters
+      var numbers = /[0-9]/g; // Fill in the regular expression for digits
+      var symbols = /[!@#$%^&*()]/g; // Fill in the regular expression for symbols
+      var minLength = 12; // : Change the minimum length to what what it needs to be in the question
+      //below is boolean condition for password entry being invalid
+      var invalidPass = passwordVar != confPassVar || !(passwordVar.length >= minLength) || !passwordVar.match(lowerCaseLetters) || !passwordVar.match(upperCaseLetters) || !passwordVar.match(numbers) || !passwordVar.match(symbols);
+    if (!emailVar.match(emailFormat)) {
         res.render('pages/registration', {
             my_title: "Register",
             user: '',
+            error: 'Invalid email'
         })
-   })
+    } else if (invalidPass) {
+        res.render('pages/registration', {
+            my_title: "Register",
+            user: '',
+            error: 'Invalid password'
+        })
+    } else {
+        bcrypt.hash(passwordVar, saltRounds, function(err, hash) {
+            passwordVar = hash;
     
-	db.task('get-everything', task => {
-		return task.batch([
-			task.any(databaseStatement)
-		]);
-	})
+            var databaseStatement = `INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password, User_IMG) VALUES('${firstNameVar}', '${lastNameVar}', '${userNameVar}', '${emailVar}',  '${passwordVar}', '/images/loginphoto.png');`;
+    
+    
+    
+            db.any(databaseStatement)
+            .then(function(rows){
+                res.redirect('/login'); //redirects user to home page if they successfully login
+            })
+            .catch(function(err) {
+                res.render('pages/registration', {
+                    my_title: "Register",
+                    user: '',
+                    error: 'Username or email is already taken. Try again'
+                })
+            })
+        });
+    }
+    
 
-	.then(info => {
+    
 
-		if(emailVar != "" && passwordVar != "" && passwordVar.length >= 5) {
-			regComplete = true; //check various requirements for registering
-		}
 
-		if(regComplete == true) { //When login info is done implement here -Rooney
+    
 
-			res.render('pages/login', {
-				my_title: "Login",
-				data: info,
-				email: emailVar,
-                username: userNameVar,
-				password: passwordVar,
-				regComplete: 'Registration successful',
-			})
-		}
-
-		else {
-			res.render('pages/registration', {
-				my_title: "Register",
-				data: info,
-				email: emailVar,
-                username: userNameVar,
-				password: passwordVar,
-				regComplete: 'Registration incomplete',
-			})
-		}
-	})
-	
-	.catch(err => {
-		console.log('error', err);
-		res.render('pages/registration', {
-			my_title: "Register",
-			data: '',
-			email: '',
-            username: '',
-			password: '',
-			regComplete: 'Registration did not work',
-		})
-	});
+    
+    
 });
 
 //user page
@@ -355,9 +361,12 @@ app.get('/userprofile/:user_id', function(req, res){
     } else {
         view_id = -1;
     }
-     
+    
     var viewing_self = id === view_id;
-
+    var errorMsg = '';
+    if (req.session.error != '') {
+        errorMsg = req.session.error;
+    }
     //console.log(req.query);
     console.log(id);
     
@@ -389,7 +398,9 @@ app.get('/userprofile/:user_id', function(req, res){
 
 	.then(info => {
          var viewing_Friend = info[7][0].count == 1;
-			res.render('pages/userprofile', {
+         req.session.error = '';
+         if (info[6][0].user_id === id) {
+            res.render('pages/userprofile', {
 				my_title: 'User Profile',
 				user_id: id,
 				friends: info[0],
@@ -401,41 +412,42 @@ app.get('/userprofile/:user_id', function(req, res){
                 user_data: info[6],
                 self: viewing_self,
                 user: req.session.user_id,
-                viewingFriend: viewing_Friend
+                viewingFriend: viewing_Friend,
+                error: errorMsg
 			})
+         } else {
+            req.session.error = 'Error: could not find that user page';
+            if (view_id != -1){
+                res.redirect(`/userprofile/${view_id}`);
+            } else {
+                res.redirect('/');
+            }
+         }
 	})
 	.catch(err => {
+        console.log('You got an error!');
 		console.log('error', err);
-		res.render('pages/userprofile', {
-			my_title: 'User Profile',
-				user_id: '',
-				friends: '',
-				catches: '',
-				posts: '',
-				fCount: '',
-                cCount: '',
-                pCount: '',
-                user_data: '',
-                self: '',
-                user: req.session.user_id
-		})
+        req.session.error = 'Error: could not find that user page';
+        if (view_id != -1){
+            res.redirect(`/userprofile/${view_id}`);
+        } else {
+            res.redirect('/');
+        }
 	});
 });
 
-app.post('/userprofile/:user_id/submit_catch', function(req, res) {
+app.post('/userprofile/:user_id/submit_catch', catchUpload.single('catch-pic'), function(req, res) {
     var id = parseInt(req.params.user_id);
-
-    var pic = '';
+    var image = '';
     if (req.file) {
-        pic = req.file.path;
+        image = '/' + req.file.path;
     }
-
 	var name= req.body.name;
 	var length = req.body.length;
     var weight = req.body.weight;
 	var date = req.body.date;
     var location = req.body.location;
-	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, Catch_Image, User_id) VALUES('${name}', ${length}, ${weight}, '${location}', '${date}', '${pic}', ${id});`;
+	var newCatch = `INSERT INTO Catches(Catch_Name, Catch_Length, Catch_Weight, Catch_Location, Catch_Date, Catch_Image, User_id) VALUES('${name}', ${length}, ${weight}, '${location}', '${date}', '${image}', ${id});`;
 
 	db.any(newCatch)
     .then(function(rows) {
@@ -443,19 +455,8 @@ app.post('/userprofile/:user_id/submit_catch', function(req, res) {
     })
     .catch(err => {
         console.log('error', err);
-            res.render('pages/userprofile', {
-                my_title: 'User Profile',
-				user_id: '',
-				friends: '',
-				catches: '',
-				posts: '',
-				fCount: '',
-                cCount: '',
-                pCount: '',
-                user_data: '',
-                self: '',
-                user: ''
-            })
+        req.session.error = 'Error: could not add catch';
+        res.redirect('back');
     });
 });
 
@@ -473,20 +474,8 @@ app.post('/userprofile/:user_id/addfriend', function(req, res) {
     })
     .catch(err => {
         console.log('error', err);
-            res.render('pages/userprofile', {
-                my_title: 'User Profile',
-                added_friend: '',
-                user_id: '',
-				friends: '',
-				catches: '',
-				posts: '',
-				fCount: '',
-                cCount: '',
-                pCount: '',
-                user_data: '',
-                self: '',
-                user: ''
-            })
+        req.session.error = 'Error: could not add friend';
+        res.redirect('back');
     });
 });
 
@@ -504,26 +493,15 @@ app.post('/userprofile/:user_id/removefriend', function(req, res) {
     })
     .catch(err => {
         console.log('error', err);
-        res.render('pages/userprofile', {
-            my_title: 'User Profile',
-            user_id: '',
-            friends: '',
-            catches: '',
-            posts: '',
-            fCount: '',
-            cCount: '',
-            pCount: '',
-            user_data: '',
-            self: '',
-            user: ''
-        })
+        req.session.error = 'Error: could not remove friend';
+        res.redirect('back');
     });   
 })
 
 
 
 
-// home page searching a friend!!! Victoria
+// home page searching a friend!!!
 app.post('/search', function(req, res){
     var uname = req.body.uname;
     var friend_id = `SELECT User_Id FROM Users WHERE User_Name = '${uname}';`;

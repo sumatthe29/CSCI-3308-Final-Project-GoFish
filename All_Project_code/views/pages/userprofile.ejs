@@ -6,6 +6,13 @@
 <body style="background-image: url(https://i.pinimg.com/originals/eb/57/ce/eb57ced271aecdfc5e63b4b6d23024a1.jpg);  background-size: cover; background-attachment: fixed;">
 <br>
     <div class="container" style="background-color: blanchedalmond;">
+        <% var errMsg = ''; %>
+        <% if (error) {
+            errMsg += `<div class="alert alert-danger" role="alert">
+                ${error}
+              </div>`; %>
+        <% } %>
+        <%- errMsg %>
     <div class="row">
         <div class="col-sm-2">
             <div class="card bg-light">
@@ -87,26 +94,38 @@
         <div class="col-10">
             <div class="card bg-light">
                 <h3>Catches</h3>
-                <div class="card-deck">
+                <div class="card-group">
                     <%/*<!-- possible database method for inserting catches-->*/%>
                     <% if (catches) {
                         var catchdisp = '';
+                        var count = 1;
                         catches.forEach(function(item){
-                            catchdisp += `<div class="card bg-light">
+                            if (count % 3 === 1) {
+                                catchdisp += '<div class ="card-deck">';
+                            }
+                            catchdisp += `<div class = "col-sm-4"><div class="card bg-light">
                                 <img class="card-img-top" src='${item.catch_image}' height="150px" width="150px">
                                 <h5>Species: ${item.catch_name}</h5>
                                 <h5>Length: ${item.catch_length}</h5>
                                 <h5>Weight: ${item.catch_weight} lb</h5>
                                 <h5>Date: ${item.catch_date}</h5>
                                 <h5>Location: ${item.catch_location}</h5> 
-                            </div>`;
-        
+                            </div></div>`;
+                            if (count % 3 === 0) {
+                                catchdisp += '</div>';
+                            }
+                            count++;
                         }); %>
+                        <% if (count % 3 != 1) {
+                            catchdisp += '</div>';
+                        } %>
                         <%- catchdisp %>
                     <% } %>
+                </div>
+                    
 
                     
-                </div>
+                
             </div>
             
         </div>

@@ -32,7 +32,7 @@
     -Let user upload a profile picture (could also only have this done once user is registered)
 -->
 <link rel="stylesheet" href="/views/css/registration.css">
-
+<script src="../scripts/login.js"></script>
 </head>
 <body class="bg">
     <br>
@@ -87,9 +87,17 @@
                 </div>
     
                 <br>
-    
+                <% var errMsg = ''; %>
+        <% if (error) {
+            errMsg += `<div class="alert alert-danger" role="alert">
+                ${error}
+              </div>`; %>
+        <% } %>
+        <%- errMsg %>
 
                 <br><br><br><br>
+
+                
 
                 <!-- <div class="form-group">
                     <label class="sr-only" for="email">Email Address</label>
@@ -104,10 +112,10 @@
        
 
 
-            <input type="submit" value="Go Fish!" class="btn btn-primary btn-block">
+            <input type="submit" value="Go Fish!" class="btn btn-primary btn-block" id="register_button">
             <br><br><br>
         </form>
     </div>
-    <script src="../scripts/login.js"></script>
 </body>
 </html>
+
