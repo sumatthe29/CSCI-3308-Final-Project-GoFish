@@ -5,6 +5,8 @@ var dotenv = require('dotenv').config(); //Lets us pull environement variables f
 var session = require('express-session'); //Lets us track sessions for logins -- Spencer
 var multer = require('multer');
 var path = require('path');
+var cloudinary = require('cloudinary').v2; //Image storage for deployment to heroku -- Spencer
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 var bcrypt = require('bcrypt'); //To has passwords -- Spencer
 app.use(bodyParser.json());    
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -16,14 +18,19 @@ const saltRounds = 10;
 // Image uploader
 
 
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET,
+  });
 
-const avatarStorage = multer.diskStorage({   
-    destination: './avatars', 
-      filename: (req, file, cb) => {
-          const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
-          cb(null, file.fieldname + fileSuffix)
-    }
-});
+const avatarStorage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: "avatars",
+      public_id: (req, file) => 'profilepic' + '_' + Date.now() + path.extname(file.originalname),
+    },
+  });
 
 const avatarUpload = multer({
     storage: avatarStorage,
@@ -39,13 +46,13 @@ const avatarUpload = multer({
   }
 });
 
-const postStorage = multer.diskStorage({    
-    destination: './postimages', 
-      filename: (req, file, cb) => {
-          const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
-          cb(null, file.fieldname + fileSuffix)
-    }
-});
+const postStorage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: "postimages",
+      public_id: (req, file) => 'post' + '_' + Date.now() + path.extname(file.originalname),
+    },
+  });
 
 const postUpload = multer({
     storage: postStorage,
@@ -61,13 +68,13 @@ const postUpload = multer({
   }
 });
 
-const catchStorage = multer.diskStorage({    
-    destination: './catchimages', 
-      filename: (req, file, cb) => {
-          const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
-          cb(null, file.fieldname + fileSuffix)
-    }
-});
+const catchStorage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: "catches",
+      public_id: (req, file) => 'catch' + '_' + Date.now() + path.extname(file.originalname),
+    },
+  });
 
 const catchUpload = multer({
     storage: catchStorage,
@@ -112,7 +119,7 @@ const catchUpload = multer({
 
 
 // Copied over from lab7 to use as a test - Matthew
-const dbConfig = {
+/*const dbConfig = {
 	host: 'db',
 	port: 5432,
 	database: process.env.POSTGRES_DB, //process.env gets environement variables from .env, we reference them like this -- Spencer
@@ -121,9 +128,30 @@ const dbConfig = {
 };
 
 var db = pgp(dbConfig);
+*/
+//Below is copied from lab 10 for deployment -- Spencer
+const dev_dbConfig = {
+	host: 'db',
+	port: 5432,
+	database: process.env.POSTGRES_DB,
+	user: process.env.POSTGRES_USER,
+	password: process.env.POSTGRES_PASSWORD
+};
+
+
+const isProduction = process.env.NODE_ENV === 'production';
+const dbConfig = isProduction ? process.env.DATABASE_URL : dev_dbConfig;
+
+// fixes: https://github.com/vitaly-t/pg-promise/issues/711
+if (isProduction) {
+	pgp.pg.defaults.ssl = {rejectUnauthorized: false};
+}
+
+let db = pgp(dbConfig);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 //This line is necessary for us to use relative paths 
 //and access our resources directory
 app.use(express.static(__dirname + '/'));
@@ -324,7 +352,7 @@ app.post('/registration', function(req, res){
         bcrypt.hash(passwordVar, saltRounds, function(err, hash) {
             passwordVar = hash;
     
-            var databaseStatement = `INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password, User_IMG) VALUES('${firstNameVar}', '${lastNameVar}', '${userNameVar}', '${emailVar}',  '${passwordVar}', '/images/loginphoto.png');`;
+            var databaseStatement = `INSERT INTO Users(First_Name, Last_Name, User_Name, User_Email, User_Password, User_IMG) VALUES('${firstNameVar}', '${lastNameVar}', '${userNameVar}', '${emailVar}',  '${passwordVar}', '../img/loginphoto.png');`;
     
     
     
@@ -440,7 +468,7 @@ app.post('/userprofile/:user_id/submit_catch', catchUpload.single('catch-pic'), 
     var id = parseInt(req.params.user_id);
     var image = '';
     if (req.file) {
-        image = '/' + req.file.path;
+        image = req.file.path;
     }
 	var name= req.body.name;
 	var length = req.body.length;
@@ -590,5 +618,8 @@ app.post('/createpost/addpost', postUpload.single('image'), function(req, res) {
 
 // Module.exports fixes app.address is not a function when deploying mocha for testing -Matthew
 // Also includes our app.listen(3000), don't do two or more or it will throw error (RESOLVED)
-module.exports = app.listen(3000);
-console.log('3000 is the magic port');
+//module.exports = app.listen(3000);
+//console.log('3000 is the magic port');
+const server = app.listen(process.env.PORT || 3000, () => {
+    console.log(`Express running → PORT ${server.address().port}`);
+});

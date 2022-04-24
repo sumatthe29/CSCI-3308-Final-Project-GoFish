@@ -1,43 +1,49 @@
 # This file is based on the one from lab 7, but with the db environment variables stored as secrets -- Spencer
+#now based more on lab 10 for deployment
 services:
+
+  heroku-cli:
+    build: ./heroku
+    env_file: ./heroku/.env
+
   db:
-    image: postgres
-    env_file:
-      - .env
-    expose:
-      - "5432"
+    build: ./database
+    env_file: .env
     volumes:
       - groupproj-db:/var/lib/postgresql/data
-      - ./database:/docker-entrypoint-initdb.d #runs the intialization script for the database -- Spencer
+      - ./database/init_data:/docker-entrypoint-initdb.d #runs the intialization script for the database -- Spencer
 
   web:
-    image: node:12
-    user: "node"
-    working_dir: /home/node/app
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+      target: devapp
     #environment:
       #Note: we want stuff here for prodction, but right now its off so we can see changes to ejs files w/o restarting docker-compose -- Spencer
     depends_on:
-      - test # Change this to db if you need to comment out test -- Matthew
+      - db
+      #- test # Change this to db if you need to comment out test -- Matthew
+    env_file: .env
     ports:
       - "3000:3000"
     volumes:
-      - ./:/home/node/app
+      - ./src:/app/src
     
-    command: "npm start" # npm starts the website -- Matthew
+    #command: "npm start" # npm starts the website -- Matthew
 
   # This is how the mocha/chai testing is activated in the docker compose, comment out if it becomes problematic
   # See comment on line 20 if comment out is required
 
-  test:
-    image: node:12
-    user: "node"
-    working_dir: /home/node/app
-    depends_on:
-      - db
-    volumes:
-      - ./:/home/node/app
+  #test:
+   # image: node:12
+    #user: "node"
+    #working_dir: /home/node/app
+    #depends_on:
+      #- db
+    #volumes:
+      #- ./:/home/node/app
     
-    command: "npm run testandrun"           # This will run your tests, then 
+    #command: "npm run testandrun"           # This will run your tests, then 
                                             # nodemon, see  the command in 
                                             # package.json.
 
