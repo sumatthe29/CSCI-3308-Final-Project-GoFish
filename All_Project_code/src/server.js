@@ -17,20 +17,92 @@ const saltRounds = 10;
 
 // Image uploader
 
+//Below is copied from lab 10 for deployment -- Spencer
+const dev_dbConfig = {
+	host: 'db',
+	port: 5432,
+	database: process.env.POSTGRES_DB,
+	user: process.env.POSTGRES_USER,
+	password: process.env.POSTGRES_PASSWORD
+};
 
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUD_API_KEY,
-    api_secret: process.env.CLOUD_API_SECRET,
-  });
 
-const avatarStorage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-      folder: "avatars",
-      public_id: (req, file) => 'profilepic' + '_' + Date.now() + path.extname(file.originalname),
-    },
-  });
+const isProduction = process.env.NODE_ENV === 'production';
+const dbConfig = isProduction ? process.env.DATABASE_URL : dev_dbConfig;
+
+// fixes: https://github.com/vitaly-t/pg-promise/issues/711
+if (isProduction) {
+	pgp.pg.defaults.ssl = {rejectUnauthorized: false};
+}
+
+let db = pgp(dbConfig);
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+//This line is necessary for us to use relative paths 
+//and access our resources directory
+app.use(express.static(__dirname + '/'));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    name: "testsessionID",
+    saveUninitialized: false
+}))
+
+var avatarStorage;
+var postStorage;
+var catchStorage;
+if (isProduction) {
+    cloudinary.config({
+        cloud_name: process.env.CLOUD_NAME,
+        api_key: process.env.CLOUD_API_KEY,
+        api_secret: process.env.CLOUD_API_SECRET,
+      });
+      avatarStorage = new CloudinaryStorage({
+        cloudinary: cloudinary,
+        params: {
+          folder: "avatars",
+          public_id: (req, file) => 'profilepic' + '_' + Date.now() + path.extname(file.originalname),
+        },
+      });
+      postStorage = new CloudinaryStorage({
+        cloudinary: cloudinary,
+        params: {
+          folder: "postimages",
+          public_id: (req, file) => 'post' + '_' + Date.now() + path.extname(file.originalname),
+        },
+      });
+      catchStorage = new CloudinaryStorage({
+        cloudinary: cloudinary,
+        params: {
+          folder: "catches",
+          public_id: (req, file) => 'catch' + '_' + Date.now() + path.extname(file.originalname),
+        },
+      });
+} else {
+    avatarStorage = multer.diskStorage({   
+        destination: '/app/src/avatars', 
+          filename: (req, file, cb) => {
+              const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
+              cb(null, file.fieldname + fileSuffix)
+        }
+    });
+    postStorage = multer.diskStorage({    
+        destination: '/app/src/postimages', 
+          filename: (req, file, cb) => {
+              const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
+              cb(null, file.fieldname + fileSuffix)
+        }
+    });
+    catchStorage = multer.diskStorage({    
+        destination: '/app/src/catchimages', 
+          filename: (req, file, cb) => {
+              const fileSuffix = '_' + Date.now() + path.extname(file.originalname); //appends date and fileformat to end of file name
+              cb(null, file.fieldname + fileSuffix)
+        }
+    });
+}
+
 
 const avatarUpload = multer({
     storage: avatarStorage,
@@ -46,13 +118,7 @@ const avatarUpload = multer({
   }
 });
 
-const postStorage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-      folder: "postimages",
-      public_id: (req, file) => 'post' + '_' + Date.now() + path.extname(file.originalname),
-    },
-  });
+
 
 const postUpload = multer({
     storage: postStorage,
@@ -68,13 +134,6 @@ const postUpload = multer({
   }
 });
 
-const catchStorage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-      folder: "catches",
-      public_id: (req, file) => 'catch' + '_' + Date.now() + path.extname(file.originalname),
-    },
-  });
 
 const catchUpload = multer({
     storage: catchStorage,
@@ -129,37 +188,7 @@ const catchUpload = multer({
 
 var db = pgp(dbConfig);
 */
-//Below is copied from lab 10 for deployment -- Spencer
-const dev_dbConfig = {
-	host: 'db',
-	port: 5432,
-	database: process.env.POSTGRES_DB,
-	user: process.env.POSTGRES_USER,
-	password: process.env.POSTGRES_PASSWORD
-};
 
-
-const isProduction = process.env.NODE_ENV === 'production';
-const dbConfig = isProduction ? process.env.DATABASE_URL : dev_dbConfig;
-
-// fixes: https://github.com/vitaly-t/pg-promise/issues/711
-if (isProduction) {
-	pgp.pg.defaults.ssl = {rejectUnauthorized: false};
-}
-
-let db = pgp(dbConfig);
-
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
-//This line is necessary for us to use relative paths 
-//and access our resources directory
-app.use(express.static(__dirname + '/'));
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    name: "testsessionID",
-    saveUninitialized: false
-}))
 
 
 // initial get for 2feed2 page - Matthew
@@ -170,6 +199,9 @@ app.post('/userprofile/:user_id/newpic', avatarUpload.single('profile-pic'), fun
 
     if (req.file) {
         path += req.file.path;
+        if (!isProduction) {
+            path = '..' +  path.substring(8);
+        }
         var updateProfPic = `UPDATE users SET User_IMG = '${path}' WHERE User_id = ${id};`;
         db.any(updateProfPic)
 	    .then(function(rows) {
@@ -335,18 +367,24 @@ app.post('/registration', function(req, res){
       var symbols = /[!@#$%^&*()]/g; // Fill in the regular expression for symbols
       var minLength = 12; // : Change the minimum length to what what it needs to be in the question
       //below is boolean condition for password entry being invalid
-      var invalidPass = passwordVar != confPassVar || !(passwordVar.length >= minLength) || !passwordVar.match(lowerCaseLetters) || !passwordVar.match(upperCaseLetters) || !passwordVar.match(numbers) || !passwordVar.match(symbols);
+      var invalidPass = !(passwordVar.length >= minLength) || !passwordVar.match(lowerCaseLetters) || !passwordVar.match(upperCaseLetters) || !passwordVar.match(numbers) || !passwordVar.match(symbols);
     if (!emailVar.match(emailFormat)) {
         res.render('pages/registration', {
             my_title: "Register",
             user: '',
             error: 'Invalid email'
         })
+    } else if (passwordVar != confPassVar) {
+        res.render('pages/registration', {
+            my_title: "Register",
+            user: '',
+            error: 'Passwords must match'
+        })
     } else if (invalidPass) {
         res.render('pages/registration', {
             my_title: "Register",
             user: '',
-            error: 'Invalid password'
+            error: 'Password did not meet requirements'
         })
     } else {
         bcrypt.hash(passwordVar, saltRounds, function(err, hash) {
@@ -469,6 +507,9 @@ app.post('/userprofile/:user_id/submit_catch', catchUpload.single('catch-pic'), 
     var image = '';
     if (req.file) {
         image = req.file.path;
+        if (!isProduction) {
+            image = '..' +  image.substring(8);
+        }
     }
 	var name= req.body.name;
 	var length = req.body.length;
@@ -567,6 +608,9 @@ app.post('/createpost/addpost', postUpload.single('image'), function(req, res) {
     var image = '';
     if (req.file) {
         image = req.file.path;
+        if (!isProduction) {
+            image = '..' +  image.substring(8);
+        }
     }
     console.log(req.body.Postname);
     console.log(req.body.Postcontent);
