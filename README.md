@@ -1,9 +1,17 @@
 # csci-3308-spring22-017-04
 
-GoFish Project Description:
-
-	Our application serves the purpose of providing a “social media” platform specifically for avid fishers! It is moderately impossible to find a great fishing spot without doing loads of research, looking up bloggers, or at least knowing the area you are in. Especially, if you are on vacation in the mountains or in a country you don’t know, but still want to feed your fishing addiction, what do you do? What if we could take all the work out of that! Just put in where you want to fish, a map will pop up with all the great fishing spots real people have posted about, and boom; a night’s worth of research and planning has turned into a five-minute search with GoFish.com!
-	GoFish.com is a comprehensive website that allows users to locate and find active fishing spots and report catches and additional finds/stories locations for others to view/comment on within a giant map. Users can login, have a profile, and change all of their credentials. Users will also be able to post where they fished. Users are also encouraged to friend other users and create groups to connect and learn more about each other’s fishing story. It provides ample space for a passionate fishing community to connect and share with the shared goal of promoting togetherness and friendly competition. Achievements can be earned for different catches, catch quantities, competitions, etc. There will be a map function that shows the fishing spots where different fish species have been found and where you are also most likely to catch a fish.
-
-To program GoFIsh, we plan on using HTML, CSS, and JavaScript for the front-end, and PostgreSQL, MongoDB, and Node.js for the back-end.
-
+# Go Fish
+## Project Description
+Go Fish is a social media website designed primarily for fishing enthusiasts. Once a user registers for an account and logs in, they can see posts from all other users in a feed, make posts themselves, log the fish they've caught on their profile (including pictures of their catch), and add other users as "fishing buddies". 
+## Repo Organization
+The main files needed for the website's front-end and middleware functionality is contained in `All_Project_Code/src`. Preliminary unit tests as well as documentation for user acceptance testing is contained in `All_Project_Code/test`. `All_Project_Code/heroku` contains a dockerfile necessary for deployment. `All_Project_Code/database` contains a dockerfile for deployment and the initialization script for the database.
+## Building/Running This Project
+This project has been deployed to heroku [here](https://go-fish-site.herokuapp.com/).
+To run locally (requires docker):
+- Clone this repository
+- Add a .env file to `All_Project_Code` on your local machine. In this file, define parameters for POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, and SESSION_SECRET as you wish.
+- Add a .env file to `All_Project_Code/heroku`. You need not put anything here unless you are trying to deploy the app.
+- Run the command `docker-compose up` from `All_Project_Code`.
+- To view your built local version, navigate to [localhost:3000](localhost:3000) in your browser.
+## Credits
+The general structure of the repo as well as the Dockerfiles were taken from lab 10 of this class.
