@@ -235,30 +235,3 @@
 </body>
 
 </html>
-
-
-<% if (catches) {
-    var catchdisp = '';
-    var count = 1;
-    catches.forEach(function(item){
-        if (count % 3 === 1) {
-            catchdisp += '<div class ="card-deck">';
-        }
-        catchdisp += `<div class = "col-sm-4"><div class="card bg-light">
-            <img class="card-img-top" src='${item.catch_image}' height="150px" width="150px">
-            <h5>Species: ${item.catch_name}</h5>
-            <h5>Length: ${item.catch_length}</h5>
-            <h5>Weight: ${item.catch_weight} lb</h5>
-            <h5>Date: ${item.catch_date}</h5>
-            <h5>Location: ${item.catch_location}</h5> 
-        </div></div>`;
-        if (count % 3 === 0) {
-            catchdisp += '</div>';
-        }
-        count++;
-    }); %>
-    <% if (count % 3 != 1) {
-        catchdisp += '</div>';
-    } %>
-    <%- catchdisp %>
-<% } %>
