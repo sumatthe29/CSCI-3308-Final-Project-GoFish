@@ -52,7 +52,7 @@ app.use(session({
 var avatarStorage;
 var postStorage;
 var catchStorage;
-if (isProduction) {
+if (isProduction) { //if its production, images get uploaded to the cloud.For dev/testing, images are stored locally. -- Spencer
     cloudinary.config({
         cloud_name: process.env.CLOUD_NAME,
         api_key: process.env.CLOUD_API_KEY,
@@ -107,7 +107,7 @@ if (isProduction) {
 const avatarUpload = multer({
     storage: avatarStorage,
     limits: {
-      fileSize: 1000000 // 1000000 Bytes = 1 MB
+      fileSize: 20000000 // Max upload size = 20 MB
     },
     fileFilter(req, file, cb) {
       if (!file.originalname.match(/\.(png|jpg)$/)) { 
@@ -123,7 +123,7 @@ const avatarUpload = multer({
 const postUpload = multer({
     storage: postStorage,
     limits: {
-      fileSize: 1000000 // 1000000 Bytes = 1 MB
+      fileSize: 20000000 // Max upload size = 20 MB
     },
     fileFilter(req, file, cb) {
       if (!file.originalname.match(/\.(png|jpg)$/)) { 
@@ -138,7 +138,7 @@ const postUpload = multer({
 const catchUpload = multer({
     storage: catchStorage,
     limits: {
-      fileSize: 1000000 // 1000000 Bytes = 1 MB
+      fileSize: 20000000 // Max upload size = 20 MB
     },
     fileFilter(req, file, cb) {
       if (!file.originalname.match(/\.(png|jpg)$/)) { 
